@@ -1,0 +1,385 @@
+\cfoot{}\rhead{\thepage}
+\lhead{{\scshape Generic Extension} $\qquad$ {\tiny \today } }
+
+% \noindent{\Large{\scshape\bfseries Entreé to Generic Extensions and Forcing in Set Theory}} \\[0.1cm]
+%
+% \noindent {\scshape Bohuslav Balcar}, {\small CTS, J{\' \i}lsk{\' a} 1, Praha 1,
+% 	Czech Republic, {\ttfamily balcar@cts.cuni.cz} } \\[0.1cm]
+% \noindent {\scshape Jonathan Verner}, {\small KTIML MFF UK, {\ttfamily jonathan.verner@matfyz.cz}\\[0.1cm]
+% {\tiny \today } \\[0.5cm]
+
+%\maketitle
+
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Generic objects, generic extensions}\label{chapter_generic}
+
+{\tiny \today } \\[0.5cm]
+
+% \subsection{${}$ \hspace{-1em}Generic objects.}
+%
+% Starting with a universe of sets $M$ we are interested in extensions of this universe which are determined by a single semiset. In this case, the
+% single 'generating' semiset is what is called a \emph{generic object}. We shall investigate the properties such generating sets must satisfy and
+% we shall show that generic object can be canonically represented via generic filters. The motivation for such extensions comes from the following
+% observation
+%
+% \begin{fact} Suppose $N$ is an extension of a transitive model $M$ of ZF and $\sigma\in N$ is a semiset of $M$. Then
+% $$ %\startformula
+% M\subseteq Im(\sigma,M)=\{R[\sigma]:R\ \mbox{is a relation}\ \&\ R\in M\}\subseteq \{\rho\in N:\rho\subseteq M\}=Sm(N,M)\subseteq N
+% $$ %\stopformula
+%
+% We are interested in extensions $N$, for which there is a semiset $\sigma$ such that $Sm(N,M)=Im(\sigma,M)$. Comparing the systems $Im(\sigma,M)$
+% and $Sm(N,M)$ we see the following fact
+%
+% \begin{fact} Suppose $M$ is a transitive model of ZF. Then
+% \begin{itemize}[i]
+% \item[()] $Im(\sigma,M)$ is closed under $\cup$ (union).
+% \item[()] $Sm(N,M)$ is closed under $\cup$ (union) and $\setminus$ (set difference)
+% \end{itemize}
+% \end{fact}
+%
+% which motivates the definition of a generic object
+%
+% \begin{definition}{}{} A semiset $\sigma$ of a transitive model $M$ of ZF is called \emph{generic} if $Im(\sigma,M)$ is closed under $\setminus$ (set difference).
+% \end{definition}
+%
+% The following theorem shows that generic objects are in fact generic filters:
+%
+% \begin{definition}{}{} Two semisets $\sigma,\rho\subseteq M$ of a transitive model of ZF are \emph{similar} if there are relations $r,s\in M$ such that
+% $r[\sigma]=\rho$ and $s[r]=\sigma$.
+% \end{definition}
+%
+% \begin{theorem}{(Vop\v enka, Balcar)} Suppose $M$ is a transitive model of ZF and $X\in M$. Then the following are equivalent
+% \begin{itemize}[i]
+% \item[()] A semiset $G\subseteq X$ is generic
+% \item[()] There is an ordering $\leq\in M$ such that $G$ is a generic filter on $(X,\leq)$.
+% \end{itemize}
+
+\subsection{${}$ \hspace{-1em}Generic objects.}
+We are interested in systems of semisets which include all sets of a universe $M$ and are closed under the binary operation $\cup$ (union) and
+$\setminus$ (set difference).
+
+\begin{fact}
+A system of semisets of $M$ containing all sets of $M$ forms a ring iff it is closed under $\cup$ (union) and set-complement, i.e. $a\setminus \sigma$
+is in the system whenever $a\in M$ and $\sigma$ belongs to the system.
+\end{fact}
+
+\begin{proof}
+If $\sigma\subseteq a,\rho\subseteq b$, then $\sigma-\rho=a-(a-(a-\rho)\cup(a-\sigma))$ and $\sigma\cap\rho=a-((a-\sigma)\cup(a-\rho))$
+\end{proof}
+
+We want the properties of the semisets which form a ring to be controlled only by \emph{sets} of the original universe $M$.
+
+\smallskip
+
+Notice that if $\emptyset\neq\sigma\subseteq a$ is a semiset, then for any relation $r\in M$, without loss of generality $dom(r)\subseteq a$,
+$r[\sigma]\subseteq rng(r)\in M$ is again a semiset of $M$. Let $Rel_M$ stand for the class of all relations of $M$. Then $Rel_M$ is closed under
+unions.
+
+\begin{notation}
+For a relation $r\in Rel_M$ and $u\in M$ we write $r_u=\{x:\langle u,x\rangle\in r\}$.
+\end{notation}
+
+Using a single semiset $\sigma\in M$ and the system $Rel_M$ of relations of $M$ we generate the family $Sim(\sigma,M)=\{r[\sigma]:r\in Rel_M\}$. When
+there is no danger of confusion, we omit the $M$ and write just $Sim(\sigma)$. It is clear that
+
+\begin{itemize}
+\item[(i)] $\emptyset\in Sim(\sigma)$, since $\emptyset = \emptyset[\sigma]$
+\item[(ii)] $M\subseteq Sim(\sigma)$, since if $a\neq\emptyset$ is an element of $M$ then for $x\in\sigma$ the relation $r=\{x\}\times a$ is in $M$ and
+$r[\sigma]=a$.
+\item[(iii)] $\sigma\in Sim(\sigma)$
+\item[(iv)] $Sim(\sigma)$ is closed under $\cup$, since $Rel_M$ is.
+\end{itemize}
+
+Is $Sim(\sigma)$ closed under set-complements? In general no.
+
+\begin{definition}\label{generic-set}{\bf Generic set.}
+A semiset $\sigma$ of $M$ is \emph{generic over $M$} or \emph{$M$-generic} iff $Sim(\sigma,M)$ forms a ring (or, equivalently, $Sim(\sigma)$ is closed under set-complements).
+\end{definition}
+
+\begin{definition}
+If $\sigma\in Sim(G)$ we say that $\sigma$ depends on $G$. Two semisets $\sigma_1,\sigma_2$ of $M$ are similar, if they depend on each other.
+\end{definition}
+
+It can easily be seen, that if $\sigma_1,\sigma_2$ are similar and one of them is generic, then the second one is also generic and $Sim(\sigma_1)=Sim(\sigma_2)$.
+
+\begin{theorem}\label{vopenka-balcar}{\scshape {(Vop\v enka, Balcar).}}
+Suppose $M$ is a transitive model of ZF and $X\in M$. Then the following are equivalent
+\begin{itemize}
+\item[(i)] A semiset $G\subseteq X$ is generic over $M$
+\item[(ii)] There is an ordering $\leq\in M$ such that $G$ is an $M$-generic filter on $(X,\leq)$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+Since $X\in M$ we know that $\pw^M(X)\in M$, i.e. $\{y\in M:y\subseteq X\}\in M$. We prove that (i) implies (ii):
+
+Consider the relation $r=\{\langle x,y\rangle:x\in X,y\subseteq X, x\in y\}$. Then
+$$ %\startformula
+\rho=r[G]=\{y\in M:y\subseteq X\ \&\ y\cap G\neq\emptyset\}\subseteq\pw^M(X)\in M,
+$$ %\stopformula
+so $\rho\in Sim(G)$. Since $G$ is a generic over $M$ we know that there is an $s^\prime\in Rel_M$ with $s^\prime\subseteq X\times\pw^M(X)$ such that
+$s^\prime[G]=\pw^M(X)\setminus\rho$. We shall modify the relation $s^\prime$ step by step so that we stay in $M$ and in the end finish with a relation
+$s\subseteq X\times X$, $s\in M$ which is symmetric, antireflexive and satisfies
+\begin{itemize}
+\item[(a)] $(\forall x\in G)(s_x\subseteq X\setminus G)$ and
+\item[(b)] for any $a\subseteq X\setminus G$ which is an element of $M$ there is an $x\in G$ such that $a\subseteq s_x$.
+\end{itemize}
+If we let
+$$ %\startformula
+\bar{s}=\{\langle x,y\rangle:x\in dom(s^\prime)\ \&\ y=\bigcup s^\prime_x\}
+$$ %\stopformula
+then it is clear that for $x\in G$ we have that $\bar{s}_x\subseteq X\setminus G$. Consider the relation $s=\bar{s}\cup\bar{s}^{-1}\setminus\{\langle x,x\rangle:x\in X\}$.
+Symmetricity and antireflexivity of $s$ is immediate. Also notice that $x\in G$ iff $s_x\cap G=\emptyset$.
+
+To see that (a) holds, take $x\in G$ and assume that $s_x=(\bar{s}_x\cup\bar{s}^{-1}_x\setminus Id_x)\cap G\neq\emptyset$. Then there is a $y\neq x$ with $y\in G$ and $y\in s^{-1}_x$. But then $\langle y,x\rangle\in s$ and this is a contradiction with $\bigcup s^\prime_y \cap G\neq\emptyset$.
+
+For (b), let $a\subseteq X\setminus G$ be a set, i.e. $a\in\pw^M(X)\setminus G$. Thus there is an $x\in G$ with $a\in s^\prime_x$. By definition we have that
+$a\subseteq \bar{s}_x$ and $x\not\in a$.
+
+Now define the following order:
+$$ %\startformula
+x\leq y\equiv s_x\supseteq s_y,\quad x,y\in X.
+$$ %\stopformula
+
+Notice that $s$ is a subset of the disjointness relation of $\leq$: suppose $\langle x,y\rangle\in s$ and assume, aiming towards a contradiction, that there is $z\in X$ with $z\leq x,y$. Then $s_z\supseteq s_x\cup s_y$. Since $y\in s_x$ using the symmetry of $s$ we know that $z\in s_y$ which implies that $\langle z,z\rangle\in s$ --- a contradiction.
+
+$(X,\leq)$ is an ordering and $(X,\leq)\in M$. We show that $G$ is a filter on $X$:
+
+To see that $G$ is centred, take $x,y\in G$. Then $(s_x\cup s_y)\cap G=\emptyset$
+so there is a $z\in G$ with $s_x\cup s_y\subseteq s_z$. But then $z\leq x$ and $z\leq y$.
+
+To see that $G$ is upward closed take $x\in G$ and suppose $x\leq y$. Then $s_x\subseteq s_y$. If $y\not\in G$, then $S_x\cup\{y\}\cap G=\emptyset$, but then
+there would be a $z\in G$ with $s_x\cup\{y\}\subseteq s_z$, so $\langle z,y\rangle\in s$ hence $z\in s_y\subseteq s_x$ so also $z\in s_z$ which implies $\langle z,z\rangle\in s$ which contradicts the definition of $s$.
+
+To see that $G$ is a generic filter it suffices, by Fact \ref{generic-equivalence}, to show that each predense subset of $X$ intersects $G$. Suppose $D\subseteq X$
+is predense and $D\in M$. If $D\cap G=\emptyset$ then for some $x\in G$ we would have $D\subseteq s_x$. But then all elements of $D$ would be disjoint with $x$
+contradicting the predensity of $D$.
+
+We now prove that (ii) implies (i). Assume $G$ is a generic filter on $(X,\leq)$. To see that $G$ is a generic object over $M$ it is sufficient to show that for
+any $r\in Rel_M$ and $a\in M$ with $\rho=r[G]\subseteq a$ the is an $s\in Rel_M$ with $s[G]=a\setminus\rho$. We let $s=\{\langle x,b\rangle:x\in (r^{-1}[b])^{\perp},b\in a\}$. Choose $b\in a\setminus\rho$. Then $r^{-1}[b]\cap G=\emptyset$ and since $r^{-1}[b]\cup (r^{-1}[b])^\perp$ is predense, there is some $x\in G$ with $x\in (r^{-1}[b])^\perp$. But then $\langle x,b\rangle\in s$ so that $b\in s[G]$. On the other hand if $b\in\rho$, then $r^{-1}[b]\cap G\neq\emptyset$ and no $x\in X$
+disjoint from $r{-1}[b]$ is a member of $G$ hence $b\not\in s[G]$.
+\end{proof}
+
+
+\begin{note}
+Note that if $G$ is a generic filter on and ordering $(P,\leq)$ and $G^\prime$ the corresponding generic filter on $RO(P)$ it is clear that
+they are similar when taken as generic objects. This once again shows why orderings and their completions are interchangeable in terms of forcing.
+\end{note}
+
+The following lemma is Boolean version of dependence:
+
+\begin{lemma}\label{special-names}
+Suppose $\sigma$ depends on $G$, where $G$ is a generic filter on a Boolean algebra $B$. Then there is a function $f:A\to B^+$
+with $\sigma\subseteq dom(f)$ such that $x\in\sigma$ iff $f(x)\in G$.
+\end{lemma}
+
+\begin{proof}
+Since $\sigma$ depends on $G$ there is a relation such that $\sigma=s[G]$. We may assume $dom(s)\subseteq B^+$. Define $f:rng(s)\to B^+$
+as follows:
+$$ %\startformula
+f(x)=\bigvee r^{-1}(x)
+$$ %\stopformula
+It is not hard to see that this $f$ is as required.
+\end{proof}
+
+
+\subsection{${}$ \hspace{-1em}Nonstandard universes and generic objects.}
+
+Consider for a moment a nonstandard universe $(N,\in^*)$ of set theory, %(e.g. Exercise \ref{Boolean-ultrapower})
+i.e. $N$ there is a nonempty semiset of ordinals of $N$ which has no least element. We shall show that for any generic semiset $G$ over $N$ given a proper semiset $A$ of ordinals depending on $G$, $A$ has a least element.
+In other words, generic extensions do not yield nonstandard sets.
+
+\begin{lemma}
+Suppose $G$ is an $M$-generic filter on $(P,\leq)$. Then any nonempty semiset $\sigma\subseteq On^M$ depending on $G$ has a least element.
+\end{lemma}
+
+\begin{proof}
+Suppose $s\subseteq P\times On$ is a relation in $M$. We show that $s[G]=\sigma$ has a least element. Since $\sigma\neq\emptyset$ there is a $u\in G$
+such that $r_u\neq\emptyset$. For any $x\leq u$ we let
+$$ %\startformula
+   d(x)=min r[ [x,\upharpoonright) ].
+$$ %\stopformula
+Clearly $d\in M$ is a mapping which is monotone below $u$ so %(see Exercise \ref{monotone_cardinal_characteristics})
+there is an antichain $A$, predense below $u$
+such that $d$ is constant below any $y\in A$. Because $G$ is generic, there is a $y\in G\cap A$. Then $d(y)$ is the least element of $\sigma$. Otherwise there
+is $\alpha\in\sigma$ with $\alpha<d(y)$. Then. necessarily, for some $x\in G$, $\alpha\in r_x$, so $d(x)\leq\alpha<d(y)$. Since $G$ is a filter, there would be
+a $z$ below both $x$ and $y$ with $d(z)\leq\alpha<d(y)$ which is a contradiction.
+\end{proof}
+
+Another motivating example is the following fact
+
+\begin{fact}
+Assume $G$ is an $M$-generic filter on $(P,\leq)$. Then any semiset dependent on $G$ which is a subset of some natural number is already a set.
+\end{fact}
+
+\begin{proof}
+Assume $\sigma\subseteq n\in\omega$ is a semiset dependent on $G$. Find $r\in Rel_M$ such that $r[G]=\sigma$. WLOG assume that $G$ is a generic filter on $RO(P)$. For $i=0,\ldots,n$ let
+$$ %\startformula
+a(i,1)=\bigvee r^{-1}[\{i\}]\quad a(i,0)=\1-a(i,1)
+$$ %\stopformula
+Then $\{a(i,0),a(i,1:i=0,\ldots n\}$ is a matrix consisting of $n$ partitions of unity. Using (finite) distributivity of the Boolean algebra, find a maximal
+antichain $A$ refining these partitions. Then there is exactly one $b\in A\cap G$ and $\sigma=\{i:i\leq n\&\ a(i,1)\geq b\}$ which shows that $\sigma$ is a set
+in $M$.
+\end{proof}
+
+The idea behind the previous proof is a recurrent theme in forcing. For now it suffices to notice that it gives the following much more general result.
+
+Recall that a complete Boolean algebra $B$ is $(\kappa,2)$-distributive iff for any family $\langle a(\alpha,i):\alpha<\kappa,i<2\rangle\subseteq B$ of
+partitions of $\1$ there is a maximal antichain $A\subseteq B^{+}$ such that each $a\in A$ and $\alpha$ there is an $i<2$ such that $a\leq a(\alpha,i)$.
+
+\begin{fact}
+If a cBA $B$ is $(\kappa,2)$-distributive, $G$ is a generic filter on $B$ and $\sigma\subseteq\kappa$ is a semiset dependent on $G$, then $\sigma$ is
+a set.
+\end{fact}
+
+
+
+
+
+\subsection{${}$ \hspace{-1em}Generic extensions.}
+
+We deal with transitive models of ZFC and their extensions. Readers having metaphysical problems with models of ZFC can, in the following, always
+(uniformly) substitute a model of a suitable fragment of ZFC in place of a model of full ZFC. We admit models to be proper classes.
+
+\begin{definition}\label{extension}{\bf Extension.}
+Suppose $M\subseteq N$ are two models of ZFC which have the same ordinals, i.e. $On^M=On^N$. Then we say that
+$N$ is an \emph{extension} of $M$ and that $M$ is the \emph{ground model}.
+\end{definition}
+
+It is instructive to note the following
+
+\begin{fact}
+If $N$ is an extension of $M$ then $N$ 'knows' about $M$, more precisely $X\cap M\in N$ for any $X\in N$.
+\end{fact}
+
+\begin{proof}
+To see this it is sufficient to find an $a\in M$ 'large enough', i.e. such that $X\cap M\subseteq a$. This in turn follows
+from the fact that $V_\alpha^M=V_\alpha^N\cap M$ which is proved by easy transfinite recursion.
+\end{proof}
+
+The following is an application of the Mostowski collapsing theorem (see Theorem \ref{mostowski}):
+
+\begin{theorem}\label{models-determined-by-ordinals}
+Any extension is uniquely determined by new subsets of ordinals. More precisely, when $N_1,N_2$ are two
+extensions of the ground model $M$ which satisfy
+$$ %\startformula
+\{x\in N_1:x\subseteq On\}\subseteq\{x\in N_2:x\subseteq On\},
+$$ %\stopformula
+then $N_1\subseteq N_2$. It follows that if two extensions have the same subsets of ordinals, they are identical.
+\end{theorem}
+
+
+\begin{proof}
+Take $x\in N_1$ and consider the transitive closure $Tcl(x)\in N_1$ of $x$. The relation $\in$ is a well-founded and extensional set-like relation on $Tcl(X)$ so,
+using Mostowski collapse theorem there is an isomorphism $f:(Tcl(x),\in)\to(\alpha,\in)$ for some $\alpha\in On$. Define
+$$ %\startformula
+r=\{\langle f(z),f(y)\rangle z\in y\in Tcl(x)\}.
+$$ %\stopformula
+Then $r\subseteq\alpha\times\alpha$ is an element of $N_1$. It is easily seen that each subset of $On^N_1\times On^N_1$ which is an element of $N_1$ is also
+an element of $N_2$ so that also $r\in N_2$. Since $r$ is well-founded, extensional and set-like we can again use the Mostowski theorem, this time in $N_2$, to
+see that $x\in N_2$.
+\end{proof}
+
+\begin{definition}\label{generic-extension}{\bf Generic extension.}
+An extension $N$ of the ground model $V$ is called a \emph{generic extension} if there is an ordering
+$(P,\leq)\in V$ and a $V$-generic filter $G$ on $(P,\leq)$ such that every $\sigma\in N$ with $\sigma\subseteq On$ depends on $G$.
+\end{definition}
+
+The same idea as in the proof of the previous theorem shows that genericity of an extension is equivalent to the fact that any semiset of ordinals of $V$ which
+belongs to $N$ depends on $G$. Note however, that not all elements of a generic extension are semisets of the ground model. For example the singleton $\{G\}$
+consisting of the generic filter will always be an element of the extension (since $G\in N$) but will never be a semiset of the ground model except in the trivial case when
+$G\in V$.
+
+\smallskip
+
+By Theorem \ref{models-determined-by-ordinals} generic extensions are uniquely determined by the ground model $V$ and the generic object $G$ so the following
+definition is correct:
+
+\begin{definition}{\bf {$V[G]$}.}
+Suppose $V$ is a model of ZFC. Then $V[G]$ is the smallest model of ZFC which contains both $V$ and $G$.
+\end{definition}
+
+We see that generic sets determine via ground model relations which semisets of the ground model become sets in the extension.
+
+Suppose that $G\subseteq X\in V$ is $V$-generic. Then using a bijection $f:X\to\alpha$ of $X$ onto some ordinal number $\alpha$ we can define $G_1=f[G]$. $G_1$
+is easily seen to be similar to $G$ so $V[G]=V[G_1]$. This allows us to conclude that generic extensions are transitive.
+
+The following two theorems are important in the theory of forcing:
+
+\begin{theorem}\label{iteration}{\scshape Iteration.}
+Let $V\subseteq N\subseteq W$ be transitive models of of ZFC. If $N$ is a generic extension of $V$ and $W$ is a generic
+extension of $N$ then $W$ is a generic extension of $V$, in other words, generic extensions can be iterated.
+\end{theorem}
+
+The converse of the previous theorem also holds:
+
+\begin{theorem}
+Let $V\subseteq N\subseteq W$ be transitive models of of ZFC. If $W$ is a generic extension of $V$ then $N$ is a generic extension of $N$ and $W$ is a generic extension of $N$. Moreover if we write $W=V[G]$ where $G$ is a $V$-generic filter on a Boolean algebra $B$, then $N$ is determined by some complete subalgebra $C$ of $B$ and $N=V[G\cap C]$.
+\end{theorem}
+
+Let us now proceed to prove the first theorem:
+
+\begin{proof}
+There is an ordinal number $\alpha$ and $G_1\subseteq\alpha$ which is a generic object for $N$ over $V$
+and an ordinal number $\beta$ with a generic $G_2\subseteq\beta$ object for $W$ over $N$. We show that $G_1\times G_2\subseteq\alpha\times\beta$
+is a generic object for $W$ over $V$. It suffices to show that any semiset $\sigma\in W$ of ordinal numbers is dependent on $G_1\times G_2$ via
+a relation $r\in V$. Assume $\sigma\subseteq\gamma\in On$. Since $W$ is generic over $N$, there is a relation $\tau\in N$ with $\tau\subseteq\beta\times\gamma$
+such that $\sigma=\tau[G_2]$. Clearly $\tau$ is a semiset of $V$, so there must be a relation $r\in V$ such that $r\subseteq\alpha\times(\beta\times\gamma)$
+with $r[G_1]=\tau$. Then
+$$ %\startformula
+\bar{r}=\{\langle\langle x,y\rangle,z\rangle:\langle x,\langle y,z\rangle\rangle\in r\}
+$$ %\stopformula
+is the required relation, since $\bar{r}[G_1\times G_2]=\sigma$ and $\bar{r}\in V$. Since $G_1\times G_2\subseteq V$ and $G_1\times G_2\in W$, $W$ is a generic
+extension of $V$ with $G_1\times G_2$ a $V$-generic object.
+\end{proof}
+
+In the proof of the second theorem, we will conveniently use generic filters on complete Boolean algebras
+
+\begin{proof}
+Since $W$ is a generic extension over $V$ by Theorem \ref{vopenka-balcar} there is a cBA $B\in V$ and a $V$-generic filter $G$ on $B$ such that
+$W=V[G]$. The idea of the proof is to find a complete Boolean subalgebra $C\leq B$, $C\in V$ such that $N=V[G\cap C]$.
+
+Work in $N$. Enumerate all subsets of $B^+$ as $R=\{\rho_\alpha:\alpha<\kappa\}$. It is evident that $R\in N$ but in general $R$ will not be a semiset of $V$.
+However, taking $\sigma=\{\langle\alpha,b\rangle:\alpha<\kappa,b\in\rho_\alpha\}\subseteq\kappa\times B^+\in V$, we have a semiset $\sigma$ of $V$ with $\sigma\in N$.
+
+By Lemma \ref{special-names} there is a mapping $f:\kappa\times B^+\to B^+$ with $f\in V$ such that $y\in\sigma\equiv f(y)\in G$. Let $D=rng(f)$. Evidently
+$D\in V$, $D\subseteq B^+$. $D$ generates (in V) a complete Boolean subalgebra $C$ of $B$.
+
+\begin{claim}
+ $G\cap C\in N$.
+\end{claim}
+
+
+We will proceed by transfinite induction to construct an increasing chain $\langle C_\alpha:\alpha<|C|\rangle$ of subsets of $C$ and $\langle G_\alpha:\alpha<|C|\rangle$
+such that $C=\bigcup\{C_\alpha:\alpha<|C|\}$, $G_\alpha\in N$ and $G\cap C=\bigcup\{G_\alpha:\alpha<|C|\}$. Let $C_0=D, G_0=G\cap D$. $G_0\in N$ since $G_0=f[\sigma]$.
+At limit stages just take the union. If $C_\alpha\neq C$, working in $V$, find some a subset $X\in V$ of $C_\alpha$ such that $\bigwedge X\not\in C_\alpha$ and let $C_{\alpha+1}$ be the Boolean algebra generated by $C_\alpha$ and $\bigwedge X$. Working in $N$, let $G_{\alpha+1}=G_\alpha\cup\{\bigwedge X\}$ if $X\subseteq G_\alpha$
+and $G_{\alpha+1}=G_\alpha\cup\{-\bigwedge X\}$ otherwise. This finishes the construction. It remains to show that $G\cap C=\bigcup\{G_\alpha:\alpha<|C|\}$. Suppose
+$g\in G\cap C$ and let $\alpha = min\{\beta:g\in C_\beta\}$. Then $g\in G_{\alpha+1}$.
+
+\smallskip
+
+We now show that $N$ is a generic extension of $V$ via $G_1=G\cap C$. Every $\rho_\alpha$ depends on $G_1$ via the relation $r_\alpha=\{\langle b,c\rangle:f(i,c)=b, b,c\in B^+\}$.
+Now let $\rho\subseteq a\in V$ be any semiset of $V$ with $\rho\in N$. Since $\rho\in W$ which is generic over $V$, there is (again using Lemma \ref{special-names})
+a function $g:a\to B^+$ in $V$ such that $x\in\rho\equiv g(x)\in G$. But $g[\rho]\in N$ and $g[\rho]\subseteq B$ so $g[\rho]=\rho_\alpha$ for some suitable $\alpha$.
+If we take $r$ to be the composition of $r_\alpha$ with $g^{-1}$, we see that $\rho=r[G_1]$ and conclude that $N=V[G_1]$.
+
+\smallskip
+
+To finish the proof we must show that $W$ is generic over $N$, but this is easy: it suffices to show (see the note after Definition \ref{generic-extension}) that
+any semiset of ordinals of $N$ which is in $W$ depends on $G$. But since $N$ and $V$ have the same ordinals, any semiset of ordinals of $N$ is a semiset of ordinals
+of $V$. Now use the fact that $W$ is generic over $V$.
+\end{proof}
+
+\begin{note}
+We have seen that each intermediate model is a generic extension of $V$ determined by a complete subalgebra of $B$. On the otherhand, any
+complete subalgebra of $B$ clearly determines an intermediate model. Note however that different subalgebras need not determine different intermediate models.
+\end{note}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                          END                                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

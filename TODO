@@ -1,0 +1,40 @@
+Napsat notaci
+=============
+
+r[A],r[{A}] dom(r), rng(r), r^-1, f,r,
+Text
+3. luzinovske a sierpinskeho mnoziny
+
+Exercises
+1. AC iff product of compact T_1 spaces is compact.
+2. Dependent choice.
+   [Kechris84]: V=L[R] + AD => DC
+                            => (AD + non ctble choice) can be forced
+3. V_\kappa = H_\kappa implies \kappa = omega or inaccessible.
+4. Ve V_\omega neplati replacement.
+5. lambda_closed_orders
+6. monotone_cardinal_characteristics
+7. horn_tarski
+6. sigma_finite_knaster
+
+
+[Kechris84] Kechris: The AD implies DC in L[R], JSL(49), 161-173,  1984
+
+
+===============================================================================
+22. 12.
+
+- formule do axiom�
+
+Koment��e:
+  - existence mno�iny [DONE]
+  - jednozna�nost dvojice [DONE]
+  - t��dy jako zkratky (+ definice t��dy E) [DONE]
+
+Polomno�iny:
+  - varovat p�ed kn��kou [DONE}
+
+===============================================================================
+12. 2. 2010
+
+- do prvni kapitoly přidat důkaz fodora elem podmodely (zmínit reflexi, co znamena dostatečně velké kappa)

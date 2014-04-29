@@ -1,0 +1,924 @@
+\cfoot{}\rhead{\thepage}
+\lhead{{\scshape Prerequisites} $\qquad$ {\tiny \today } }
+
+% \noindent{\large{\scshape\bfseries %Entre{\' e}
+% An Exposition to Generic Extensions and Forcing in Set Theory}} \\[0.1cm]
+%
+% \noindent {\scshape Bohuslav Balcar}, {\small CTS, J{\' \i}lsk{\' a} 1, Praha 1,
+% 	Czech Republic, {\ttfamily
+% 	%\href{mailto:balcar@cts.cuni.cz}
+% 	{balcar@cts.cuni.cz} } } \\[0.1cm]
+% \noindent {\scshape Tom{\' a}{\v s} Paz{\' a}k}, {\small CTS, J{\' \i}lsk{\' a} 1, Praha 1,
+% 	Czech Republic, {\ttfamily
+% 	%\href{mailto:pazak@cts.cuni.cz}
+% 	{pazak@cts.cuni.cz} } } \\[0.1cm]
+% \noindent {\scshape Jonathan Verner}, {\small KTIML MFF UK, Praha,
+% 	Czech Republic {\ttfamily
+% 	%\href{mailto:jonathan.verner@matfyz.cz}
+% 	{jonathan.verner@matfyz.cz}} }\\[0.1cm]
+% {\tiny \today } \\[0.5cm]
+
+%\maketitle
+
+\thispagestyle{empty}
+
+\pagenumbering{arabic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Set Theory prerequisites}
+{\tiny \today } \\[0.5cm]
+
+When we talk about Set Theory we mean the first order predicate theory in a language with equality containing a binary predicate $\in$
+with the standard axioms. Formulas describing properties of sets are built up from symbols for variables, predicates ($\in,=$),
+logical connectives and quantifiers ($\forall,\exists$). If $\phi(x_0,\ldots,x_n)$ is such a formula, then $\{\langle x_0,\ldots, x_n\rangle:
+\phi(x_0,\ldots,x_n)\}$ is the class defined by this formula. E.g. $V=\{x:x=x\}$ is the class of all sets.
+
+\subsection{${}$ \hspace{-1em} Axioms of Zermelo-Fraenkel.}
+
+\begin{itemize}
+\item[1.]\emph{Extensionality.} If $x$ and $y$ have the same elements, then
+$x=y$ $$(\forall x)(\forall y)((\forall z)(z\in x\leftrightarrow z\in y)\rightarrow x=y)$$
+\item[2.]\emph{Pairing.} For any $a$ and $b$ there exists a set $\{a, b\}$ that
+contains exactly $a$ and $b$
+$$(\forall a)(\forall b)(\exists x)((\forall z)(z\in x\leftrightarrow (z=a\vee z=b)))$$
+\item[3.]\emph{Separation (Comprehension).} If $\varphi$ is a formula (with parameter $p$),
+then for any set $x$ and $p$ there exists a set $y = \{u \in x : \varphi(u, p)\}$,
+i.e. a set that contains all those $u \in x$ that satisfy $\varphi$. Formally, given a formula $\varphi$ with $u$ and $p$ as  free
+variables, the formula
+$$(\forall p)(\forall x)(\exists y)(\forall u)(u\in y\leftrightarrow y\in x\ \&\ \varphi(u,p))$$
+is an axiom of set theory.
+\item[4.]\emph{Union.} For any $x$ there exists a set $y =\bigcup x$, the \emph{union}
+of all elements of $x$
+$$(\forall x)(\exists y)(z\in y\leftrightarrow (\exists u)(u\in x\ \&\ y\in u))$$
+\item[5.]\emph{Power Set.} For any $x$ there exists a set $y = \pw (x)$, the
+set of all subsets of $x$
+$$(\forall x)(\exists y)(\forall z)(z\in y\leftrightarrow (\forall u)(u\in z\rightarrow u\in x))$$
+\item[6.]\emph{Infinity.} There exists an infinite set
+$$(\exists x)(\emptyset\in x\ \&\ (\forall z)(z\in x\rightarrow z\cup\{z\} \in x))$$
+\item[7.]\emph{Replacement.} The image of a set under a (class) mapping is a set. Formally if $\varphi(x,y)$ is a formula then
+$$\big[(\forall x)(\forall y)(\forall z)((\varphi(x,y)\ \&\ \varphi(x,z)) \rightarrow z=y)\big]\rightarrow
+\big[(\forall a)(\exists b)(y\in b\leftrightarrow (\exists x\in a)\varphi(x,y))\big]$$
+ is an axiom.
+\item[8.]\emph{Foundation.} Every nonempty set has an $\in$-minimal element
+$$(\forall x\neq\emptyset)(\exists y)(y\in x\ \&\ (\forall z)(z\in y\rightarrow z\not\in x))$$
+\item[9.]\emph{Choice.} Every set has a choice function
+$$(\forall x)(\exists f, \mbox{function})(\forall z)(z\in x\ \&\ z\neq\emptyset\rightarrow f(z)\in z)$$
+\end{itemize}
+
+\subsubsection{Comments.}
+\begin{itemize}
+%  \item[(i)] We introduced only vague formulation of axioms, but each of the
+% 	axioms of ZFC can be expressed as a formula, e.g. Foundation can
+% 	be stated in following form:
+% 	$$
+% 	(\forall a \not = \emptyset)\ (\exists x \in a) \ x \cap a = \emptyset.
+% 	$$
+\item[(i)] In the formal statements of the axiom schemas we tacitly assume that the formulas which serve as
+           parameters do not contain ``conflicting free variables''.
+\item[(ii)] Some authors include an axiom postulating the existence of a set, i.e. $(\exists x)(x=x)$.
+            We do not include it here since it is provable from the axioms of predicate logic with equality.
+            Moreover, this is only relevant for fragments which do not include the axiom of infinity.
+\item[(iii)] Once we have any set, say $a$, using the third axiom we can prove the existence of the empty set $\{x\in a:x\neq x\}$,
+            customarily denoted as $\emptyset$.
+
+ \item[(v)] Formally, our language admits varibles ranging over sets only, however it is
+            often useful to talk about collections which are too large to be sets, e.g.
+            the universal class $V$. To overcome this difficulty we shall regard formulas
+            involving class variables as shorthands. Any formula $\varphi$ naturally determines
+            the collection $F=\{x:\varphi(x)\}$ of all sets satisfying $\varphi$. In this
+            situation $x\in F$ is a shorthand for $\varphi(x)$. so, e.g. the formula
+            $(\forall x\in F)\psi$ is shorthand for $(\forall x)(\varphi\rightarrow\psi)$.
+\item[(vi)] The list of axioms is not the shortest possible, e.g. each instance of the axiom of comprehension follows from an instance of the axiom of
+            replacement. Also pairing can be proved from the other axioms. However since the list is infinite anyway, this makes \emph{no} difference
+            whatsoever.
+
+
+\end{itemize}
+
+
+\smallskip
+
+It is customary to let ZF denote Set Theory with axioms 1.--8. and ZFC Set Theory ZF with choice,
+i.e. with axiom 9. Occasionally we shall write ZF$^-$ and ZFC$^-$ when we omit axiom 5.
+
+\begin{notation}
+Throughout the text we will use the standard notation. For definiteness given a relation $r$
+and a class $A$ we let $r[A]=\{y:(\exists a\in A)(\langle a,y\rangle\in r\}$. Similarly for
+a function $f$ we let $f[A]=\{y:(\exists a\in A)(f(a)=y)\}$, $f^{-1}[A]=\{x:f(x)\in A\}$.
+Moreover the domain of a function (or relation) $f$ will be denoted by $dom(f)$ and the
+range of $f$, i.e. $\{y:(\exists x)(f(x)=y)\}$, will be denoted by $rng(f)$.
+The corresponding notions for a relation will also be used.
+% The ordered pair $\langle x,y\rangle$ will defined according to Kuratowski as $\{\{x\},\{x,y\}\}$ but
+% we note that for our purposes any other sensible definition would also do.
+\end{notation}
+
+\begin{definition}\label{ts}
+{\bf Transitive set.} A set $a$ is \emph{transitive} if every element of $a$
+ is a subset of $a$, i.e. $(\forall x\in a)(x\subseteq a)$.
+\end{definition}
+
+\begin{fact} Every set $a$ has a \emph{transitive closure}, that is, the smallest transitive
+ set containing $a$ as an element. It is denoted by $\mbox{tcl}(a)$.
+\end{fact}
+\begin{proof} (Hint.) By the axiom of union we can define a (class) function $F$ such that
+$F^0(x)=x$, $F(x)=\bigcup x$ and we let $Tcl(a)=\bigcup_{n<\omega} F^n(\{a\})$, i.e.
+$\mbox{tcl}(A)=\{A\}\cup A\cup \bigcup A\cup \bigcup\bigcup A\cdots$ is arrived at by iterating
+the union operation. See also example \ref{transitive_closure}.
+\end{proof}
+
+\begin{definition}\label{ordnumber}{\bf Ordinal number.} A set $\alpha$ is an ordinal number if
+ \begin{itemize}
+  \item[(i)] $\alpha$ is a transitive set and
+  %\item{(ii)}  every element of $\alpha$ is transitive
+  \item[(ii)] the $\in$ relation is a linear ordering on $\alpha$, i.e. for all $\beta,\gamma\in\alpha$
+               either $\beta\in\gamma$ or $\gamma\in\beta$ or $\beta=\gamma$.
+ \end{itemize}
+ In other words an ordinal number is the set of all smaller ordinal numbers well-ordered by $\in$.
+ The class of all ordinal numbers is denoted by $On$. We write $\alpha<\beta$ to mean $\alpha\in\beta$.
+\end{definition}
+
+%The standard definition above is due to John von Neumann.
+\begin{definition}[Maximo-lexicographical ordering] The class $On^2$ of pairs of ordinals can be well ordered in a particularly nice way. We say
+ that $\langle \alpha_1,\beta_1\rangle\leq_{MLex}\langle\alpha_2,\beta_2\rangle$ iff
+ $$
+ \max \{\alpha_1,\beta_1\} < \max \{\alpha_2,\beta_2\}\quad \vee\quad \left(\max \{\alpha_1,\beta_1\} = \max \{\alpha_2,\beta_2\}\ \&\
+                                                                     \min\{\alpha_1,\beta_1\}<\min\{\alpha_2,\beta_2\}\right)
+ $$
+ This ordering is a set-like well order, i.e. for each pair $p\in On^2$ the class of pairs which are $\leq_{MLex}$ below $p$ is a set.
+\end{definition}
+
+
+\subsection{${}$ \hspace{-1em} Approximation of the universe.}
+
+% The universal class $V=\{x:x=x\}$ satisfies all axioms of Set Theory, but it is not a set. However there are transitive sets,
+% which satisfy a large fragment of the axioms, although not necessarily all of them. The ones most commonly used are
+% the two hierarchies of $V_\alpha$'s and $H(\kappa)$'s.
+
+We shall show that there are transitive sets which --- in a sense --- approximate the universe $V$. The ones most commonly used are
+the two hierarchies of $V_\alpha$'s and $H(\kappa)$'s.
+
+\begin{definition}{\bf The hierarchy of $V_\alpha$'s.} Using transfinite recursion to iterate the power set operation we define $V_\alpha$
+for $\alpha\in On$ as follows:
+$$ %\startformula
+V_{\emptyset}=\emptyset,\quad V_{\alpha+1}=\pw(V_\alpha),\quad V_\alpha = \bigcup_{\beta<\alpha} V_\beta,\ \mbox{for limit}\ \alpha.
+$$ %\stopformula
+\end{definition}
+\begin{fact} $V=\bigcup\{V_\alpha:\alpha\in On\}$. \\
+Note that this fact is equivalent to the axiom of foundation (axiom 8.).
+\end{fact}
+
+\begin{definition}\label{rank}{\bf Rank.} To each set $x$ we assign an ordinal number --- its \emph{rank} $\tau(x)$:
+ $$ %\startformula
+  \tau(x)=min\{\alpha:x\subseteq V_\alpha\}.
+ $$ %\stopformula
+  It is easily seen that $\tau(x)=sup\{\tau(y)+1:y\in x\}$ for any set $x$.
+\end{definition}
+
+\begin{fact}\label{valphaFact} Suppose $\alpha<\beta$ are ordinal numbers. Then
+ \begin{itemize}
+  \item[(i)] $V_\alpha$ is a transitive set.
+  \item[(ii)] $V_\alpha\in V_\beta$.
+  \item[(iii)] $On\cap V_\alpha = \alpha$, hence $\alpha\subseteq V_\alpha$ but
+	$\alpha\not\in V_\alpha$.
+ \end{itemize}
+\end{fact}
+\begin{proof} (i) Given $x\in V_\alpha$, let $\beta$ be minimal such that $x\in V_\beta$. Clearly $\beta=\gamma+1\leq\alpha$. By the definition of
+$V_\beta$ we have that $x\in \mathcal{P(V_\gamma)}$ so $x\subseteq V_\gamma\subseteq V_\beta\subseteq V_\alpha$. (ii) is clear since
+$x\in\mathcal{P}(x)$ (iii) We show by induction that $\alpha\subseteq V_\alpha$ and $\alpha\not\in V_\alpha$: this is clear for $\emptyset$. Suppose we
+have proven this for all $\beta<\alpha$. If $\alpha$ is limit then by the inductive hypothesis clearly $\alpha\subseteq V_\alpha$ and
+easily $\alpha\not\in V_\alpha$. If $\alpha=\beta+1$, then $\alpha=\beta\cup\{\beta\}$ and since $\beta\subseteq V_\beta\subseteq V_\alpha$
+by the inductive hypothesis and hence $\beta\in V_\alpha$ by the definition of $V_\alpha$. Similarly $\alpha\not\in V_\alpha$.
+\end{proof}
+
+% \begin{definition} Given a set (or class) $M$ and a formula $\varphi$ of set theory, we define the \emph{relativization} $\varphi^M$ of
+%  $\varphi$ to $M$ by induction on the complexity of $\varphi$ as follows:
+%  \begin{itemize}
+%   \item[(i)] If $\varphi$ is atomic, then $\varphi^M$ is $\varphi$,
+%   \item[(ii)] if $\varphi$ is of the form $(\forall x)\psi$ then $\varphi^M$ is $(\forall x)(x\in M\rightarrow \psi^M)$ and
+%   \item[(iii)] if $\varphi$ is of the form $\neg\psi$ then $\varphi^M$ is $\neg(\psi^M)$.
+%  \end{itemize}
+%  If $\varphi$ is a closed formula, we say that $M$ satisfies $\varphi$ iff $\varphi^M$ is provable in ZFC. In this case
+%  we say that $M$ is a \emph{syntactical model} for $\varphi$.
+% \end{definition}
+
+\begin{proposition}\label{valphaApprox}
+\begin{itemize}
+ \item[]
+ \item[(i)] If $\alpha>\omega$ is a limit ordinal number, then $V_\alpha$ satisfies all axioms
+ of set theory except for the (full) replacement schema. The class of ordinal numbers in the sense of $V_\alpha$ is
+ $\alpha=V_\alpha\cap On$.
+ \item[(ii)] $V_\omega$ consists of hereditarily finite sets and
+	$(V_\omega,\in)$ is a model of $\mbox{ZF}_{\mbox{fin}} \ $,
+	the theory of finite sets. It turns out that it is ``equivalent''
+	to the standard model of Peano Arithmetic.
+\end{itemize}
+\end{proposition}
+
+
+
+
+\begin{definition}\label{H-kappa}{\bf The $H(\kappa)$ hierarchy.} Assume AC. If $\kappa$ is an infinite cardinal number we define
+$H(\kappa)$ as follows:
+$$ %\startformula
+ H(\kappa) = \{x:|\mbox{tcl}(x)|<\kappa\}.
+$$ %\stopformula
+The set $H(\kappa)$ consists of sets which are hereditarily of cardinality  less then
+$\kappa$. The universe $H(\omega_1)$ of hereditarily countable
+sets is sometimes denoted by $HC$. Note that $H(\kappa)$ is a set for each $\kappa$.
+\end{definition}
+
+In ZFC we again have the following:
+
+\begin{proposition}{\rm (AC)}
+ \begin{itemize}
+  \item[(i)] Each $H(\kappa)$ is a transitive set.
+  \item[(ii)] $V=\bigcup\{H(\kappa):\kappa\ \mbox{is a cardinal number}\}$
+ \end{itemize}
+\end{proposition}
+
+\begin{definition}\label{strong-limit} Recall, that a cardinal number $\kappa$ is \emph{strongly limit} if
+if $2^\lambda<\kappa$ for any $\lambda<\kappa$. An uncountable regular strongly limit cardinal $\kappa$
+is called \emph{inaccessible}.
+\end{definition}
+\begin{proposition}{\rm (AC)} If $\kappa$ is inaccessible or $\kappa=\omega$ then
+    $$H(\kappa)=V_\kappa$$
+\end{proposition}
+
+Note that the existence of an inaccessible cardinal is not provable in ZFC, however $H(\kappa)=V_\kappa$
+for any fixed point of the function $\beth(\kappa)=2^{<\kappa}$.
+
+\begin{proposition}{\rm (AC)}\label{Hkappa2}
+\begin{itemize}
+ \item[(i)] If $\kappa>\omega$ is a regular cardinal, then $(H(\kappa),\in)$ satisfies all axioms of set theory
+ except for the power set axiom 5., i.e. it is a model of $ZFC^-$. (cf. Proposition \ref{valphaApprox}.)
+ \item[(ii)] The role of the class of ordinal numbers in the structure $(H(\kappa),\in)$ is played by $\kappa$. %(cf. \in{fact}[valphaFact],iii.)
+ \item[(iii)] If a set $b$ is in $H(\kappa)$, then $\pw(b)\subseteq H(\kappa)$.
+ \item[(iv)] If $b\in H(\kappa)$ then $\pw(b)\in H(\kappa)$ iff $2^{|b|}<\kappa$.
+\end{itemize}
+\end{proposition}
+\begin{note} Even thought $H(\kappa)$ need not satisfy the full power-set axiom, (iv) tells us that
+if we restrict ourselves to sets of ``small'' cardinality --- viz. of cardinality $\lambda$ such that $2^\lambda <\kappa$ ---
+the power-set axiom holds.
+\end{note}
+
+\subsection{${}$ \hspace{-1em}$H(\kappa)$ as models of fragments of ZFC}
+For the purpose of proving
+consistency results a model of full ZFC is not needed. More precisely: every proof is a finite
+chain (finite in the met\hbox{a-t}heory) of consecutive arguments. Given any finite fragment of ZFC,
+there are unboundedly many cardinal numbers $\kappa$ such that $(H(\kappa),\in)$ is a model of
+this fragment --- this is the essence of the reflection principle.
+
+Now of course one does not specify the exact fragment of ZFC one needs. The main point
+is that it is, at least theoretically, possible to do this. This is the content of the oft
+seen phrase
+
+\begin{center}
+ ``take sufficiently large $\kappa$''
+\end{center}
+which in fact means: take $\kappa$ large enough so that $(H(\kappa),\in)$ satisfies
+enough axioms to guarantee all the arguments and constructions which we need.
+
+\subsection{${}$ \hspace{-1em}Well-founded relations.}
+
+\begin{definition}\label{ext}
+A binary relation $R$ on a set $A$ is \emph{well-founded}
+iff each nonempty subset of $A$ contains at least one
+ $R$-minimal element, that is for any $\emptyset\neq a\subseteq A$ there is an $x\in a$ with
+ $$ %\startformula
+  Ext_R(x) \cap a = \emptyset,\quad\hbox{where}\quad Ext_R(x)=\{ y:\langle y,x\rangle\in R\}.
+ $$ %\stopformula
+\end{definition}
+
+A strict wellordering is an example of a well-founded relation. Well-founded relations
+are a generalization of wellorders which are themselves a generalization of the $\in$
+relation, viz the axiom of foundation. We shall show (see \ref{WF-recursion}), that recursive
+constructions can be carried out along general well-founded relations much in the same way as along $\in$.
+
+\begin{definition}\label{DC}
+{\bf Dependent Choice.} The axiom of dependent choice is a weaker
+version of the axiom of choice. It says, that
+whenever some relation $R$ satisfies
+$$ %\startformula
+  (\forall x\in dom(R))(\exists y)(yRx)
+$$ %\stopformula
+then there is an $R$-descending sequence $\langle x_n:n<\omega\rangle$,
+i.e. a sequence satisfying $x_{n+1}R x_n$ for each $n<\omega$.
+The axiom of dependent choice is abbreviated DC.
+\end{definition}
+
+\begin{fact} If we assume DC then a relation $R$ is well-founded iff there are no infinite $R$-decreasing chains.
+\end{fact}
+
+
+% \begin{definition}
+% A relation $R$ is \emph{set-like} iff for every set $x$ the class $Ext_R(x)$ is a set.
+% \end{definition}
+
+% Well-founded set-like relations are generalizations of the $\in$ relation. The theorems on transfinite induction and recursion can be
+% generalized in this setting to induction and recursion over set-like well-founded relations.
+
+% \begin{example}
+% \begin{itemize}
+%  \item[(i)]  The lexicographical ordering $<_1$ on $On\times On$ is an example of a relation which is well-founded but is not set-like.
+%  \item[(ii)] The maximo-lexicographical ordering $<_2$ on $On\times On$ is a well-founded set-like relation:
+% %\startformula
+% %\startalign[n=3,align={left,middle,left}]
+% \begin{align}
+% {} & \langle \alpha_1,\beta_1\rangle \leq_2 \langle \alpha_2,\beta_2\rangle & \equiv& \max(\alpha_1,\beta_1) < \max(\alpha_2,\beta_2)\ \hbox{or}\ \\
+%                                                                           &&&(\max(\alpha_1,\beta_1) = \max(\alpha_2,\beta_2)\ \&\ %\\ &&&
+%                                                                           \min(\alpha_1,\beta_1)< \min(\alpha_2,\beta_2) )
+% \end{align}
+%  %\stopformula
+% \end{itemize}
+% \end{example}
+
+\subsection{${}$ \hspace{-1em}Well-founded induction and recursion.}
+
+
+% \begin{theorem}\label{WF-induction}
+% {\rm (Well-founded induction).}
+% Suppose $R$ is a well-founded %and set-like
+% relation on $A$. Let $X \subset A$ contain the $R$-minimal
+% element of $A$ and $X$ satisfies ``the induction
+% hypothesis'' $Ext_R(a) \subset X \rightarrow a \in X$. Then
+% $X=A$.
+% % Furthermore suppose $\phi$ is a formula such that whenever for each $a\in A$ if
+% % $(\forall b\in Ext_R(a))\varphi(b) \rightarrow \varphi(a)$. Then $(\forall a\in A)\varphi(a)$.
+% \end{theorem}
+
+\begin{theorem}\label{WF-recursion}
+{\rm (Well-founded recursion).} Suppose $R$ is a well-founded and set-like
+relation on $X$ and $G$ is a mapping defined on $V$.
+Then there exists a unique function $F$ defined on $X$ which satisfies
+$$ %\startformula
+ %F(a) = G(F\upharpoonright Ext_R(a) )\quad\hbox{for each}\ a\in A.
+ F(x) = G(\{F(y):y R x \}), \ \mbox{for each}\ x \in X.
+$$ %\stopformula
+\end{theorem}
+
+% \begin{corollary}
+% It follows, as a special case, that there exists a unique function $F_1$ such that
+%  $$ %\startformula
+%  F_1(a) = G(\{F_1(y):b R a \}).
+% $$ %\stopformula
+% \end{corollary}
+
+\subsection{${}$ \hspace{-1em}Rank function.}
+Every well-founded relation $R$ on $X$ has an associated
+\emph{rank function} $\rho_R:X\to On$ which
+is defined using well-founded recursion as:
+$$ %\startformula
+ \rho_R(x)=\hbox{sup}\{\rho_R(y)+1:y R x\},\ \sup \emptyset = 0.
+$$ %\stopformula
+
+\smallskip
+
+If $X$ is a set, then the range of $\rho_R$ is an ordinal number and is called the \emph{height} of $R$ on $X$.
+If $R$ is a well-ordering, then the height of $R$ is also called the \emph{order type} of $R$.
+
+\smallskip
+
+We shall now introduce the often used concept of a tree and show an application of the rank function on ill-founded trees.
+
+
+\begin{definition}\label{tree}
+{\bf Tree.} A nonempty set $T$ together with a partial order $\leq$ forms a \emph{tree} iff
+for each $t\in T$ the set of its predecessors $pred_T(t)=\{s\in T:s< t\}$ is well-ordered by $<$.
+\begin{itemize}
+ \item[(i)] Similarly to predecessors, we denote $succ_T(t)$ the set of all immediate successors of node $t$ in $T$.
+ \item[(ii)] For each $t\in T$ we define the \emph{height} $h_T(t)$ of $t$ as the order type of $(pred_T(t),<)$.
+ \item[(iii)] The $\alpha$-th level of $T$, denoted by $T_\alpha$,  is defined as $T_\alpha=\{t\in T:h_T(t)=\alpha\}$.
+ \item[(iv)] The height of $T$ is defined to be the rank of $<$ and is equal to $\min\{\alpha:T_\alpha=\emptyset\}$.
+ \item[(v)] A maximal linearly ordered subset of $T$ is called a \emph{branch} of $T$. The set of all branches of a tree $T$ will be denoted by $[T]$.
+\end{itemize}
+
+\smallskip
+
+By a \emph{subtree} $T' \subset T$ we understand a nonempty subset $T'$ of $T$
+which is closed under initial segments, i.e. $(\forall t \in T')$ if $s \leq t$ then $s \in T'$.
+\end{definition}
+
+
+\begin{example}\label{Seq}
+Trees of height $\omega$ with a single root, i.e. a smallest element, have a nice representation.
+For a set $X$ define $Seq(X)={}^{<\omega}X=\bigcup\{{}^nX:n<\omega\}$,
+the set of all finite sequences of
+elements of $X$. In case $X=\omega$ we write just $Seq$. A set
+$T\subseteq Seq(X)$ closed under initial segments,
+i.e. if $f\in T$ and $n\in dom f$ then $f\upharpoonright n\in T$,
+is called a tree on $X$. If $X=\kappa$, we say $T$ is a
+\emph{$\kappa$-ary tree}, if $X=2$, $T$ is \emph{binary tree}.
+If $T$ is a tree on $X$ then  $(T,\subseteq)$ is a tree.
+
+Given a tree $T$ on $X$ we shall identify branches with
+elements of ${}^\omega X$ and let $[T]=\{f\in {}^\omega X:(\forall n<\omega)(f\upharpoonright n\in T)\}$
+be the set of all branches of $T$.
+
+\end{example}
+
+
+\begin{definition} A tree is called \emph{well-founded} if the reverse order $>$ is well-founded, otherwise it is \emph{ill-founded}. Beware that we take the
+\emph{reverse} order $>$, since $<$ is well-founded by definition!
+\end{definition}
+
+\begin{fact}{\rm {(ZF)} }
+\begin{itemize}
+ \item[(i)] Assume DC. Then a tree is ill-founded iff it has an infinite branch.
+ \item[(ii)] Assume DC. A tree of height omega with finite levels must have an infinite branch.
+ \item[(iii)] A well-founded binary tree is finite
+\end{itemize}
+
+
+\end{fact}
+
+
+\begin{example} If $T$ is a well-founded $\omega$-ary tree, then the reverse
+inclusion relation on $T$ is
+ well-founded, so it has an associated rank function $\rho_T$.
+We can then define the rank $r(T)$
+ of $T$ to be $\rho_T(\emptyset)$.
+\end{example}
+
+\begin{example}{\rm {(DC)} }
+If $T$ is a well-founded $\omega$-ary tree, then $r(T)<\omega_1$ and for any $\alpha<\omega_1$
+ there is a well-founded $\omega$-ary tree $T^\alpha$ with $r(T^\alpha)=\alpha$.
+
+\medskip
+
+To see that $r(T)<\omega_1$ note that $|T|$ is countable. For the opposite direction
+ we proceed by induction.
+A tree of rank $1$ is just $\{\emptyset\}$. Suppose $\alpha<\omega_1$ and we have constructed a tree $T^\beta$ of rank $\beta$ for each $\beta<\alpha$.
+To construct a tree of rank $\alpha$, take a tree $T$ of height $2$ with $|T_1|=\omega$ and glue the $T^\beta$'s to the branches of $T$ to
+get $T^\alpha$.
+%
+% $we have a tree $T$
+% A tree of finite rank is easy to build. A tree of rank $\omega$ is just an infinite union of branches of increasing length.
+%
+% if $\alpha<\omega_1$, choose for each limit $0<\beta\leq\alpha$ a strictly increasing sequence $\beta_n$
+% with $\beta=\bigcup\{\beta_n:n<\omega\}$. We define by induction on $\alpha$ a function $f$ on the full $\omega$-ary tree
+% ${}^{<\omega}\omega$ as follows: $f(\emptyset)=\alpha$. If $f(t)=\beta+1$ then $f(t\conc n)=\beta$ for each $n<\omega$.
+% If $f(t)=\beta$ and $\beta$ is limit and nonzero, then $f(t\conc n)=\beta_n$. If $f(t)=0$ then $f(t\conc n)=0$.
+% Finally we let $T_\alpha=\{t\in{}^{<\omega}\omega:f(t)>0\vee f(t)=0\ \&\ (\forall s\subset t)(f(s)\neq 0)\}$. It
+% is easily seen that $r(T_\alpha)=\alpha$ and that $f\upharpoonright T_\alpha$ is the canonical rank function $\rho_{T_\alpha}$.
+\end{example}
+
+The following example will be useful in chapter \ref{chapter_generic} when we will compare
+transitive models of ZFC.
+
+\begin{example}\label{transitive_closure}
+Given a set $A$, let $Tc(A)$ be the set of all $\in$-descending sequences beginning in
+A. The set $Tc(A)$ together with inclusion is a tree. By the axiom of foundation
+the height of $(Tc(A),\subseteq)$ is at most $\omega$ and the tree has no infinite
+branches. For convenience we shall add the empty sequence to $Tc(A)$ so that $Tc(A)$
+has a single root.
+\end{example}
+
+Given any well-founded tree $T$ we can define the following two functions on $T$:
+\begin{eqnarray*}
+ f_T(t)  & = &  \{ \ f(t') : \ t' \in \mbox{succ}_T (t) \ \}, \\
+ g_T(t)  & = &  \sup\{ \ g(t') + 1 : \ t' \in \mbox{succ}_T (t) \ \}, \
+	\mbox{where} \ g(\mbox{leaf}) = 0.
+\end{eqnarray*}
+and note that $f_T(s)=\emptyset$ if $s$ is a leaf of $T$.
+
+\begin{theorem} The tree $Tc(A)$ codes the set $A$ in the sense that
+$f_{Tc(A)}(\emptyset) = \{A\}$. Moreover given any tree $T$ isomorphic to $Tc(A)$,
+$f_T(root(T))=\{A\}$, $g_T(root(T)) = g_{Tc(A)}(\emptyset)=rk(A)+1=\min\{\alpha:A\subseteq V_\alpha\}$
+and $rng(f_T)=Tcl(\{A\})$.
+\end{theorem}
+
+
+%
+% Any set $X$ determines a tree $(Tc(X),\subseteq)$ consisting of
+% finite sequences of sets.
+% \begin{itemize}
+%  \item[(i)] The empty sequence (sequence of length $0$) belongs to
+% 	$Tc(X)$.
+%  \item[(ii)] The sequence $\langle X \rangle$ of length $1$ belongs to
+% 	$Tc(X)$.
+%  \item[(iii)] If sequence $\langle X_0,X_1,X_2,\dots, X_n \rangle$ belongs
+% 	to $Tc(X)$, then sequence $\langle X_0,X_1,X_2,\dots, X_n, X_{n+1}\rangle$
+% 	belongs to $Tc(X)$ provided $X_{n+1} \in X_n$.
+% \end{itemize}
+% The sequences are ordered by inclusion. By the axiom of foundation,
+% the height of $Tc(X)$ is at most $\omega$ and each leaf of the tree
+% is an empty set. It is easy to see, that \emph{transitive closure}
+% $\mbox{tcl}(X)$ of set $X$ is equal to $\bigcup \{rng(A) : A \in Tc(X)\}$.
+%
+% \smallskip
+%
+% Take any tree $(T,\leq)$ isomorphic to $Tc(X)$. Using WF-recursion
+% we can define the following functions on $T$.
+% \begin{eqnarray*}
+%  f(t)  & = &  \{ \ f(t') : \ t' \in \mbox{succ}_T (t) \ \}, \\
+%  g(t)  & = &  \sup\{ \ g(t') + 1 : \ t' \in \mbox{succ}_T (t) \ \}, \
+% 	\mbox{where} \ g(\mbox{leaf}) = 0.
+% \end{eqnarray*}
+% Then we have that $f(\mbox{root}) = \{X\}$ and
+% $g(\mbox{root}) = \min \{\alpha : x \in V_\alpha \}$.
+% \end{example}
+
+% \begin{example}\label{Cantor_Baire}
+% Fundamental examples of trees are
+% sets of all finite
+% sequences of of natural numbers ${}^\omega \omega$ denoted as
+% $\mbox{Seq}$
+% or finite sequences of $\{0,1\}$ denoted as
+% and $\mbox{Seq}(2) = {}^\omega 2$, where the tree ordering is the inclusion.
+% $\mbox{Seq}(2)$ is an example of binary tree and
+% $\mbox{Seq}$ of $\omega$-ary tree.
+% By the definition
+% $\mbox{Seq}(2)$ is a subtree of $\mbox{Seq}$.
+% The sets of functions ${}^\omega \{0,1\}$ and ${}^\omega \omega$
+% can be equipped with natural topology.
+%  $$ %\startformula
+% d(f,g)=\frac{1}{k+1}, \ \mbox{where} \ k=\min\{n:f(n)\neq g(n)\}.
+% $$ %\stopformula
+% Then the topological space ${}^\omega \omega$, known as \emph{Baire space} and
+% denoted by $\mathcal N$, is homeomorphic to the irrational numbers,
+% while ${}^\omega \{0,1\}$ with the very same topology
+% is known as \emph{Cantor space}, denoted by $\mathcal C$ and is a compact subspace
+% of $\mathcal N$. ${\mathcal N}$ is a classical example of a non-compact Polish space.
+% Note that $[Seq] = {}^\omega \omega$ and $[Seq(2)] = {}^\omega \{0,1\}$.
+% \end{example}
+
+We now turn to an important theorem that will be useful later on, but first we need a definition.
+
+\begin{definition}
+A relation $R$ on a set $A$ is extensional if for $a\neq b\in A$ we have that $Ext_R(a)\neq Ext_R(b)$, where
+$Ext_R(a)=\{x\in A: xRa\}$ (see \ref{ext}).
+\end{definition}
+
+Note that the axiom of extensionality is equivalent to saying that $\in$ is extensional on $V$.
+
+\begin{theorem}\label{mostowski}
+{\scshape (Mostowski collapse).} Suppose $R$ is a well-founded
+%, set-like relation on a class
+relation on a set $A$.
+\begin{itemize}
+\item[(i)] There is a transitive set $M$ and a surjective mapping $F:A\to M$ such that $xRy\rightarrow F(x)\in F(y)$.
+\item[(ii)] Moreover if $R$ is extensional on $A$, then the mapping $F$ is an isomorphism.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(hint) Using well-founded recursion, define $F(a)=\{F(b):b\in A\ \&\ bRa\}$. To show that $F$ is as required, use well-founded induction.
+\end{proof}
+
+% \startlemma Suppose that $M,N$ are transitive models of ZF and one of them satisfies the Axiom of choice.
+%  Suppose, moreover, that they have the same subsets of ordinal numbers, i.e. $\pw^M(Ord^M)=\pw^N(Ord^N)$.
+%  Then $M=N$.
+% \stoplemma
+% \begin{proof} Without loss of generality assume $M\models AC$. First we show that $M\subseteq N$. Let $X\in M$ and, since $M\models AC$
+% there is bijection $f\in M$ of some ordinal $\delta\in M$ onto the transitive closure of $X$.
+% Define a relation $E$ on $\delta$ as follows: $\alpha E\beta\equiv f(\alpha)\in f(\beta)$. Then, by our
+% assumption, $E\in N$. Also $E$ is extensional and well-founded in $M$ and, by absoluteness, also in $N$. Applying
+% Mostowski collapsing theorem, there is a transitive set $T\in N$ such that $(E,\delta)\equiv (T,\in)$. So also
+% $(T,\in)\equiv (Tcl(X),\in)$. But since both $T$ and $Tcl(X)$ are transitive, necessarily $T=Tcl(X)$. So
+% $X\in N$.
+%
+% Now we show $M=N$ by transfinite induction. Assume $X\in N$ and $X\subseteq M$. Find $\alpha\in Ord$ such
+% that $X\subseteq V_\alpha^M$ and let $f\in M$ be a bijection from $V_\alpha^M$ into $Ord$. Now since
+% $f[X]$ is a set of ordinals and hence $f[X]\in M$ we know that $X=f^{-1}[f[X]]\in M$.
+% \end{proof}
+
+
+\subsection{${}$ \hspace{-1em}Elementary substructures.}
+
+We will focus on countable substructures of the uncountable structures
+$(H(\kappa),\in)$ and universal algebras
+$A=\langle A,\{f_i:i\in I\}\rangle$. We shall tacitly assume that the set of operations is at most
+countable and each of them is finitary. Suppose we have such an algebra $A$.
+A nonempty subset $X\subseteq A$ closed under all these operations determines a
+subalgebra and whenever $Y\subseteq A$ is infinite, there is an $X\subseteq A$
+which is closed under the operations,
+contains $Y$ and $|Y|=|X|$. We assume the axiom of choice throughout this section.
+
+\bigskip
+Let us first recall the classical definition of a club set on $\omega_1$. The cardinal number
+$\omega_1$ ordered by $\in$ carries a natural topology derived from the order. A club on $\omega_1$
+is an unbounded subset of $\omega_1$ which is closed in this topology, i.e. is closed under
+taking suprema. A standard argument shows that a countable intersection of club sets is again
+a club set. A subset of $\omega_1$ is called stationary iff it intersects each club set. The following
+is a classical theorem about stationary subsets, which was subsequently generalized by R. Solovay to
+higher cardinalities.
+
+\begin{theorem}[Fodor] Any stationary subset of $\omega_1$ can be partitioned into $\omega_1$-many
+ disjoint stationary subsets of $\omega_1$.
+\end{theorem}
+
+In the context of forcing it turns out that the following generalization of club sets to
+different structures is very convenient.
+
+\begin{definition}\label{club}
+{\bf Club.} Let $A$ be an infinite set. A family $C\subseteq[A]^{\omega}$ is
+\emph{closed unbounded}, or \emph{club}
+for short, in $[A]^\omega$ if it is
+\begin{itemize}
+  \item[(i)] \emph{unbounded,} i.e.
+	$(\forall Y\in[A]^\omega)(\exists X\in C)(Y\subseteq X)$ and
+  \item[(ii)] \emph{closed,} i.e. for any increasing chain $\{X_n:n<\omega\}$ of elements of
+	$C$ the union $\bigcup\{X_n:n<\omega\}$ is again an element of $C$.
+\end{itemize}
+\end{definition}
+
+\begin{note} In our definition we have only assumed that $A$ is infinite. If it is countable, however, the notion is not very interesting, in particular
+the singleton $\{A\}$ is a club.
+\end{note}
+
+\begin{note} Observe that if $C$ is a (classical) club on $\omega_1$ then it is also a club in $[\omega_1]^{\omega}$
+(more precisely $\{\alpha:\alpha\in C\ \&\ \omega\leq\alpha\}$ is a club in $[\omega_1]^{\omega}$).
+\end{note}
+
+\begin{fact}
+Suppose $A$ is an infinite set. It is relatively easy to prove that the intersection
+of a countable system of clubs in $[A]^{\omega}$ is again
+a club in $[A]^{\omega}$. It follows that the system of clubs in $[A]^{\omega}$
+generates a $\sigma$-complete filter.
+\end{fact}
+%
+% \begin{fact}{} It is relatively easy to prove the following basic properties. Suppose $A$ is infinite. Then
+% \begin{itemize}[i]
+% \item[()] The intersection of a countable system of clubs in $[A]^{\omega}$ is a club in $[A]^{\omega}$.
+% \item[()] The system of clubs in $[A]^{\omega}$ generates a filter.
+% \end{itemize}
+% \end{fact}
+
+The following proposition is an algebraic version of the well-known L\"owenheim~-~Skolem theorem from model theory.
+
+ \begin{proposition}\label{algebraic-club-A}
+Suppose $A=\langle A,\{f_n:n<\omega\}\rangle$ is an algebra with infinite underlying set $A$.
+Then the family of all  countable subalgebras forms a club in $[A]^{\omega}$.
+ \end{proposition}
+
+The converse of the proposition also holds (see e.g. \cite{JechST}):
+
+ \begin{proposition}\label{algebraic-club-B}
+Suppose that $C$ is a club in $[A]^{\omega}$, then there are operations
+$\{f_n:n < \omega\}$ on $A$ such that
+ $C$ contains all countable subalgebras of $A$ with given operations.
+ \end{proposition}
+
+
+Having defined closed unbounded families, we can define stationary families.
+
+\begin{definition}\label{stationary}
+{\bf Stationary set.} A family $S\subseteq [A]^{\omega}$ is \emph{stationary} if it intersects each club,
+i.e. if $C$ is a club in $[A]^{\omega}$, then $S\cap C\neq\emptyset$.
+\end{definition}
+
+It follows from propositions \ref{algebraic-club-A}, \ref{algebraic-club-B} that:
+
+% \begin{corollary} A set $S\subseteq [A]^\omega$ is stationary iff for every system $\{f_n:n<\omega\}$ of finitary operations on $A$,
+% $S$ contains a set which is closed under these operations.
+% \end{corollary}
+
+Consider now the structure $(H(\kappa),\in)$.
+
+\begin{definition}\label{elementary-substructure}
+{\bf Elementary substructure.}
+Let $X\subseteq H(\kappa)$ be a countable set. We shall say that
+$X$ is an \emph{elementary substructure} of $H(\kappa)$, denoted $(X,\in)\preceq (H(\kappa),\in)$, if for each property expressed
+by a formula of Set Theory $\varphi(v_1,\ldots,v_n)$ with free variables $v_1,\ldots, v_n$, the following holds:
+%\placeformula
+$$ %\startformula
+(\forall x_1,\ldots,x_n\in X)( (X,\in)\models \varphi[x_1,\ldots,x_n] \equiv (H(\kappa),\in)\models \varphi[x_1,\ldots,x_n] )
+$$ %\stopformula
+This implies, in particular, that sentences (i.e. closed formulas) of Set Theory are valid in $(X,\in)$ iff they are valid in $(H(\kappa),\in)$.
+\end{definition}
+
+\noindent{\bfseries\scshape Relativity principle.}
+The concept of an elementary substructure is akin to the Galileo's relativity principle in physics. This principle states that, using physical
+experiments, we cannot decide which frame of reference we are in. Similarly, using Set Theoretical properties, we cannot distinguish
+whether we are in the elementary substructure or the superstructure. In other words, the validity of statements about elements of $X$
+cannot distinguish between $X$ and $H(\kappa)$.
+
+
+% \begin{note} Note that when deciding the validity of formulas in $X$ the quantifiers range only over $X$ whereas in $H(\kappa)$ they range
+% over all of $\kappa$. In particular existential formulas are 'easier to satisfy' in $H(\kappa)$ whereas universal formulas are ``easier to
+% satisfy'' in $X$.
+% \end{note}
+
+\begin{fact}\label{elementary-fact}
+For any $X\preceq H(\kappa)$ the following basic facts are true:
+\begin{itemize}
+  \item[(i)] $\omega\subseteq X$ since each natural number is definable in $H(\kappa)$ and
+  \item[(ii)] $\omega\in X$, since $\omega$ is also definable in $H(\kappa)$,
+\end{itemize}
+more generally
+\begin{itemize}
+  \item[(iii)] If $Y\in X$ and $Y$ is countable, then $Y\subseteq X$.
+\end{itemize}
+\end{fact}
+
+\begin{note}
+Countable elementary substructures typically are not transitive sets, and for $\kappa>\omega_1$ are provably not transitive.
+             It is hence perfectly possible that some uncountable set is an \emph{element} of the countable substructure. In fact,
+             $\omega_1\in X$ whenever $X$ is an elementary substructure of $H(\kappa)$ for $\kappa>\omega_1$.
+\end{note}
+
+As with algebras, we have the following often used and important theorem.
+
+\begin{theorem} Suppose $\kappa>\omega$. Then
+\begin{itemize}
+  \item[(i)] for any countable subset $Y\subseteq H(\kappa)$, there is an
+	$X\preceq H(\kappa)$ such that $Y\subseteq X$ and
+  \item[(ii)] the set of countable elementary substructures of $H(\kappa)$
+	forms a club in $[H(\kappa)]^\omega$.
+\end{itemize}
+\end{theorem}
+
+Stationary sets on $[A]^\omega$ are important in the theory of proper forcing. For more information on elementary substructures
+and their usage e.g. in topology see \cite{DowST}. Here we mention an application in set theory
+
+\begin{theorem} It $\kappa$ is an inaccessible cardinal, then $V_\kappa = H(\kappa)$ and
+ $V_\kappa$ is a model of ZFC. Moreover there exists a cardinal number $\lambda<\kappa$
+ with countable cofinality such that $V_\lambda$ is a model of ZFC.
+\end{theorem}
+\begin{proof} By induction find $\alpha_n<\omega$ and elementary substructures $X_n\preceq H(\kappa)$
+such that $X_n\subseteq V_{\alpha_n}\subseteq X_{n+1}$. Then $\lambda=\sup\{\alpha_n:n<\omega$ is as required.
+\end{proof}
+
+
+\subsection{${}$ \hspace{-1em} Elementary substructures as proof tools.}
+If we want to prove that a given set $a$ has property $\varphi$
+the following argument is sometimes useful. We consider a ``sufficiently
+large $\kappa$'' such that $a\in H(\kappa)$. Then, taking an elementary
+substructure $(X,\in,a)\prec (H(\kappa),\in,a)$, it is sometimes
+easier to prove that
+$$(X,\in,a) \vDash \varphi (a),$$
+By elementarity we get $(H(\kappa),\in,a)\vDash\varphi(a)$ and, since
+$\kappa$ was ``sufficiently large'' then also $\mbox{ZFC}\vdash\varphi(a)$.
+
+\subsection{${}$ \hspace{-1em} Interpretations \& finitary consistency proofs.}
+
+We shall now sketch an effective method for proving relative consistency. This
+method was used by G\"{o}del to prove the relative consistency with ZF of CH and the
+Axiom of choice.
+
+First we introduce the notion of \emph{interpretation} of the language of Set Theory in
+Set Theory itself. The language of Set Theory is determined by two basic binary predicates:
+equality ($=$) and membership ($\in$). Using these two predicates we may
+define, as is customary, further predicates (e.g. $\cup,\emptyset,\omega,\mathbb{R},\ldots$).
+
+To interpret this language in Set Theory, we need to define a class $U$ and two binary relations,
+which we shall suggestively call $=^*$ and $\in^*$. We also require that the following basic conditions
+are satisfied, i.e. provable in Set Theory,
+
+\begin{itemize}
+ \item[(a)] $(\exists x)U$,
+ \item[(b)] $\mathcal{=^*}$ is an equivalence relation on $\{x:U(x)\}$ and
+ \item[(c)] $(\forall x,y,z)(U(x)\ \&\ U(y)\ \&\ U(z)\rightarrow \big((x\in^*y\ \&\ x=^*z\rightarrow z\in^*y)\ \&\
+								      (x\in^*y\ \&\ y=^*z\rightarrow x\in^*z)\big))$.
+\end{itemize}
+
+Then we can translate any formula $\varphi$ of Set Theory into the corresponding formula $\varphi^*$ ---
+the interpretation of $\varphi$ --- by replacing all occurances of $=$ with $=^*$, $\in$ with $\in^*$ and
+$\forall x$ with $(\forall x\in U)$. The precise definition is, of course, by
+induction on the complexity of $\varphi$:
+
+\begin{itemize}
+ \item[] If $\varphi$ is $x\in y$, then $\varphi^*$ is $x\in^* y$,
+ \item[] if $\varphi$ is $x = y$ then $\varphi^*$ is $x=^*y$ and
+ \item[] if $\varphi$ is $\neg(\psi)$ then $\varphi^*$ is $\neg(\psi^*)$,
+ \item[] if $\varphi$ is $\psi\rightarrow\chi$ then $\varphi^*$ is $\psi^*\rightarrow\chi^*$ and
+ \item[] if $\varphi$ is $(\forall x)\psi$ then $\varphi^*$ is $(\forall x)(U\rightarrow\psi^*)$.
+\end{itemize}
+
+We shall say that $(U,=^*,\in^*)$ is a \emph{syntactical model} of a theory $T$ if any axiom of
+$T$ translates into a provable formula. We say that the model \emph{satisfies} a sentence $\varphi$ if $\varphi^*$
+is provable.
+
+\begin{metatheorem} Suppose $(U,=^*,\in^*)$ is a syntactical model of Set Theory which satisfies
+some sentence $\varphi$. Then $\varphi$ is consistent with Set Theory.
+\end{metatheorem}
+\begin{proof} We assume Set Theory is consistent, otherwise the theorem is clear.
+Given a sentence $\psi$ provable in Set Theory by induction on the lenght of its proof we
+show that it is satisfied by $U,=^*,\in^*$. Now if $\varphi$ were inconsistent,
+then $\neg\varphi$ would be provable so also $(\neg\varphi)^*\equiv\neg(\varphi^*)$ would be
+provable. Since we assumed $\varphi^*$ is provable we have shown that Set Theory itself is inconsistent
+a constradiction.
+\end{proof}
+
+A common special case of interpretations is that we only define the class $U$ and let $=^*,\in^*$
+be just $=,\in$. In that case the translated formula $\varphi^*$ is often denoted as $\varphi^U$.
+
+\begin{example} If $U\neq\emptyset$ is a transitive class and $\varphi$ is the axiom of extensionality, then
+ $\varphi^U$ is provable. Let us call this interpretation transitive. A formula with $\varphi$ with
+ free variables $x_0,\ldots,x_n$ is called \emph{absolute} for an interpretation if
+ $$
+ (\forall x_0,\ldots,x_n\in U)(\varphi^*\leftrightarrow\varphi).
+ $$
+ Transitive interpretations have the advantage that many formulas are absolute.
+ For example $z=\{x,y\}$ is absolute so for any $z\in U$ we have ``(is a pair)$^U$''
+ iff $z$ is a pair. This allows us to simplify many arguments in the case of transitive interpretations.
+\end{example}
+
+\begin{example}[G\"{o}del] Let $L$ be the class of constructible sets (see e.g. \cite{JechST}).
+$L$ is a transitive class.Then if $\varphi$ is an axiom of ZF, then $\varphi^L$ is provable.
+Moreover GCH$^L$ and AC$^L$ are provable. It follows that the continuum hypothesis and the
+axiom of choice are both consistent with ZF.
+\end{example}
+
+\subsection{${}$ \hspace{-1em}Semisets.}
+We now introduce a working term which will be used later on.
+Please keep in mind that this concept is not generally known in the wide
+Set-Theory circles. Nevertheless it is a simple notion and appears to be quite handy for
+generic extension. For more details and in-depth discussion of the concept
+see \cite{VoHa:72}. For our purposes we shall not assume --- or need --- any
+knowledge of this book.
+
+As a motivation for the definition consider the axiom of power set.
+Conventionally it is understood to say that the collection of all parts of a set
+forms a set. The following interpretation, which leads to the definition of a
+semiset, is equally valid: The axiom of powerset says that the collection of
+all parts of a set \emph{which are themselves a set} forms a set.
+
+\begin{definition}\label{semiset}
+{\bf Semiset.} A \emph{semiset} is a part of a set. A semiset which is not
+a set is \emph{proper}.
+\end{definition}
+
+Note that each set is a semiset and in our Set Theory there are no proper semisets.
+We will now describe two natural scenarios which lead to this notion.
+
+
+\subsubsection{Motivating semisets.}
+{\bf I.} Take an infinite cardinal $\lambda$ and consider $H(\kappa)$ where
+$\kappa= (2^\lambda)^+$. We know that
+$(H(\kappa),\in)$ is a model of ZFC${}^-$ (see Proposition \ref{Hkappa2}, (i)).
+In our special case,
+$\pw(\lambda)\in H(\kappa)$ so the power set axiom holds for
+$\lambda$. Let $X$ be a countable elementary substructure of $H(\kappa)$
+with $\lambda\in X$.
+
+Then $(X,\in)$ is a model for ZFC${}^-$, $\lambda,\pw(\lambda)\in X$ and
+$\in$ is a well-founded extensional relation
+on $X$. Applying the Mostowski collapse (see Theorem \ref{mostowski})
+to obtain a transitive set $M$ and an isomorphism $F$ of $(X,\in)$
+and $(M,\in)$. $(M,\in)$ is again a countable model of ZFC${}^-$.
+All subsets of $F(\lambda)$ which are not elements
+of $M$ are proper semisets from the point of view of $M$.
+
+\medskip
+\hskip-\parindent{\bf II.} Another context, where semisets arise, are nonstandard models of ZFC. For example consider the ultrapower $V^\omega/{\mathcal U}$
+where ${\mathcal U}$ is a nontrivial ultrafilter on $\omega$. In this structure there are proper semisets which are even parts of a natural number:
+the class of standard natural numbers is an example of such a semiset. It has to be proper, since it has no maximal element. Conversely there
+are parts of the natural numbers with no minimal elements, so, again, they must be proper semisets.
+
+
+
+% \subsubsubject{A last comment}
+% The method of forcing invented by P. Cohen is a method which, given suitable proper semisets, allows to extend the universe of sets into a
+% new universe where these semisets become regular sets. Moreover the method is flexible in the sense that it allows to control the behavior
+% of the new sets. This extension is called the \emph{generic} extension and the method involves the usage of names.
+
+% \subsection{${}$ \hspace{-1em}Questions\ \&\ Answers.}\label{QaA}
+%
+% ${}$  \medskip
+
+% {\scshape Question.} Why separation is an axiom schema instead of an axiom?
+%
+% \smallskip
+%
+% {\scshape Answer.} For each formula $\varphi$, the schema introduces a single axiom. It follows that there are really infinitely many axioms.
+% It can be shown, that the theory $ZF$ cannot be finitely acclimatized, i.e. no finite list of axioms is equivalent to $ZF$. However, the collection of axioms is still rather simple, formally speaking, it is recursive. This is important in logic.
+%
+% \medskip
+
+% {\scshape Question.} What are classes?
+%
+% \smallskip
+%
+% {\scshape Answer.} Every formula $\varphi$ of Set Theory naturally determines the collection of all sets satisfying $\varphi$. This collection
+% is usually denoted by
+% $$ %\startformula
+% \{x:\varphi(x)\},
+% $$ %\stopformula
+% and called a class. We can extend most of the usual set operation to these objects even though, in many cases, e.g. $V=\{x:x=x\}$, $On=\{\alpha:\alpha\ \mbox{is an ordinal}\}$, $E=\{\langle x,y\rangle:x\in y\}$, these objects are {\bf not} sets. Separation axiom implies that the intersection of a class with a set is always a set. Using classes, we can e.g. write $(H(\kappa),E\cap H(\kappa)^2)$ instead of $(H(\kappa),\in)$.
+%
+% \medskip
+
+% {\scshape Question.} What is the weird symbol $\models$?
+%
+% \smallskip
+%
+% {\scshape Answer.} Short answer: satisfaction, a relation between
+% relation structures and formalised formulas, well-known from Model Theory.
+%
+% \medskip
+%
+% {\scshape Question.} What about the countable model of ZFC?
+%
+% \smallskip
+
+
+
+
+% \bigskip
+%
+% For an in-depth discussion of these questions see your local logic guru.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                          END                                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

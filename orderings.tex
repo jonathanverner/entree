@@ -1,0 +1,1316 @@
+\cfoot{}\rhead{\thepage}
+\lhead{{\scshape Orderings and Boolean Algebras} $\qquad$ {\tiny \today } }
+
+% \noindent{\Large{\scshape\bfseries Entre{\' e} to Generic Extensions and Forcing in Set Theory}} \\[0.1cm]
+%
+% \noindent {\scshape Bohuslav Balcar}, {\small CTS, J{\' \i}lsk{\' a} 1, Praha 1,
+% 	Czech Republic, {\ttfamily \href{mailto:balcar@cts.cuni.cz}{balcar@cts.cuni.cz} } } \\[0.1cm]
+% \noindent {\scshape Jonathan Verner}, {\small KTIML MFF UK, {\ttfamily \href{mailto:jonathan.verner@matfyz.cz}{jonathan.verner@matfyz.cz}} }\\[0.1cm]
+% {\tiny \today } \\[0.5cm]
+
+%\maketitle
+
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Orderings and Boolean algebras}
+
+{\tiny \today } \\[0.5cm]
+
+In this section we shall introduce many notions.
+Most of them are elementary and probably already known to the reader.
+We will familiarise ourselves with concepts related
+to orderings, e.g. dense and predense sets, filters, separative quotients etc.
+We shall also mention the important relationship between
+an ordered set and a (complete) Boolean algebra. Then we state the
+Rasiowa-Sikorski theorem and show an application in
+the special case of $\sigma$-complete algebras. The final paragraph will be devoted
+to the concept of a Boolean matrix and its use.
+The whole section will also be sprinkled with important
+examples of orderings.
+
+%
+% We shall first talk about the close relationship between partially ordered sets and complete Boolean algebras. Then we shall go on
+% to mention their (basic) cardinal characteristics (as e.g. ccc, $\kappa$-cc, height, $\&$ c. We shall also give basic examples of
+% partial orders which will later be used as forcing notions for generic extensions. These examples will include the collapsing partial
+% order, the order which is used to add many new subsets of the natural numbers (or, equivalently, raise the power of the continuum)
+% and the order used to add a new selective (Ramsey) ultrafilter.
+
+\begin{definition}\label{ordering}
+{\bf Ordering.}
+            An \emph{ordering} (or an \emph{ordered set}) $(P,\leq)$
+	    consist of a nonempty set $P$ together with a reflexive and transitive
+	    binary relation $\leq$, i.e. $x\leq x$ and $x\leq y\ \&\ y\leq z\rightarrow x\leq y$.
+	    If the binary relation is moreover antisymmetric,
+            i.e. if $x\leq y\ \&\ y\leq x\rightarrow x=y$, we say that $(P,\leq)$ is a partial order.
+
+            If $x\leq y$ we say that $x$ is smaller than $y$ or that $x$ is below $y$. If $x,y$ are such that for no $z$ both $z\leq x$ and $z\leq y$,
+            we say that $x,y$ are \emph{disjoint} or \emph{incompatible} and denote this by $x\perp y$, otherwise they are \emph{compatible}, denoted by $x\parallel y$.
+            An element $x$ with no disjoint elements below $x$ is called an \emph{atom}.
+\end{definition}
+
+\begin{definition}\label{various} Suppose $P$ is an ordering and $X\subseteq P$.
+\begin{itemize}
+ \item[(i)] {\bf Antichain.} $X$ is an \emph{antichain} or is called \emph{disjoint} if any
+	two distinct elements of $X$ are incompatible. $X$ is a
+	\emph{maximal antichain} if it is an antichain and each element of
+	$P$ is compatible with some element of $X$.
+ \item[(ii)] {\bf Dense.} $X$ is called \emph{predense} if any element of $P$
+	is compatible with some element of $X$. $X$ is dense if for any $x\in P$
+	there is an element of $X$ which is below $x$.
+	$X$ is \emph{predense} (dense) below $x\in P$ if for every element $y$
+	of $P$ \emph{below $x$} there is an element $h\in X$ which is
+	compatible with (below) $y$.
+ \item[(iii)]{\bf Open dense.} $X$ is called \emph{open dense} if it is downward closed and dense,
+	i.e. $(\forall p\in P)(\exists q\in X)(q\leq p)$ and $(\forall h\in X)((\leftarrow,h]\subseteq X$, where
+	$(\leftarrow,h]=\{p\in P:p\leq x\}$
+ \item[(iv)]{\bf Centred.} $X$ is \emph{centred} if for any finite $F\subseteq X$
+	there is a $z\in X$ which is below each $x\in F$.
+ \item[(v)]{\bf Filter.} $X$ is a \emph{filter} if it is centred and upward closed,
+	i.e. $(\forall h\in X)([h,\rightarrow)\subseteq X$
+\end{itemize}
+\end{definition}
+
+\subsubsection{Comments and facts}
+
+\begin{itemize}
+ \item[(a)] Note that some authors prefer to use the term \emph{preorder} or \emph{quasiorder} where we use the term ordering or order.
+ \item[(b)] Linear (total) orders (i.e. any two elements are comparable) and orders having the least element cannot contain disjoint elements.
+ \item[(c)] A subset $X$ of an ordering $(P,\leq)$ is implicitly ordered by the restriction of $\leq$ to $X$.
+%  \item[()]  A $\sigma$-centered ordering is necessarily ccc, but not vice versa.
+\end{itemize}
+
+\begin{fact}\label{dense_equivalents} Let $A$ be maximal antichain and $D$ a dense set. Then
+ \begin{itemize}
+  \item[(i)]  $A$ is a predense set and $\bigcup\{(\leftarrow, a]:a\in A\}$ is an open dense set.
+  \item[(ii)]  $A$ has a refinement $B\subseteq D$, that is, $B$ is a maximal antichain and for all
+              $b\in B$ there is an $a\in A$ with $b\leq a$.
+ \end{itemize}
+\end{fact}
+
+
+\begin{proof} (hint) For $a\in A$ find a maximal antichain $B_a$ in the ordering $((\leftarrow,a]\cap D,\leq)$.
+              Then it suffices to take $\bigcup \{B_a:a\in A\}$.
+\end{proof}
+
+The following is a first version of the Rasiowa-Sikorski theorem:
+
+\begin{theorem}\label{rasiowa-sikorski}
+{\scshape (Rasiowa, Sikorski).} Suppose $\{D_n:n<\omega\}$ is a countable family of dense subsets of an ordering $P$ and $p\in P$.
+Then there is a filter $F$ on $P$ such that
+$$ %\startformula
+p\in F\quad\&\quad (\forall n<\omega)(D_n\cap F\neq\emptyset).
+$$ %\stopformula
+\end{theorem}
+\begin{proof} By induction choose a decreasing sequence $p\geq p_0\geq p_1\cdots\geq p_n\geq\cdots$ such that $p_n\in D_n$. This sequence forms a centred system which
+can easily be extended to the required filter $F$.
+\end{proof}
+
+%  \subsection{${}$ \hspace{-1em}Basic cardinal characteristics.}
+%
+%  We shall now introduce the basic cardinal characteristics of ordered sets: cardinality, weight ($\pi$), saturatedness (sat), height ${\mathfrak h}$. For each of these
+%  characteristics we define a partition of $P$ into sets which homogeneous with respect to this characteristic.
+%
+%  The example of cardinality is most instructive: If $p\leq q$ then $|(\leftarrow,p]|\leq|(\leftarrow, q]|$.
+%  Since there is no infinite, strictly decreasing sequence of ordinals, we conclude that the set $H=\{p\in P:(\forall q\leq p)(|(\leftarrow,q]|=|(\leftarrow, p]|)\}$
+%  is open dense in $P$. Any maximal antichain consisting of $H$ gives rise to a partition of $P$ into sets which are homogeneous in cardinality.
+%
+%  \begin{definition}\label   Suppose $(P,\leq)$ is a partial order. Then
+%   \begin{itemize}
+%    \item[()]{(a)} $P$ is $\kappa$-cc if there is no antichain of cardinality $\kappa$ in $P$. If $P$ is $\omega_1$-cc we say it is ccc
+%               (satisfies the countable chain condition). The cardinal characteristic sat($P$) is defined to be the minimal $\kappa$ such that $P$ is $\kappa$-cc.
+%    \item[()]{(b)} The \emph{weight} of $P$ ($\pi(P)$) is the minimal cardinality of a dense subset of $P$.
+%    \item[()]{(c)} Suppose $P$ has no atoms. Then we define the \emph{height} (or \emph{nondistributivity}) of $P$ (${\mathfrak h}(P)$ to be the minimal cardinality of a system
+%               ${\mathcal H}$ of dense subsets of $P$ such that the intersection of ${\mathcal H}$ is not dense. If $P$ has atoms, we let ${\mathfrak h}(P)=\infty$.\stopnotation
+%   \end{itemize}
+%  \end{definition}
+%
+% \subsubsection{Comments and facts}
+% \begin{itemize}
+%  \item[()]{(a)} The cardinal characteristic sat$(P)$ is either finite or uncountable.
+%  \item[()]{(b)} The cardinal characteristics sat and $\pi$ are both monotone so they have homogeneous partitions (see exercise \in{section}[monotone_cardinal_characteristics]).
+%             ${\mathfrak h}$ is not monotone, nevertheless homogeneous partitions for ${\mathfrak h}$ always exist.
+%  \item[()]{(c)} The height of $P$ is only interesting for \emph{atomless} (i.e. without atoms) partial orders. Such orders must necessarily be infinite and
+%             $\omega\leq{\mathfrak h}(P)\leq|P|$. (Hint: For each $p\in P$ choose $p_0,p_1$ disjoint below p. Extend $\{p_0,p_1\}$ to a maximal antichain $A_p$ in P.
+%             Then if \penalty-10000$H_p=\{(\leftarrow\penalty10000,~a]:a\in A_p\}$ and ${\mathcal H}=\{H_p:p\in P\}$ we have that $\bigcap {\mathcal H}=\emptyset$.)
+% \end{itemize}
+
+\subsection{${}$ \hspace{-1em}Separative orderings.}
+
+We will see that, from the forcing point of view, the disjointness relation of an ordering plays a crucial role apart from the ordering itself.
+\begin{notation}
+Suppose $A$ is a subset of $P$. Then we shall write $A^\perp$ to be the set of all elements disjoint with $A$, formally
+$A^\perp=\{p\in P:(\forall a\in A)(p\perp a)\}$. In particular $\{x\}^\perp=\{p\in P:x\perp p\}$.
+\end{notation}
+
+\begin{definition} An ordering $(P,\leq)$ is called \emph{separative} if for all $x,y\in P$
+ $$ %\startformula\pagereference[separation]
+    x\not\leq y \rightarrow (\exists z\leq x)(z\perp y). \leqno{(*)}
+ $$ %\stopformula
+\end{definition}
+
+It is easy to see that (*) can be substituted by any of the following equivalent conditions:
+\begin{itemize}
+ \item[(i)]  $x\leq y\equiv \{x\}^\perp \supseteq\{y\}^\perp $
+ \item[(ii)]  $x\leq y\equiv (\forall z)(z\parallel x\rightarrow z\parallel y)$
+ \item[(iii)]  $x\leq y\equiv \{y\}$ is predense below $x$
+\end{itemize}
+Note that the implications from the left to the right hold in every ordering.
+
+\smallskip
+
+The following definition and fact shows that each ordering can be strengthened to a separative ordering while preserving
+the disjointness relation:
+
+\begin{definition}\label{separative-modification}
+{\bf Separative modification.} For any ordering $\leq$ on a set $P$ we define its \emph{separative modification}
+$\leq_{sp}$ as follows:
+$$ %\startformula
+ x\leq_{sp} y \equiv \{x\}^\perp \supseteq\{y\}^\perp
+$$ %\stopformula
+\end{definition}
+
+\begin{fact} Let $(P,\leq)$ be an ordering. Then
+
+ \begin{itemize}
+  \item[(i)] $\leq\ \subseteq\ \leq_{sp}$,
+  \item[(ii)] $\leq_{sp}$ is a separative ordering of $P$,
+  \item[(iii)]  the disjointness relations for $\leq$ and $\leq_{sp}$ coincide.
+ \end{itemize}
+ Moreover conditions (i-iii) determine the relation $\leq_{sp}$ uniquely.
+\end{fact}
+
+From this point of view linear orderings or orderings with a smallest element are not very interesting because
+in their separative modification the disjointness relation is trivial (i.e. each two elements are comparable)
+and their quotient (see \ref{separative-quotient}) is just the one element partial order.
+
+Every ordering gives rise to a natural equivalence relation and quotient partial order:
+
+ \begin{fact} If $(P,\leq)$ is an ordering we let $x\approx y\equiv x\leq y\ \&\ y\leq x$. Then
+ \begin{itemize}
+ \item[(i)]  $\approx$ is an equivalence relation and the quotient $(P,\leq)/\hskip-1mm\approx$ is a partial order.
+ \item[(ii)]  If $(P,\leq)$ is a separative ordering, then the quotient $(P,\leq)/\hskip-1mm\approx$ is also separative.
+ \item[(iii)]  A dense subset of a separative ordering is again a separative ordered set.
+\end{itemize}
+\end{fact}
+
+
+\subsection{${}$ \hspace{-1em}Separative quotient.}\label{separative-quotient}
+%\begin{notation}\label{separative-quotient}
+The equivalence relation from the preceding fact defined from $\leq_{sp}$ is denoted by $\approx_{sp}$. The
+quotient partial order $(P,\leq_{sp})/\hskip-1mm\approx_{sp}$ is called the \emph{separative quotient} of $(P,\leq)$.
+%\end{notation}
+
+\medskip
+
+The following is trivial
+
+\begin{fact}
+$(P,\leq)$ is a separative partial order iff $\approx_{sp}$ is the identity on $P$.
+\end{fact}
+
+\begin{fact}
+If $(P,\leq)$ is an ordering then
+$$ %\startformula
+x\approx_{sp}y\equiv(\forall H\subseteq P)(H\ \mbox{is predense below}\ x\ \mbox{iff}\
+H\ \mbox{is predense below}\ y).
+$$ %\stopformula
+\end{fact}
+
+
+% \begin{fact} If $\B$ and $\C$ are complete Boolean algebras, $H_1\subseteq \B, H_2\subseteq\C$ are dense
+%  subsets and $f$ is an order isomorphism of $(H_1,\leq)$ onto $(H_2,\leq)$ then there exists a unique
+%  extension $\overline{f}$ of $f$ with domain $\B$ and range $\C$.
+% \end{fact}
+
+\subsection{${}$ \hspace{-1em}Examples of orderings.}
+
+
+The properties of orderings relevant for forcing only depend on the combinatorial properties of dense sets.
+The following examples illustrate that there are nonisomorphic orderings with isomorphic dense subsets
+(and hence, as will be seen, have isomorphic generic extensions).
+
+First we mention two cardinal characteristics of an ordering:
+
+\begin{definition}
+An ordering $P$ is called
+ \begin{itemize}
+  \item[(i)]{\bf $\kappa$-cc} (or satisfies the {\bf $\kappa$-chain condition}) if any antichain of $P$ has cardinality $<\kappa$. If $\kappa=\omega_1$ we say that $P$ is \emph{ccc}.
+
+  \item[(ii)]{\bf $\kappa$-closed} if for any $\leq$-descending sequence of
+	elements of $P$ which is of length $<\kappa$ has a lower bound in $P$.
+	If $\kappa=\omega_1$
+        we say that $P$ is \emph{$\sigma$-closed}.
+ \end{itemize}
+\end{definition}
+
+%Note that while the first property is invariant with respect to dense sets, the second one is not.
+
+\subsection{${}$ \hspace{-1em}Countable orderings.}\label{ctble-orderings}
+
+Consider the following three sets of finite functions:
+\begin{itemize}\label{defFn}
+ \item[(a)]  $Seq = \bigcup\{ ^n\omega:n<\omega\}$,
+ \item[(b)]  $Seq_2 = \bigcup\{ ^n2:n<\omega\}$,
+ \item[(c)]  $Fn(\omega,2)=\{f;f:D\to\{0,1\},D\in[\omega]^{<\omega}\}$,
+\end{itemize}
+all ordered by inverse inclusion (i.e. $f\leq g$ iff $f\supseteq g$). These systems are countable separative partial orders without atoms (atomless) with
+a largest element which is the empty set.
+
+
+\begin{proposition}\label{countable-isom-dense}
+ Any two countable atomless orderings have isomorphic dense subsets.
+\end{proposition}
+
+\begin{proof}
+We show that each such order has a countable dense subset $T$ such that $(T,\geq)$ is isomorphic to the full $\omega$-ary tree
+$\bigcup\{ ^n\omega : n\in\omega\}$ ordered by inclusion. This clearly suffices. First we enumerate $P=\{p_n:n<\omega\}$ and
+for each $p\in P$ we choose an infinite maximal antichain $A_p$ below $p$. To build $T$ proceed by induction on $\omega$ building at step
+$n+1$ the $(n+1)$-st level $T_{n+1}$ of $T$ as follows: $T_{n+1}=\bigcup\{A_{p^\prime}:p\in T_n\}$ where $p^\prime\leq p_n, p$ if $p_n$ and
+$p$ are compatible, otherwise $p^\prime=p$.
+\end{proof}
+
+\subsection{} A natural generalisation of (c) are the two following separative partial orders ($X$ is an infinite set)
+
+\begin{itemize}
+ \item[(d)] $Fn(X,\omega)=\{f;f:D\to\omega,D\in[X]^{<\omega}\}$,
+ \item[(e)] $Fn(X,\{0,1\})=\{f;f:D\to\{0,1\},D\in[X]^{<\omega}\}$,
+\end{itemize}
+
+which again have isomorphic dense subsets:
+
+\begin{proof}
+When $|X|=\omega$ see above. Otherwise partition $X$
+into countable sets $A_\xi$, $\xi<\kappa$. Using Proposition \ref{countable-isom-dense}
+fix $H_\xi, K_\xi$ dense subsets of $F(A_\xi,\omega)$
+and $F(A_\xi,2)$ respectively and an isomorphism $\phi_\xi$ of $H_\xi$ onto $K_\xi$.
+Now the set $\{f\in F(X,\omega):(\forall\xi<\kappa)(f\upharpoonright A_\xi\in H_\xi)\}$ is dense in $F(X,\omega)$ and
+is isomorphic to the corresponding dense set in $F(X,2)$ via the (concatenated) isomorphisms $\phi_\xi$.
+\end{proof}
+
+\begin{definition}\label{sigma-centered}
+{\bf {$\sigma$-centred.}} An ordering $P$ is \emph{$\sigma$-centred}
+if it can be written as a countable union of filters.
+\end{definition}
+
+Each $\sigma$-centred ordering is ccc but not vice versa, see below. Also note that each countable ordering is $\sigma$-centred and the
+following proposition limits the cardinality from above:
+
+\begin{proposition}
+Any $\sigma$-centred separative partial order $P$ is of cardinality at most $\cont$.
+\end{proposition}
+
+\begin{proof}
+Let $P=\bigcup P_n$ where $P_n$ is a maximal centred family. Then the mapping $\varphi:P\to\pomega$ defined by $\varphi(p)=\{n:p\in P_n\}$ is
+one-to-one.
+\end{proof}
+
+
+\begin{proposition}
+ Both of the orders defined in (d,e) are ccc.
+\end{proposition}
+
+
+\begin{proof}
+We shall only show the ccc property for $F(X,2)$. This is enough, since $F(X,2)$ and $F(X,\omega)$ have isomorphic dense subsets.
+In fact we shall show that $F(X,2)$ satisfies an even stronger condition, %(see \in{exercise}[horn_tarski]),
+namely we will partition $F(X,2)$ into countably many sets $P_n$ each of which will contain
+antichains of size at most $2^n$. This clearly suffices. Put $P_n=\{f\in F(X,2):|\dom f|=n\}$. Take $f_0,\ldots,f_{2^n}\in P_n$.
+We show that at least two are compatible. Put $K=\bigcup\{\dom f_i:i\leq2^n\}$. Consider the normalised counting measure $m$ on $\pw( ^K2)$ and let $X_i=\{g;g:K\to2,g\supseteq f_i,|K|<\omega\}$. Then $X_i\cap X_j=\emptyset$ whenever $f_i\perp f_j$. Also $m(X_i)=1/2^n$ and, using the additivity
+of measure, we see that at least two of these sets are not disjoint: otherwise $\sum_{i=0}^{2^n} m(X_i) > 1$.
+\end{proof}
+
+Moreover both of the orders (d,e) are $\sigma$-centred iff $|X|\leq\cont$.
+
+\subsection{${}$ \hspace{-1em}Countable functions.}
+%\mystartpgraf {Countable functions}
+%\mystoppgraf
+
+Consider the following two families of (at most) countable functions:
+\begin{itemize}
+ \item[(f)]  $Fn(\omega_1,\{0,1\},\omega_1)=\{f;f:D\to\{0,1\}:D\in[\omega_1]^{<\omega_1}\}$,
+ \item[(g)]  $Fn(\omega_1,{\mathbb R},\omega_1)=\{f;f:D\to{\mathbb R}:D\in[\omega_1]^{<\omega_1}\}$,
+\end{itemize}
+ordered by reverse inclusion. ${\mathbb R}$ is the real line.
+Both of these orders are separative partial orders which are $\sigma$-closed.
+
+\begin{proposition}
+The orderings (f) and (g) have isomorphic dense subsets and satisfy $(\cont)^+$-cc. Also below each of their elements there is an antichain
+of size $\cont$.
+\end{proposition}
+\begin{proof} (hint) We show that (g) can be embedded onto a dense subset of (f): choose a partition $\{A_\xi:\xi<\omega_1\}$ of $\omega_1$ into
+countable sets and fix a 1-to-1 onto mapping $\phi_\xi:{\mathbb R}\to 2^{A_\xi}$. Then define $\phi:Fn(\omega_1,{\mathbb R},\omega_1)\to Fn(\omega_1,2,\omega_1)$ as follows: $\phi(f)=\bigcup\{ \phi_\xi(f(\xi)):\xi\in\dom f\}$. It is clear that the range of $\phi$ is a dense subset of $Fn(\omega_1,2,\omega_1)$.
+\end{proof}
+
+\subsection{${}$ \hspace{-1em}Collapsing ordering.}
+
+Recall that $Seq(\alpha)$ is the set of finite sequences of ordinals $<\alpha$. The \emph{collapsing ordering} is $(Seq(\kappa),\supseteq)$.
+It is a separative partial order, mainly interesting only in the case that $\omega<\alpha$. For $\alpha=2,\omega$ it coincides with the orderings
+defined in \ref{ctble-orderings}. If $\omega\leq\alpha$ then $Seq(\alpha)$ has cardinality $|\alpha|$ and is $|\alpha|^+$-cc.
+
+We shall see (\ref{macaloon}) that for infinite $\kappa$ the collapsing ordering $Seq(\kappa)$ is `characterised' by the following properties
+\begin{itemize}
+\item[(i)]  It has cardinality $\kappa$,
+\item[(ii)]  it is a countable union of maximal antichains, namely $\{ ^n\kappa:n<\omega\}$,
+\item[(iii)]  each element is compatible with $\kappa$-many members of one of the maximal antichains from (ii).
+\end{itemize}
+
+\subsection{${}$ \hspace{-1em}Levi collapse.}
+
+
+The underlying set for the Levi collapse Levi$(\omega,<\!\!\!\kappa)$ consists of finite functions $p$ from $\kappa\times\omega$ into the ordinals
+such that $p(\alpha,n)<\alpha$ whenever $(\alpha,n)\in\dom p$. The ordering is by reverse inclusion, i.e. $p\leq q$ iff $p\supseteq q$.
+
+\begin{definition}\label{product}
+{\bf Product of orderings.} Suppose $\langle P_i:i\in I\rangle$ are orderings. We define the product ordering.
+$$ %\startformula
+\prod_{i\in I}P_i=\left\{f: dom\ f\in[I]^{<\omega}, (\forall i\in dom\ f)(f(i)\in P_i)\right\},
+$$ %\stopformula
+with the ordering defined by
+$$ %\startformula
+f\leq g\equiv dom\ f\supseteq dom\ g\ \&\ (\forall i\in dom\ g)(f(i)\leq_i g(i))
+$$ %\stopformula
+\end{definition}
+
+Note that in the literature, it is often assumed that each $P_i$ has a maximal element $\1$ and the product is then defined to be the
+subset of the normal Cartesian product where each function has only finitely many values different from $\1$, i.e. has finite support.
+
+\begin{fact}%observation
+ $\prod_{\alpha<\kappa} (Seq(\alpha),\supseteq)$ is isomorphic to a dense subset of Levi$(\omega,<\!\!\kappa)$.
+\end{fact}%observation
+
+\begin{proposition}\label{levi-isom}
+If $\kappa$ is uncountable regular then Levi$(\omega,<\!\!\!\kappa)$
+is $\kappa$-cc and below each element there is an antichain of size
+$\lambda$ for any $\lambda<\kappa$.
+\end{proposition}
+
+Before we prove the proposition we prove the following theorem which is a very useful tool.
+
+\begin{theorem}\label{delta-system-lemma}
+{\scshape ({$\Delta$-system lemma}). } Suppose $\kappa>\omega$ is a regular cardinal and $\langle A_\alpha:\alpha<\kappa\rangle$ are finite sets.
+Then there exists a \emph{$\Delta$-system} of cardinality $\kappa$, i.e. a set $I\in[\kappa]^\kappa$ and a \emph{kernel} $K$ of the $\Delta$-system such that for each $\alpha,\beta\in I,\alpha\neq\beta$ we have
+$A_\alpha\cap A_\beta=K$.
+
+\smallskip
+
+In particular, every uncountable system of finite sets contains an uncountable $\Delta$-system.
+\end{theorem}
+
+\begin{proof}
+Shrinking if necessary, we can assume each $A_\alpha$ has the same cardinality,
+say $n<\omega$. We continue the proof by induction on $n$.
+ If $n=1$, then either there is an $x$ such that for $\kappa$-many $\alpha$'s we
+have $A_\alpha=\{x\}$ or we can choose $\kappa$-many
+distinct $A_\alpha$'s. Assume $n>1$ and the theorem holds for all $k<n$.
+Write $A_\alpha=B_\alpha\cup\{x_\alpha\}$. By induction apply the theorem to the system
+$\langle B_\alpha:\alpha<\kappa\rangle$ to find $I$.
+Then apply the theorem again, this time to $\langle \{x_\alpha\}:\alpha\in I\rangle$ to obtain $I^\prime$. Now
+$\langle B_\alpha\cup\{x_\alpha\}:\alpha\in I^\prime\rangle$ is the required $\Delta$-system.
+\end{proof}
+
+\begin{proof} {\scshape of Proposition \ref{levi-isom}.}
+We use the $\Delta$-system lemma. Suppose for a contradiction that $\{p_\alpha:\alpha<\kappa\}\subseteq L=Levi(\omega,<\!\!\kappa)$ is a disjoint system. Apply the $\Delta$-system
+lemma to the domains of the $p_\alpha$'s. We obtain an index set $A\in[\kappa]^\kappa$ and the root $K$ of the delta system. Note that if any two $p,q\in L$ disjoint, then
+they are also disjoint when restricted to the intersection of their domains. It follows,
+that $\{p_\alpha\upharpoonright K:\alpha\in A\}$ is still a disjoint system, so in particular $p_\alpha\upharpoonright K\neq p_\beta\upharpoonright K$ for any $\alpha,\beta\in A$. But this is a contradiction, since the number of distinct elements in $L$ having domain $K$ is $\leq (\omega\cdot max K)^{<\omega}<\kappa=|A|$.
+\end{proof}
+
+
+
+% \begin{theorem}Levi$(\omega,<\!\!\kappa)$ has a dense subset isomorphic to
+% $$ %\startformula
+% \otimes_{\alpha<\kappa}{\mathbb C}_\alpha = \{g\in\prod_{\alpha<\kappa}{\mathbb C}_\alpha:|\{\alpha:g(\alpha)\neq\emptyset\}|<\omega\}.
+% $$ %\stopformula
+% \end{theorem}
+
+
+\subsection{${}$ \hspace{-1em}$([\omega]^\omega,\subseteq)$, infinite subsets of $\omega$.}
+
+The important partial ordered set $([\omega]^\omega,\subseteq)$ is an example of an ordering, that is neither separative nor $\sigma$-closed, while the
+separative modification \emph{is} $\sigma$-closed. We shall describe the separative modification. For $A,B\in[\omega]^\omega$ it is easy to see that
+$$ %\startformula
+A\perp B\equiv |A\cap B|<\omega,
+$$ %\stopformula
+therefore
+$$ %\startformula
+A\subseteq_{sp} B \equiv |A\setminus B|<\omega\quad\&\quad A \approx_{sp} B\equiv |A \vartriangle  B|<\omega.
+$$ %\stopformula
+
+\subsection{${}$ \hspace{-1em}Star notation.}
+%\begin{notation}
+In this special case, the following \emph{star-notation} is usually employed.
+We write $A\subseteq^* B$ and $A=^*B$ instead of
+$A\subseteq_{sp} B$ and $A\approx_{sp} B$, respectively.
+
+\smallskip
+
+\noindent A similar `Star' notation is also used in the context of functions in ${}^\omega \omega$, where we write
+\begin{eqnarray*}
+ f \leq^* g \ & \equiv & \ |\{\ n : f(n) > g(n) \ \}| < \omega, \\
+f <^* g \ & \equiv & \ |\{\ n : f(n) \geq g(n) \ \}|< \omega.
+\end{eqnarray*}
+The ordering $({}^\omega \omega,  \leq *)$ is frequently used and is the object of ongoing research.
+%\end{notation}
+
+\begin{fact}
+$([\omega]^\omega,\subseteq^*)$ is a $\sigma$-closed separative ordering.
+Its separative quotient, after adding a smallest element,
+is the quotient Boolean algebra $\pw(\omega)/fin$, where $fin$ is the
+ideal of finite subsets of $\omega$.
+\end{fact}
+
+
+\begin{proof}
+Suppose $\langle A_n:n<\omega\rangle$ is a $\subseteq^*$-descending sequence.
+By induction choose $a_n\in \bigcap_{i<n} A_n\setminus\{a_0,\ldots,a_{n-1}\}$.
+Then $\{a_n:n<\omega\}$ is the required lower bound for $\langle A_n:n<\omega\rangle$.
+\end{proof}
+
+\begin{definition}\label{mad}
+{\bf AD and MAD families.} Antichains and maximal antichains in
+$([\omega]^\omega,\subseteq)$ are usually called \emph{almost disjoint (AD)} and
+\emph{maximal almost disjoint (MAD)} families on $\omega$ respectively.
+\end{definition}
+
+\begin{fact}
+\begin{itemize}
+\item[(i)]  No MAD family on $\omega$ is countable.
+\item[(ii)]  There is an AD family on $\omega$ of size $\cont$.
+\end{itemize}
+\end{fact}
+
+
+\begin{proof}
+(i) Let $\{A_n:n<\omega\}$ be an AD family. Choose $a_n\in A_n\setminus \bigcup_{i<n} A_n$. Then if $A=\{a_n:n<\omega\}$ we find that $
+\{A_n:n<\omega\}\cup\{A\}$ is still an AD family. (ii) We shall construct the AD family on $Seq(2)$ which clearly suffices, since $|Seq(2)|=\omega$.
+For each such branch $f\in 2^\omega$, we let $A_f=\{f\upharpoonright n:n<\omega\}\subseteq Seq(2)$ be the branch of $Seq(2)$ corresponding to $f$. Then
+$\{A_f:f\in 2^\omega\}$ is the required AD family.
+\end{proof}
+
+
+%\subsection{${}$ \hspace{-1em}Boolean algebras.}
+
+\begin{definition}
+{\bf Boolean algebra.}
+A \emph{Boolean algebra} $\B=(B,\vee,\wedge,-,\0,\1)$ is a set
+$B$ together with the Boolean operations $a\vee b$ (join), $a\wedge b$ (meet), $-a$ (complement)
+and two distinguished elements $\0$ and $\1$ satisfying the following:
+\begin{itemize}
+ \item[(1)]{(commutativity)} $x\wedge y=y\wedge x,\quad x\vee y=y\vee x$
+ \item[(2)]{(distributivity)}
+	$x\wedge(y\vee z)=(x\wedge y)\vee(x\wedge z),\quad x\vee(y\wedge z)=(x\vee y)\wedge(x\vee z)$
+ \item[(3)]{(neutrality)} $x\vee\0=x,\quad x\wedge\1=x$.
+ \item[(4)]{(complement)} $x\wedge-x=\0,\quad x\vee-x=\1$.
+ \item[(5)]{(nontriviality)} $\0\neq\1$.
+\end{itemize}
+\end{definition}
+
+
+%Also note that the associativity of the operations can be
+%deduced from the axioms. From the point of view of universal algebra,
+Boolean algebras are distributive, complementary lattices.
+Note that the axioms of Boolean algebra as presented are dual. Since
+different authors use different set of axioms, we sketch a proof
+for some of common formulas that are usualy considered as axioms.
+
+\begin{lemma}
+ For each $x,y,z$ elements of Boolean algebra the following hold
+\begin{itemize}
+ \item[(i)] $x \wedge \mathbf 0 = \mathbf 0 \qquad x \vee \mathbf 1 = \mathbf 1$,
+ \item[(ii)] {\bfseries absorption}   $x \vee (x \wedge y) = x \qquad x \wedge (x \vee y) = x $,
+ \item[(iii)] {\bfseries associativity} $x\wedge (y \wedge z) = (x \wedge y) \wedge z \qquad x \vee (y \vee z) = (x \vee y) \vee z$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+ Equalities in the same row are dual, so it sufices to prove one of them.
+
+\smallskip
+
+\noindent {\itshape (i)} $x \wedge \mathbf{0} = (x \wedge \mathbf{0}) \vee \mathbf{0} =
+	(x \wedge \mathbf{0}) \vee (x \wedge -x) = x \wedge (\mathbf{0} \vee -x) = x \wedge -x = \mathbf{0}$.
+
+\smallskip
+
+\noindent {\itshape (ii)} $x = x \wedge \mathbf{1} = x \wedge (\mathbf{1} \vee y) = (x \wedge \mathbf{1}) \vee (x \wedge y)
+	= x \vee (x \wedge y)$.
+
+\smallskip
+
+\noindent {\itshape (iii)} To show the associativity we start with the conjuction of both
+formulas
+$$
+\bigl( x \wedge (y \wedge z) \bigr) \vee \bigl( (x \wedge y) \wedge z \bigr) =
+	\bigl[ x \vee \bigl( (x \wedge y) \wedge z \bigr) \bigr] \wedge
+	\bigl[ (y \wedge z) \vee \bigl( (x \wedge y) \wedge z \bigr) \bigr] = x \wedge \bigl[ y \wedge z \bigr],
+$$
+since $\bigl[ x \vee \bigl( (x \wedge y) \wedge z \bigr) \bigr] = \bigl( x \vee (x \wedge y) \bigr) \wedge (x \vee z)
+= x \wedge (x \vee z) = x$, \\
+and $\bigl[ (y \wedge z) \vee \bigl( (x \wedge y) \wedge z \bigr) \bigr] =
+\bigl[y \vee \bigl( (x \wedge y) \bigr) \bigr] \wedge z
+ = y \wedge z$.
+\smallskip
+
+Now we use commutativity to obtain that the same conjuction is equal to $(x \wedge y) \wedge z$
+$$
+ \bigl( (x \wedge y) \wedge z \bigr) \vee \bigl( x \wedge (y \wedge z) \bigr) =
+	\bigl[ (x \wedge y) \vee \bigl( x \wedge ( y \wedge z) \bigr) \bigr] \wedge
+	\bigl[ z \vee \bigl( (x \wedge y) \wedge z \bigr) \bigr] = \bigl[ x \wedge y \bigr] \wedge z.
+$$
+\end{proof}
+
+The canonical ordering on a Boolean algebra is: $a\leq b$ iff $a\wedge b=a$ iff $a\vee b = b$ and hence $\0$ is the smallest element and $\1$ the largest in this ordering.
+We let $\B^{+}=B\setminus\{\0\}$. Then $(\B^{+},\leq)$ is a separative partial ordering.
+
+\smallskip
+
+We shall frequently use notions and properties defined for partial orders also
+in the context of Boolean algebras. In such cases we always refer to the partial order
+$(\B^+,\leq)$. This order is separative, since if $a\not\leq b$
+then we can let $c=a-b\neq\0$ and $c\leq a$ while $c\wedge b=\0$, where $a-b=a\wedge(-b)$.
+
+\begin{definition}\label{density}{\bf Density.} The \emph{density} of a Boolean algebra $\pi(B)$ (also called $\pi$-weight) is
+ the minimal cardinality of a dense subset of $(B^+,\leq)$.
+\end{definition}
+
+\begin{definition}\label{cba}
+{\bf Complete Boolean algebra.}
+\begin{itemize}
+ \item[(i)]  A Boolean algebra is \emph{complete} %(\emph{Dedekind complete})
+	if every subset $X\subseteq B$ has an infimum in the canonical ordering,
+	denoted by $\bigwedge X$. In this case every subset also has a supremum,
+	denoted by $\bigvee X$ and the standard de Morgan laws hold.
+	We say that ``$B$ is a cBA'' as a shorthand for ``$B$ is a complete Boolean algebra''.
+ \item[(ii)]  A Boolean algebra is \emph{$\sigma$-complete} if every countable subset has a meet (or join).
+\end{itemize}
+\end{definition}
+
+\begin{definition}\label{generators}
+{\bf Generators.} We say that a subset $X\subseteq B^+$ of a complete Boolean algebra $B$
+\emph{completely generates} $B$
+if there is no proper complete subalgebra of $B$ containing $X$. We define
+$$ %\startformula
+{\mathfrak g}(B)\ =\ \min \{ |X|:X\subseteq B^+, X\ \mbox{completely generates}\ B^+\}.
+$$ %\stopformula
+Similarly for a $\sigma$-complete algebra we define a \emph{$\sigma$-completely generating set} and correspondingly ${\mathfrak g}_\omega(B)$, the
+smallest cardinality of a set which $\sigma$-completely generates $B$.
+\end{definition}
+
+
+The power-set $\pw(X)$ of a nonempty set $X$ is a typical example of a complete atomic Boolean algebra. The singletons are
+atoms and the operation of meet and join correspond to intersection and union respectively with $\0=\emptyset$,
+$\1=X$. Subalgebras of this algebra are called \emph{fields} of sets. If they are moreover $\sigma$-subalgebras, then
+they are called $\sigma$-fields  of sets.
+
+\begin{example} Given a topological space $(S,\tau)$ there are several natural algebras determined by $(S,\tau)$:
+\begin{itemize}
+ \item[(i)]  The algebra $Clop(S)$ of closed-and-open, \emph{clopen} for short, subsets of $S$.
+ \item[(ii)]  The algebra $Baire(S)$ is the smallest $\sigma$-field which contains all zero sets from S.
+             A subset of $S$ is a \emph{zero set} iff it is the preimage of $\{0\}$ under some continuous
+             mapping $f:S\to{\mathbb R}$.
+ \item[(iii)]  The algebra $Borel(S)$ is the smallest $\sigma$-field which contains all open subsets of $S$.
+ \item[(iv)]  The algebra $BP(S)$ consisting of all sets with the \emph{Baire property}. This is the
+             smallest $\sigma$-field containing all meagre sets and all open sets.
+\end{itemize}
+It is evident that $Clop(S)\subseteq Baire(S)\subseteq Borel(S)\subseteq BP(S)$.
+\end{example}
+
+\subsection{${}$ \hspace{-1em}Stone theorem.}\label{stone}
+
+Given a Boolean algebra $B$ there is a compact, zero-dimensional, Hausdorff space $S$
+such that $Clop(S)$ is isomorphic to $B$. It follows that $B$ is isomorphic to a field of sets.
+\smallskip
+
+Note, however, that not every $\sigma$-complete Boolean algebra is isomorphic to a $\sigma$-field of sets.
+The following holds:
+
+\subsection{${}$ \hspace{-1em}Loomis, Sikorski theorem.}\label{loomis-sikorski}
+
+Every $\sigma$-complete Boolean algebra is isomorphic to the quotient $F/{\mathcal I}$,
+ where $F$ is a $\sigma$-field of sets and ${\mathcal I}$ is a $\sigma$-ideal on $F$.
+
+\smallskip
+
+The previous theorem is an easy consequence of the fact that the $\sigma$-complete algebra $Baire(2^\kappa)$ is a free object on $\kappa$-many free
+generators in the category of $\sigma$-complete Boolean algebras. In the category of all Boolean algebras, the free objects on $\kappa$-many generators
+are the algebras $Clop(2^\kappa)$. Also note that for $\kappa>\omega$, $Baire(2^\kappa)\subsetneq Borel(2^\kappa)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% VLOZIT BAIRE, GENERALIZED CANTOR SPACE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{${}$ \hspace{-1em}From ordered sets to complete Boolean algebras.}
+
+The aim of the following sections is to explain the following theorem which, it is hoped, will help to better understand
+what is essential for forcing.
+
+\begin{theorem}
+ Suppose $(P,\leq)$ is an ordering. Then there exists a unique (up to isomorphism) complete
+Boolean algebra $B$ and a function $h:P\to B^{+}$ such that the following holds:
+\begin{itemize}
+ \item[(i)]    $h$ preserves the ordering,
+ \item[(ii)]   $h$ preserves the disjointness relation and
+ \item[(iii)]  the image of $P$ is dense in $ B^{+}$.
+\end{itemize}
+The (unique) algebra $B$ is denoted $RO(P)$. Note that $h$ need not be an embedding.
+\end{theorem}
+
+Observe that any dense subordering of $P$ determines the same algebra:
+
+Suppose $H\subseteq P$ and $h:P\to B$ satisfies (i),(ii),(iii). Then the restriction of $h$ to $H$ also satisfies
+(i), (ii), (iii).
+% Suppose on the other hand that we have $h^\prime:H\to B$ satisfying (i),(ii),(iii). If for $p\in P$
+% we define $h(p)=\bigvee\{h^\prime(q):q\in H\ \&\ q\leq p\}$ then it is easily checked that $h$ defined in this way again
+% satisfies (i), (ii), (iii).
+
+This is the reason why we have been concerned with isomorphisms between dense subsets of (formally) nonisomorphic orderings.
+
+If $h$ satisfies (iii) and $H=h[P]$, then $(H,\leq_{{ \mathbb B}})$ with the order inherited from the Boolean algebra is a separative
+partial order. If we define $x\preceq y\equiv h(x)\leq_{{ \mathbb B}}h(y)$ then $\preceq=\leq_{sp}$, the separative modification
+of $(P,\leq)$ and, moreover, $(P,\leq)/\hskip-2mm\approx_{sp}$ is isomorphic to $(H,\leq_{{ \mathbb B}})$.
+
+
+
+The following simple lemma illustrates the uniqueness of $RO(P)$.
+%\pdfannot{/T(Jonathan Verner)/Subtype/Text/Open true/Contents(Tak to bylo mysleno?)}
+
+\begin{lemma} If two complete Boolean algebras $B$ and $C$ have isomorphic dense subsets,
+then they are isomorphic. Moreover any isomorphisms of dense subsets can be extended into
+isomorphisms of the whole algebras.
+\end{lemma}
+
+We shall now show two approaches to finding the unique algebra $RO(P)$. The first approach is algebraical, the second topological.
+We shall also show that they have a common core.
+
+\subsubsection{Algebraical approach}
+In the first approach $RO(P)$ will consist of downward closed subsets of $P$ and the canonical ordering will coincide with inclusion.
+The complement operation will not coincide with set complement and, moreover, $RO(P)$ will generally not be a $\sigma$-field of sets.
+
+\begin{definition}[Regularisation]\label{Regularisation}
+Recall that for any set $A\subseteq P$ we have defined $A^{\perp}$ as $\{x\in P:(\forall y\in A)(x\perp y)\}$. We define
+the \emph{regularisation} of $A$ as follows:
+$$ %\startformula
+ reg(A)=(A^{\perp})^{\perp}
+$$ %\stopformula
+A set will be called \emph{regular} if $reg(A)=A$.
+\end{definition}
+
+Note that $A\subseteq (A^{\perp})^{\perp}$ and also
+$$ %\startformula
+ reg(A)=(p\in P:A\ \hbox{is predense below}\ p\}.
+$$ %\stopformula
+From this it follows that $((A^{\perp})^{\perp})^{\perp}=A^{\perp}$ and also that
+the regularisation $reg(A)$ is always a regular set. Moreover $A^{\perp}$ is regular
+for any $A\subseteq P$.
+
+\medskip
+
+We are now ready to define $RO(P)$\label{RO}:
+$$ %\startformula
+ RO(P)=\{A\subseteq P:reg(A)=A\}.
+$$ %\stopformula
+Further define $h:P\to RO(P)$ as $h(p)=reg(\{p\})$. Since both $\emptyset$ and $P$ are
+regular subsets of $P$ we can let $\0=\emptyset$ and $\1=P$. Also the intersection of regular
+sets is regular so the Boolean operation $\wedge$ coincides with set intersection. We
+let $A\vee B=reg(A\cup B)$ and $-A=A^{\perp}$. It is clear that $RO(P)$ with the described
+operations is Boolean algebra. The following holds for any system $\{A_i:i\in I\}\subseteq RO(P)$:
+$$ %\startformula
+ \bigwedge \{A_i:i\in I\}=reg(\bigcap_{i\in I} A_i)
+$$ %\stopformula
+and hence $RO(P)$ is a complete Boolean algebra. The mapping $h$ is a homomorphism of $P$ onto
+a dense subset of $RO(P)$ and it can also be described as
+$$ %\startformula
+ h(p)=reg((\leftarrow,p]),
+$$ %\stopformula
+where $(\leftarrow,p]=\{q\in P:q\leq p\}$.
+
+\subsubsection{Topological approach}
+
+Let $(S,\tau)$ be a topological space. We always assume $S$ to be nonempty.
+$Open^{+}(S)$ shall denote the collection of all nonempty open sets. We know that
+the ordering $P=(Open^{+}(S),\subseteq)$ determines a complete Boolean algebra $RO(P)$. We shall now
+try to describe it in a topological language.
+
+\begin{definition}
+An subset $G$ of $S$ is \emph{regular open} if it is equal to
+ the interior of its closure, i.e. iff $G=\intr{\cl{G}}$. The collection of regular
+ open subsets of a space is customarily denoted by $RO(S)$. It is evident, that
+ $RO^{+}(S)\subseteq Open^{+}(S)$ and $\emptyset, X\in RO(S)$.
+
+ For any set $H\subseteq S$ we define its \emph{regularisation} $r(H):=\intr{\cl{H}}$. It is clear that $r(H)$
+ is a regular open set.
+\end{definition}
+
+% To motivate the previous definition of $r(H)$ somewhat, consider the following operation:
+% $$ %\startformula
+%  {{\mathcal H}}^{\perp} =\{U\in Open^{+}:(\forall H\in{{\mathcal H}})(U\cap H=\emptyset)\}
+% $$ %\stopformula
+%
+% For $H\subseteq S$ we write $H^{\perp}$ as an abbreviation for $\{H\}^{\perp}$. Then $V=\bigcup H^{\perp}$
+% is open, $\cl{H}=S\setminus V$ and $r(H)=\bigcup(H^{\perp})^{\perp}=\intr{S\setminus V}$. The analogy with
+% the algebraical construction should be clear.
+
+To motivate the previous definition of $r(H)$ somewhat, consider the following operation:
+$$ %\startformula
+ \{H\}^{\perp} =\{U\in Open^{+}:U\cap H=\emptyset\}
+$$ %\stopformula
+
+Then $V=\bigcup H^{\perp}$ is open, $\cl{H}=S\setminus V$ and $r(H)=\intr{S\setminus V}$. The analogy with
+the algebraical construction should be clear.
+
+\begin{theorem}The set $RO(S)$ endowed with the operations $A\vee B=r(A\cup B)$, $A\wedge B=r(A\cap B)$ and $-A=r(S\setminus A)$
+ forms a Boolean algebra. The canonical ordering of this Boolean algebra coincides with set inclusion and the following
+ holds:
+ \begin{itemize}
+  \item[(i)]  $-A=\intr (S\setminus A)$
+  \item[(ii)]  $r(A\cap B)=A\cap B$ for all $A,B\in RO(S)$.
+  \item[(iii)]  $RO(S)$ is a complete Boolean algebra and for ${\mathcal A}\subseteq RO(S)$ the infinite meet
+  $\bigwedge{\mathcal A}$ is exactly equal to $\intr{\bigcap{\mathcal A}}=r(\bigcap{\mathcal A})$.
+ \end{itemize}
+\end{theorem}
+
+
+\begin{proof} (i) is clear. For (ii) it suffices to show that $r(A\cap B)\subseteq A\cap B$, the other direction is clear.
+Since $r(A\cap B)$ is an open set contained in $\cl{A\cap B}\subseteq\cl{A}$ we have that $r(A\cap B)\subseteq r(A)=A$.
+Similarly $r(A\cap B)\subseteq B$.
+ We now prove (iii). Given ${\mathcal A}\subseteq RO(S)$ we show that the regularisation $D=r(\bigcap{\mathcal A})$ is
+ the Boolean meet since. It is clearly a lower bound for ${\mathcal A}$. If $C$ is a different lower bound, then it is regular open and $C\subseteq A$
+ for each $A\in{\mathcal A}$, then $C\subseteq \bigcap{\mathcal A}$ and since $r$ is monotone with respect to inclusion, also $C\subseteq D$. We leave
+ the rest of (iii) as an exercise for the interested reader.
+\end{proof}
+
+\subsection{${}$ \hspace{-1em}Conclusion.}
+If ${\mathcal B}$ is a basis for the topology of $S$ or ${\mathcal P}$ is a $\pi$-basis for the topology of $S$ then
+both ${\mathcal B}$ and ${\mathcal P}$ are dense in $(Open^{+},\subseteq)$ and
+$$RO(Open^{+},\subseteq)\simeq RO({\mathcal B},\subseteq)\simeq RO({\mathcal P},\subseteq)\simeq RO(S).$$
+
+
+\subsection{${}$ \hspace{-1em}Relationship between the approaches.}
+
+Given an order $(P,\leq)$ we can define a topology on $P$ by giving the base
+$$ %\startformula
+\{(\leftarrow,p]:p\in P\}
+$$ %\stopformula
+
+Regular open sets in this topology are exactly the regular sets arising in the algebraical approach.
+
+\subsection{${}$ \hspace{-1em}Completion.}
+For any Boolean algebra $B$, there is a complete Boolean algebra $\overline{B}$ such that $B^+$ is a dense subset of $\overline{B}$. It suffices
+to take $RO(B^+)$. The complete algebra $\overline{B}$ is called regular completion
+or shortly completion.
+
+\begin{definition} A topological space has the \emph{Baire category property} if no nonempty open set is meager.
+\end{definition}
+
+Equivalently a space has the Baire category property iff the intersection of countably many open dense subsets
+is a dense set. The following theorem is a classical theorem of general topology
+
+\begin{theorem} If a space $S$ has the Baire category property, then
+ $$
+ RO(S)\simeq Borel(S)/Meager\simeq BP(S)/Meager
+ $$
+\end{theorem}
+For proof see \cite{BSHBA} or \cite{Engelking}.
+
+\subsection{${}$ \hspace{-1em}A Characterization of Collapsing Algebras}
+The collapsing algebra for an infinite cardinal $\kappa$, denoted $Col(\omega,\kappa)$, is a complete
+Boolean algebra determined by the separative partial order $(Fn(\omega,\kappa),\supseteq)$ defined in
+\ref{defFn}. Since the set ${}^{<\omega}\kappa$ of all finite sequences of ordinals $<\kappa$ is dense in
+$Col(\omega,\kappa)$ it is easy to see that $Col(\omega,\kappa)$ is isomorphic to the algebra of all regular open
+subsets of the completely metrisable space $\kappa^\omega$, the topological product of $\omega$ many copies of $\kappa$
+with the discrete topology.
+
+
+\begin{theorem}[McAloon]\label{macaloon} Let $P$ be a separative partial order. The complete Boolean algebra $B=RO(P)$ is isomorphic to $Col(\omega,\kappa)$
+if and only if
+\begin{itemize}
+ \item[(i)] $|P|=\kappa$ and
+ \item[(ii)] there are countably many maximal antichains $\{\mathcal{A}_n:n<\omega\}$ such that for
+ every $p\in P$ there is $n<\omega$ so that $p$ is compatible with $\kappa$-many elements of $\mathcal{A}_n$.
+\end{itemize}
+\end{theorem}
+
+The proof of the theorem uses the following ``trick'', which is a useful fact on its own:
+
+\begin{lemma}
+Suppose $(P,\leq)$ is a partial order, ${\mathcal A}\subseteq P$ an antichain and
+$\langle p_\alpha:\alpha<\kappa\rangle$ a system of elements of $P$. Moreover assume that
+each $p_\alpha$ is compatible with $\kappa$-many elements of ${\mathcal A}$. Then
+there is an antichain ${\mathcal B}$ refining ${\mathcal A}$ such that for each $\alpha$
+$$
+\kappa\leq|\{ x\in B:x\leq p_\alpha\}|.
+$$
+\end{lemma}
+\begin{proof} Let $A_\alpha=\{a\in{\mathcal A}:p_\alpha\parallel a\}$. Since each $|A_\alpha|\geq\kappa$
+it is easy to find pairwise disjoint sets $B_\alpha$ such that $B_\alpha\in [A_\alpha]^\kappa$. For
+each $a\in B_\alpha$ we can find $b_a$ which is below both $a$ and $p_\alpha$. Now let
+$$
+\mathcal{B}=\bigcup_{\alpha<\kappa}\left(\{b_a:a\in B_\alpha\}\cup A_\alpha\setminus B_\alpha\right).
+$$
+\end{proof}
+
+This lemma allows us to construct a subset of $P$ isomorphic to $({}^{<\omega}\kappa\setminus\{0\},\supseteq)$
+and the required isomorphism with $Col(\omega,\kappa)$ is easily derived.
+
+As an application of the theorem of McAloon, we mention the following important property of $Col(\omega,\kappa)$ (for proof see \cite{RSHBA}).
+
+\begin{theorem}[Kripke]{\bf Universality.}
+\begin{itemize}
+ \item[(i)]Given an ordering $(P,\leq)$ of size at most $\kappa$ there is a homomorphism $h:P\to (Col(\omega,\kappa)^+,\leq)$
+ which preserves disjointness and maximal antichains.
+ \item[(ii)] Given any complete Boolean algebra $B$ which has a dense subset of cardinality $\leq\kappa$, i.e. $\pi(B)\leq\kappa$,
+ there is an embedding $h$ of $B$ into $Col(\omega,\kappa)$ such that any automorphism of the image $h[B]$ can be extended to the
+ whole algebra $Col(\omega,\kappa)$.
+ \item[(iii)] (R. Solovay) Moreover $Col(\omega,\kappa)$ is a complete boolean algebra of size $2^\kappa$ with countable many complete generators.
+\end{itemize}
+\end{theorem}
+
+
+
+\begin{definition}\label{matrix}{\bf Matrix.} Let $B$ be a Boolean algebra and $\kappa,\lambda$ cardinal numbers. We call ${\mathbb A}=(a_{\alpha,\beta}:\alpha<\kappa,\beta<\lambda)$
+a $(\kappa,\lambda)$-matrix in $B$ if
+\begin{itemize}
+\item[(i)] the elements of the rows are pairwise disjoint, i.e. for $\alpha<\kappa$ and $\mu,\nu<\lambda, \mu\neq\nu$ we have $a_{\alpha,\mu}\wedge a_{\alpha,\nu}=\0$, and
+\item[(ii)] the joins of the rows is $\1$, i.e. for each $\alpha<\kappa$, $\bigvee\{a_{\alpha,\beta}:\beta<\lambda\}=\1$.
+\end{itemize}
+In other words, a $(\kappa,\lambda)$-matrix is a system of $\kappa$ disjoint partitions of unity each of size $\lambda$ (note that we admit zero elements).
+\begin{itemize}
+ \item[(iii)] $(\kappa,\lambda)$-matrix A is called \emph{surjective}
+	if moreover $\bigvee \{a_{\alpha,\beta}:\alpha<\kappa\} = \mathbf 1$
+	for each $\beta < \lambda$.
+  \item[(iv)] $(\kappa,\lambda)$-matrix A is called \emph{bijective} if
+	the transposed family $A = (a_{\beta,\alpha}:\alpha<\kappa,\beta<\lambda)$
+	is also a matrix.
+\end{itemize}
+
+\end{definition}
+
+\begin{example} Consider the collapsing algebra $Col(\omega,\kappa)$ which is isomorphic with $RO(\kappa^\omega)$. For $n<\omega,\beta<\kappa$ define
+$$
+a_{n,\beta}=\{f\in{}^\omega\kappa:f(n)=\beta\}.
+$$
+This is an $(\omega,\kappa)$-surjective matrix in $RO(\kappa^\omega)$.
+\end{example}
+
+
+We shall see later that a $(\kappa,\lambda)$-matrix in a complete Boolean algebra is a canonical name for a mapping from $\kappa$ into $\lambda$.
+
+\subsection{${}$ \hspace{-1em}Composition.}\label{superposition} Given cardinals $\kappa,\lambda,\mu$ a $(\kappa,\lambda)$-matrix ${\mathbb A}$ and a $(\lambda,\mu)$-matrix ${\mathbb B}$,then
+$$
+{\mathbb A}*{\mathbb B}=\{c_{\alpha,\gamma}:\alpha<\kappa,\gamma<\mu\},
+$$
+where
+$
+c_{\alpha,\gamma}=\bigvee\left\{(a_{\alpha,\beta}\wedge b_{\beta,\gamma}:\beta<\lambda\right\}
+$
+is a $(\kappa,\mu)$-matrix.
+
+
+% \begin{definition} If for a $(\kappa,\lambda)$-matrix ${\mathbb A}$ the transposed family
+% (i.e. ${\mathbb A}^\intercal=(a_{\beta,\alpha}:\beta<\lambda,\alpha<\kappa)$) is again a matrix, tha
+% matrix were also disjoint partitions of unity, then we say that the
+% matrix ${\mathbb A}$ is a {\it bijection matrix}. Bijection matrices are canonical names for one-to-one mappings of $\kappa$ onto $\lambda$.
+% \end{definition}
+
+\medskip
+
+The following proposition is a simple consequence of a forcing consideration
+and Cantor~-~Berstein theorem.
+Its direct algebraic proof may appear lengthy.
+
+\begin{proposition}\label{forcing_consideration}
+ Let $\kappa \leq \kappa_1 < \lambda_1 \leq \lambda$ be cardinal numbers.
+If there is a surjective $(\kappa,\lambda)$-matrix in a complete Boolean
+algebra $B$, then there is also a bijective $(\kappa_1,\lambda_1)$-matrix
+in $B$.
+\end{proposition}
+
+% \subsubsection*{Topological approach}
+%
+% Any ordering $P$ has a natural topology given by its basis:
+%
+% $$ %\startformula
+%  {\mathcal B}(\P)=\{(\leftarrow,p]:p\in\P\},
+% $$ %\stopformula
+% where $(\leftarrow,p]=\{q\in\P:q\leq p\}$. Recall, from topology, that a \emph{regular open} set in a topological space is an open set which
+% is equal to the interior of its closure (i.e. an open set $G$ is regular iff $G=\hbox{int}\cl{G}$).
+%
+% \begin{fact} The set of regular open subsets of a topological space $X$ together with the operations
+%  $A\cap B$ ($\wedge$), $\hbox{int}\cl{A \cup B}$ ($\vee$), $\hbox{int}(X\setminus A)$ ($-$), and constants
+%  $\emptyset$, $X$ form a Boolean algebra. This algebra is complete and will be denoted as $RO(X)$.
+% \end{fact}
+%
+% \begin{fact} The mapping $h:\P\to RO(\P)$ (where $RO(\P)$ stands for the algebra of regular open subsets of $P$ endowed with the natural topology)
+%  which assigns to $p\in\P$ the set $\hbox{int}\overline{(\leftarrow,p]}$ satisfies the conditions (i),(ii), (iii).
+% \end{fact}
+% \begin{proof} (hint) First note that the mapping is well defined because for any set $A$ the set $\hbox{int}\overline{A}$ is regular open.
+%  Checking (i), (iii) is routine so we check that $h$ preserves disjointness: Suppose $p\perp q\in\P$ and suppose that $h(p)\wedge h(q)\neq\0$.
+%  Then, necessarily, there is $r\in\P$ with $r\in\hbox{int}\overline{(\leftarrow,p]}\cap\hbox{int}\overline{(\leftarrow,q]}$. It follows that
+%  $(\leftarrow, r]\subseteq h(p)\cap h(q)$ which implies that $r\leq p,q$ which is a contradiction with $p\perp q$.
+% \end{proof}
+
+
+\subsection{${}$ \hspace{-1em}Working with matrices.}
+
+The Baire number $b(S)$ of a topological space $S$ is the minimal cardinality of a family of nowhere dense subsets of $S$ which cover $S$.
+This number is well defined for perfect spaces, i.e. spaces without isolated points.
+
+For a perfect Polish space $S$ the Baire number $b(S)$ is equal to $cov({\mathcal M})$ (see Cicho\'n's diagram)%\in{section}[cardinal_characteristics]),
+and its value is independent of the axioms of Set Theory. In metric spaces, which are hereditarily nonseparable, i.e. every nonempty open subset
+has uncountable density, the situation is radically different. We shall show that in this case, the Baire number is $\omega_1$, the smallest
+it can be. Examples of such spaces are the generalised Baire spaces ${\mathcal N}(\kappa)$ for $\kappa$ uncountable or nonseparable Banach spaces with
+the norm metric. The proof of this intrinsically topological theorem, valid in ZFC, was motivated by forcing techniques.
+
+ \begin{theorem}\label{vopenka}
+Every hereditarily nonseparable metric space without isolated points can be written as
+ a union of an increasing chain of length $\omega_1$ consisting of nowhere dense sets. So, in particular, the Baire number of such a
+ space is $\omega_1$.
+ \end{theorem}
+
+
+\begin{proof}
+The idea of the proof is based on a construction of a surjective
+$(\omega,\kappa)$-matrix for some $\kappa > \aleph_0$ in a
+complete Boolean algebra $RO(S)$.
+%(Idea) Let $S$ be such a space.
+\begin{itemize}
+\item[(a)]  There is a maximal family of disjoint open subsets of $S$ such that each of the sets is homogeneous in density, so it is sufficient
+to prove the theorem for spaces which are homogeneous in density $\kappa>\omega$, i.e. spaces where all open subspaces have a dense subset of cardinality $\kappa$.
+\item[(b)]  Since $S$ is a metric space, we know that for any nonempty open subset $U$ the weight, $\pi$-weight and density of $U$ coincide. Also,
+each open set $U$ contains a family of size $\kappa$ consisting of nonempty disjoint open subsets of $U$.
+
+\item[(c)] Since each open subset of $S$ has cellularity $\kappa$, i.e. contains at least $\kappa$-many disjoint open subsets, it is easy to find maximal disjoint collections ${\mathcal R}_n$ ($n<\omega$),
+of open sets such that
+\begin{eqnarray*}
+(\forall n<\omega)(\forall U\in {\mathcal R}_n)\ diam(U) \ & < & \ \frac{1}{n+1}, \\
+{\mathcal R}_{n+1} \ \mbox{refines} \ {\mathcal R}_{n} \ \mbox{and} \qquad & {\dfrac{{}}{{}}} & \\
+(\forall U\in {\mathcal R}_n)|\{V\in {\mathcal R}_{n+1}:V\subseteq U\}| \ & = & \ \kappa.
+ \end{eqnarray*}
+\item[(d)] Notice that for each nonempty open $G\subseteq S$ there is some $n<\omega$ and $V\in{\mathcal R}_n$ such that $V\subseteq G$. Indeed, choose $k<\omega$
+such that for some $x\in G$ the ball $B(x,1/k)\subseteq G$. Then for $n=2k$ we can use the maximality of ${\mathcal R}_n$ together with the requirement that
+all elements of ${\mathcal R}_n$ have diameter at most $1/(n+1)$.
+
+In  other words, $\bigcup_{n<\omega} {\mathcal R}_n$ is a $\pi$-basis for the space $S$. Now comes an important step immediately followed by the heart of
+the proof.
+
+\item[(e)]  Using the ${\mathcal R}_n$'s it is easy to build a $(\omega,\kappa)$-matrix ${\mathbb A}=\langle A_{n,\alpha}:n<\omega,\alpha<\kappa\rangle$ of nonempty open sets such that rows are pairwise disjoint and for any nonempty open $U$ there is a row $n<\omega$ such that $U$ meets all elements of $\{A_{n,\alpha}:\alpha<\kappa\}$. Such $A$ is
+a surjective $(\omega,\kappa)$-matrix.
+
+\item[(f)]  Since $\kappa\geq\omega_1$, by Proposition \ref{forcing_consideration}
+there is $(\omega_1,\omega)$ matrix ${\mathbb C}=\{C_{\alpha,n}:\alpha<\omega_1,n<\omega\}$ such that the rows are countable maximal disjoint families of nonempty open sets and the columns consist of disjoint open sets. Also note that all of the sets can be chosen to be regular open so we can work in the complete algebra $RO(S)$.
+
+% This is the step where we use forcing ideas. No doubt there is a direct topological proof and the interested reader is challenged to prove this topologically, namely
+% to construct the matrix ${\mathbb C}$ from ${\mathbb A}$ using only topological methods.
+\item[(g)]  We now let $W_\alpha= S\setminus\bigcup\{C_{\alpha,n}:n<\omega\}$ for $\alpha<\omega_1$ and define $F_\alpha=\bigcap_{\alpha\leq\beta}W_\alpha$.
+It is clear that $\langle F_\alpha:\alpha<\omega_1\rangle$ is an increasing family of nowheredense closed sets. Also $\bigcup_{\alpha<\omega_1}F_\alpha=S$ for otherwise
+if $x\in X\setminus \bigcup_{\alpha<\omega_1}F_\alpha$ then in for each $\alpha<\omega_1$ there is an $n<\omega$ such that $x\in C_{\alpha,n}$. So there must
+be an $n<\omega$ such that for $\omega_1$-many $\alpha$'s $x\in C_{\alpha,n}$ but this is impossible, since the columns are disjoint.
+\end{itemize}
+\end{proof}
+
+\begin{note}
+\begin{itemize}
+ \item[]
+ \item[(i)] The family $\mathcal{R}_n$ described in (c) can be constructed so that $(\bigcup \{\mathcal{R}_n:n<\omega\},\subseteq)$ is isomorphic to
+  $(Fn(\omega,\kappa),\supseteq)$ (see definition \ref{defFn}) so its completion is isomorphic to $Col(\omega,\kappa)$.
+ \item[(ii)]The crucial part of the previous proof consisted in finding the $(\omega,\kappa)$ matrix where $\kappa\geq\omega_1$, the rows are maximal disjoint families of open sets and for each nonempty open set there is a row such that the open set intersects every element of this row. In particular, whenever we can find such a matrix in some space $S$ then $S$ can be written as an increasing union of nowhere dense sets of length $\omega_1$. Note that if $cf(\kappa)>\omega$, then the space
+of uniform ultrafilters on $\kappa$, which is far from being metric, has such a matrix. For the genesis of the proof see \cite{BV:ad-sets}, \cite{BS:baire} and
+\cite{Sh:pw-modsmall}.
+\end{itemize}
+\end{note}
+
+\subsection{${}$ \hspace{-1em}Working with names.}
+
+Our aim is to prove a special case of the Loomis-Sikorski theorem and in the course of the proof
+also demonstrate the techniques of names.
+
+We start with a slightly more general version of the Rasiowa-Sikorski theorem (see \ref{rasiowa-sikorski}):
+
+\begin{theorem}\label{gen_RS}
+Let $A$ be a Boolean algebra and $\langle S_n:n<\omega\rangle$ an arbitrary family, where each $S_n$ is of
+the form $\langle\circledast_n,X_n\rangle$ with $X_n\subseteq A$ and $\circledast_n\in\{\bigwedge,\bigvee\}$. Then for any $a\in A^+$ there
+is a filter $F$ on $A$ such that $a\in F$ and for each $n<\omega$ there is an $a_n\in F$ satisfying
+\begin{itemize}
+ \item[(i)] if $\circledast_n=\bigvee$ then either $a_n \leq x$, for some $x \in X_n$
+	 or $a_n\in X_n^\perp$,
+ \item[(ii)] if $\circledast_n=\bigwedge$ then either $a_n$ is below each $x\in X_n$ or there is an $x\in X_n$ disjoint with $a_n$.
+\end{itemize}
+\end{theorem}
+\begin{proof} Follows from Theorem \ref{rasiowa-sikorski}, when we put
+$$
+D_n \ = \ \begin{cases}
+           \{a \in A^+: (\exists x \in X_n) a \leq x \} \cup X_n^\perp, \ \text{provided that} \
+			 S_n=\langle\bigvee,X_n\rangle, \\
+	   \{a \in A^+: (\forall x \in X_n) a \leq x\} \cup
+		\bigcup\{x^\perp : x \in X_n\},  \ \text{provided that} \
+			 S_n=\langle\bigwedge,X_n\rangle.
+          \end{cases}
+$$
+\end{proof}
+
+Consider the Baire space ${\mathcal N}= ^\omega\omega$ with the standard metric
+see Example \ref{Seq},
+% $$ %\startformula
+% d(f,g)=\frac{1}{k+1},
+% $$ %\stopformula
+% where $k=min\{n:f(n)\neq g(n)\}$ is the least natural number on which $f$ and $g$ differs.
+% ${\mathcal N}$ is a classical example of a non-compact, perfect Polish space.
+% We shall prove the following universal property of the $\sigma$-field $Borel({\mathcal N})$,
+%denoted as $B$:
+and denote $B$ the $\sigma$-field of Borel subsets of $\mathcal N$.
+Let $b_{i,j}=\{f\in{\mathcal N}:f(i)=j\}$ for $i,j<\omega$. Then $\B=\langle b_{i,j}:i,j<\omega\rangle$ is a matrix in $B$ consisting
+of clopen sets which $\sigma$-completely generate the field $B$.
+
+\smallskip
+
+Given any $\sigma$-complete Boolean algebra $A$ with countably many $\sigma$-complete generators
+$\{g_n:n<\omega\}$ it is easy to find a matrix ${\mathbb A}=\langle a_{i,j}:i,j<\omega\rangle$ on $A$ such that for each $i,j<\omega$ either $g_i\perp a_{i,j}$ or
+$g_i\geq a_{i,j}$. For example it suffices to take $a_{i,0}=g_i,a_{i,1}=-g_i$ for each $i<\omega$ and $\0$ for the other elements.
+
+\begin{theorem}\label{l_s_z}
+The mapping $f:\B\to{\mathbb A}$ defined by
+$$ %\startformula
+f(b_{i,j})=a_{i,j},\quad i,j<\omega.
+$$ %\stopformula
+can be uniquely extended to a $\sigma$-complete homomorphism $F:B\to A$ onto $A$. In particular the Boolean algebra $A$ is isomorphic to $Borel({\mathcal N})/I$ where
+$I=Ker(F)$ is a $\sigma$-complete ideal of Borel sets.
+\end{theorem}
+
+\begin{corollary}(see e.g. \cite{fremlin:cms})
+Any complete ccc Boolean algebra with countably many complete generators is isomorphic to a quotient of the algebra $Borel({\mathcal N})$ modulo some
+$\sigma$-complete ideal on $Borel({\mathcal N})$.
+\end{corollary}
+
+\begin{proof}{\scshape Of the Theorem \ref{l_s_z}:}
+Put $N_0 = \omega \times \omega$, henceforth we refer the
+elements of $N_0$ as a names (of rank zero) for elements
+of generating matrix in $B$ and in $A$ respectively. The
+'meaning' of a name $\langle i,j \rangle$ in algebra
+$B$ is $|| \langle i,j \rangle ||_B = b_{i,j}$ and similarly
+in algebra A it is $|| \langle i,j \rangle ||_A = a_{i,j}$.
+
+
+We define the hierarchy of names for elements of the Boolean
+algebras $B$ and $A$ by transfinite recursion. Names will
+be denoted by lowercase letters with a dot over them,
+%\startformula
+\begin{eqnarray*}
+N_1         & = &\langle \langle \circledast \rangle\conc\langle n_i:i<\omega\rangle,
+	n_i\in\omega\rangle \\ %\cup\{\langle \vee\rangle \conc
+	%\langle n_i:i<\omega\rangle, n_i\in\omega\}	\\
+N_{\alpha+1}& = & \langle\langle \circledast \rangle\conc\langle
+	\dot{b}_i:i<\omega\rangle,\dot{b}_i\in N_\alpha\rangle \\
+	%\cup 	\{\langle \vee\rangle\conc\langle \dot{b}_i:i<\omega\rangle,
+	%\dot{b}_i\in N_\alpha\}	\\
+N_{\alpha}  & = & \bigcup_{\beta<\alpha}N_\beta,\quad\alpha\ \mbox{limit}\\
+N           & = & \bigcup_{\beta\in \omega_1} N_\beta,
+\end{eqnarray*}
+%\stopformula \circledast
+where $\circledast \in \{\bigvee, \bigwedge\}$.
+
+\smallskip
+
+For any $\dot{b}\in N$ we define, by recursion, the interpretation $||\dot{b}||_B$ of $\dot{b}$ in $B$ using the matrix $\B$
+$$ %\startformula
+||\langle \wedge,\dot{n}_i:i<\omega\rangle||_B=\bigwedge_{i<\omega}||\dot{n}_i||_B\quad\&\quad||\langle \vee,\dot{n}_i:i<\omega\rangle||_B=\bigwedge_{i<\omega}||\dot{n}_i||_B.
+$$ %\stopformula
+Similarly we define the interpretation in $A$ using the matrix ${\mathbb A}$. We say that $\dot{b}$ is a name for $b\in B$ if $||\dot{b}||_B=b$.
+
+\medskip
+
+\noindent{\bfseries\scshape Claim 1.} Each element of our algebras has a name, i.e.
+$$ %\startformula
+(\forall b,a\in B,A)(\exists \dot{b},\dot{a})(||\dot{b}||_B=b\ \&\ ||\dot{a}||_A=a).
+$$ %\stopformula
+
+\noindent Claim 1. follows from the fact that $-b_{i,j}=\bigvee{b_{j,k}: j \not = k}$,
+since $\mathbb B$ is a matrix. Hence all interpretation are closed under
+complement.
+
+\smallskip
+
+% The proof is easy once you notice that $-b_{i,j}=\bigvee_{k\neq j} b_{i,k}$ since $\B$ is a matrix. Also note that a single element $b\in B$ will
+% generally have many different names.
+%
+% For $b\in B$ choose a name $\dot{b}\in N$ for $b$ and define $F(b)=||\dot{b}||_A$. If we can show that $F$ does not depend on the choice of the name $\dot{b}$,
+% we are done, since then $F$ will be a $\sigma$-complete homomorphism extending $f$.
+
+Consider relation
+$$
+F = \{ \ \langle b,a \rangle \ : \ (\exists \dot n \in N) \ ||\dot n ||_B = b \
+	\text{and} \ ||\dot n ||_A = a \ \}.
+$$
+Clearly $F$ extends mapping $f$.
+
+\medskip
+
+\noindent{\bfseries\scshape Claim 2.}
+$F$ is a mapping.
+% If $\dot{b_0},\dot{b_1}$ are names for an element $b\in B$ then $||\dot{b_0}||_A=||\dot{b_1}||_A$.
+
+\smallskip
+
+\noindent Let $\dot{b_1},\dot{b_2} \in N$ $\dot{b_1}\not =\dot{b_2}$ be
+such that $||\dot{b_1}||_B = ||\dot{b_2}||_B$ and
+$a_1=||\dot{b_1}||_A\neq||\dot{b_2}||_A=a_2$. So
+$a=a_1\vartriangle a_2 \not = \mathbf 0$.
+
+Now consider a countable set of names $S \subset N$ such that
+\begin{itemize}
+\item[(i)]  $\dot{b_1},\dot{b_2} \in S$,
+\item[(ii)] $\{\langle \vee\rangle \conc
+	\langle \langle i,j \rangle \ : \ j <\omega \rangle \} \in S$
+	for each $i \in \omega$,
+\item[(iii)] $S$ is closed to names of lower rank, i.e. if
+	$\dot n = \langle \circledast \langle \dot n_i : i \in \omega \rangle \rangle \in S$
+	then all $\dot n_i \in S$.
+\end{itemize}
+
+Now apply version \ref{gen_RS} of Rasiova~-~Sikorski Theorem and
+take ultrafilter $G$ in $A$ such that $a \in G$ and satisfies
+conditions of Theorem \ref{gen_RS}. Then there is exactly one
+mapping $g:\omega \rightarrow \omega$ such that for every $i \in \omega$
+$a_{i,g(i)} \in G$.
+
+Denote $U = \{X \in B : g \in X \}$, note that $g \in \mathcal N$. $U$
+is an ultrafilter in the field $B$ and the following holds
+$g \in ||\dot n||_B \ \mbox{iff} \ ||\dot n||_A \in G$, for each $\dot n \in S$.
+
+Therefor $g \in ||\dot b_1||_B  \ \mbox{iff} \ g \in ||\dot b_2||_B \
+\mbox{iff} \ a_1 \in G \ \mbox{iff} \ a_2 \in G$, but $a = a_1 \vartriangle a_2 \in G$
+and so only one of $a_1,a_2$ belongs to $G$, a contradiction.
+%
+% Assume, aiming towards a contradiction, that there are two names $\dot{b_0},\dot{b_1}$ for an element $b\in B$ with $a_0=||\dot{b_0}||_A\neq||\dot{b_1}||_A=a_1$.
+% Let $a=a_0\vartriangle a_1$. Using a modified version of the well known Rasiowa-Sikorski theorem, we can find an ultrafilter $U$ on $A$
+% which satisfies:
+%
+\end{proof}
+
+
+Many of important examples of orderings for adding new real can be expressed
+as an ordering of type $(\mbox{Borel}(\mathcal N) - \mathcal I)$, for some
+$\sigma$-complete ideal $\mathcal I$. Such orderings are not separable. The
+separable quotient is a $\sigma$-complete Boolean algebra
+$\mbox{Borel}(\mathcal N) / \mathcal I$ with at most countably many generators.
+
+Moreover instead of Baire space $\mathcal N$ one can consider any uncountable
+Polish space $P$ since such spaces are Borel isomorphic, i.e. there is
+one-to-one mapping $f: \mathcal N \rightarrow P$, which is onto and Borel
+measurable, which means that $f$ induces isomorphism of the fields
+Borel$(\mathcal N)$ and Borel$(P)$. To study forcing properties for
+this kind of orderings means to study properties of $\sigma$-ideals on
+Polish spaces and properties of orderings $(P_\mathcal I, \subseteq)$,
+where $P_\mathcal I = \mbox{Borel}(P) - \mathcal I$. This reveals
+a part of the riddle hidden  beyond the title of J.~Zapletal
+book `Forcing Idealized'.
+
+\subsection{${}$ \hspace{-1em} Chains of ccc algebras.}
+The last section of this chapter will be devoted to a demonstration of the
+thechniques of elementary submodels (see \ref{elementary-substructure}) and McAloon's characterisation of the collapsing
+algebras $Col(\omega,\kappa)$.
+
+\begin{definition}{\bf Chain of algebras.} A \emph{chain} of algebras is a sequence of Boolean algebras
+$\langle B_\xi:\xi<\alpha\rangle$
+such that for $\xi_1<\xi_2$
+\begin{itemize}
+\item[(i)] $B_{\xi_1}$ is a subalgebra of $B_{\xi_2}$,
+\item[(ii)] any maximal antichain in $B_{\xi_1}$ is also a maximal antichain in $B_{\xi_2}$ and
+\end{itemize}
+It is \emph{continuous} if moreover
+\begin{itemize}
+\item[(iii)] if $\beta<\alpha$ is limit, then $\bigcup\{B_\xi:\xi<\beta\}$ is dense in $B_\beta$.
+\end{itemize}
+\end{definition}
+
+The conditions (i) and (ii) say that $B_{\xi_1}$ is a \emph{regular} subalgebra of $B_{\xi_2}$.
+
+
+
+\begin{proposition}[R.Solovay] Let $\langle B_\xi:\xi<\alpha\rangle$ be a continuous chain of ccc Boolean algebras.
+ Then $\bigcup\{B_\xi:\xi<\alpha\}$ is again a ccc Boolean algebra.
+\end{proposition}
+\begin{proof} Let $B=\bigcup\{B_\xi:\xi<\alpha\}$. It is sufficient to prove the theorem for the case $\alpha=\omega_1$.
+Let $A\subseteq B$ be a maximal antichain. We shall show, that $|A|\leq\omega$. Choose $\kappa$ sufficiently big so that
+$\mathcal{C}=\langle B_\xi:\xi<\alpha\rangle, B, A\in H(\kappa)$ and let $M\preceq \langle H(\kappa),\mathcal{C},B,A\rangle$
+be a countable elementary submodel. Define $A^*= A\cap M$. We shall show that in fact $A^*=A$. Let $\xi = M\cap\omega_1$.
+Since for each $a\in A$ there is $\delta<\omega_1$ such that $a\in B_\delta$ by elementarity we have
+$$
+A^*=\bigcup_{\alpha<\xi} A\cap B_\alpha\cap M.
+$$
+Since $A\cap B_\alpha$ is an antichain in the ccc Boolean algebra $B_\alpha$ it must be countable and hence
+$A\cap B_\alpha\subseteq M$ (see \ref{elementary-fact}, iii). Thus
+$$
+A^*=\bigcup_{\alpha<\xi} A\cap B_\alpha.\leqno{(*)}
+$$
+
+We will show that $A^*$ is a maximal antichain in $B_\xi$. Suppose not, then there is an $\alpha<\xi$ and $b\in B_\alpha$
+such that for all $\beta<\xi$ and all $a\in A\cap B_\beta$, $b\perp a$ (here we used *). Working in $M$ we may write this as
+$$
+M\models(\exists \alpha<\omega_1)(\exists b\in B_\alpha)(\forall\beta<\omega_1)(\forall a\in A\cap B_\beta)(b\perp a),
+$$
+by elementarity this must also hold in $H(\kappa)$ but that would contradict the fact that $A$ is a maximal antichain.
+
+Since $A^*$ is a maximal antichain in $B_\xi$ it must also be maximal in $B$ (recall the continuity of the chain) so
+$A^*=A$. Since $A^*$ is countable we are finished.
+
+\end{proof}
+
+The following fact, which is the core of the previous proof, deserves a mention on its own (see e.g. \cite{mekler}):
+
+\begin{proposition} An ordering $(P,\leq)$ is ccc iff for each countable $M\preceq H((2^|P|)^+)$ with $P\in M$ and any dense $D\subseteq P, D\in M$,
+ the trace $D\cap M$ is predense in $P$.
+\end{proposition}
+\begin{proof}
+If $P$ is not $ccc$, then, there is an uncountable antichain $A\subseteq P$. By elementarity, there is such an $A$ with $A\in M$. But $A\cap M$
+is countable, so $A\setminus (A\cap M)$ is nonempty so $A\cap M$ cannot be predense.
+
+If $P$ is $ccc$, take some dense $D\subseteq P, D\in M$. Find a maximal antichain $A\subseteq D$. Using elementarity, we can assume $A\in M$.
+Since $A$ is countable and $A\in M$ necessarily $A\subseteq M\subseteq D\cap M$ and $A$ is obviously predense.
+\end{proof}
+
+
+\subsection{${}$ \hspace{-1em}Homogeneity and the Katowice problem.}
+
+\begin{definition}{\bf Homogeneity.} An ordering $(P,\leq)$ is \emph{homogeneous} if for all $p,q\in P$ the suborders
+ $(\leftarrow,p]$ and $\leftarrow,q]$ are isomorphic. A Boolean algebra is homogeneous if $(B^+,\leq)$ is a homogeneous
+ ordering.
+\end{definition}
+
+\begin{fact} An infinite Boolean algebra is homogeneous iff one of the following equivalent conditions holds:
+\begin{itemize}
+ \item[(i)] For all $a\in B^+$ the factor $B\upharpoonright a$ is isomorphic to $B$.
+ \item[(ii)] For all $a,b\in B\setminus\{0,1\}$ there is an automorphism $h$ of $B$ such that $h(a)=b$.
+ \item[(iii)] An automorphism of any finite subalgebra of $B$ can be extended to an automorphism of $B$.
+\end{itemize}
+Also note that an infinite homogeneous Boolean algebra must be atomless.
+\end{fact}
+
+{\bf The Katowice problem}: uncountability versus countability from the point of view of finiteness.
+There are several formulations which are equivalent in ZFC:
+
+\begin{itemize}
+ \item[(i)] Is it consistent that the Boolean algebras $\pw(\omega)/_{[\omega]^{<\omega}}$ and $\pw(\omega_1)/_{[\omega_1]^{<\omega}}$
+            are isomorphic?
+ \item[(ii)] Is it consistent that the topological spaces $\omega^*$ and $\omega_1^*$ are homeomorphic?
+ \item[(iii)] Is it consistent that $\pw(\omega_1)/_{[\omega_1]^{<\omega}}$ is homogeneous?
+ \item[(iv)] Is it consistent that there is a uniform ultrafilter $U_0$ on $\omega$ and $U_1$ a uniform ultrafilter on $\omega_1$ such that
+              $(U_0,\subseteq^*)$ and $(U_1,\subseteq^*)$ are isomorphic orderings?
+\end{itemize}
+
+This is a longstanding open problem. However the following is known
+
+\begin{fact}
+ If $\omega^*$ is homeomorphic to $\omega_1^*$ then $2^\omega= 2^{\omega_1}$ and $\mathfrak{d}=\omega_1$.
+\end{fact}
+
+For more information see \cite{katowice}.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                          END                                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

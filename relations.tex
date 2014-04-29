@@ -1,0 +1,660 @@
+\cfoot{}\rhead{\thepage}
+\lhead{{\scshape Forcing Relations} $\qquad$ {\tiny \today } }
+
+% \noindent{\Large{\scshape\bfseries Entreé to Generic Extensions and Forcing in Set Theory}} \\[0.1cm]
+%
+% \noindent {\scshape Bohuslav Balcar}, {\small CTS, J{\' \i}lsk{\' a} 1, Praha 1,
+% 	Czech Republic, {\ttfamily balcar@cts.cuni.cz} } \\[0.1cm]
+% \noindent {\scshape Jonathan Verner}, {\small KTIML MFF UK, {\ttfamily jonathan.verner@matfyz.cz}\\[0.1cm]
+% {\tiny \today } \\[0.5cm]
+
+%\maketitle
+
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Forcing relations}\label{forcing-relations}
+
+{\tiny \today } \\[0.5cm]
+
+We are aiming to describe the construction of a generic extension of the universe of sets ($=$ model of ZFC or a convenient fragment thereof). As is customary, we
+denote the original universe by $V$. Cohen's forcing method has two ingredients --- syntactical and semantical. The syntactical ingredient takes an ordering $(P,\leq)\in V$ as a parameter or, equivalently, the complete Boolean algebra $RO(P)$. The semantical ingredient requires a $V$-generic filter $G$ on this $P$ as a parameter.
+
+\smallskip
+
+The syntactical part of forcing can be entirely done within our original universe $V$, often called the ground model. The main tool used is the \emph{forcing relation} $\force$ which
+connects the ordering $P$ with properties of potential sets of the extension. Since we want the forcing relation to be in the original
+universe we cannot describe properties of these new sets directly, we instead find names for them and express the properties in terms of these names. These names will be
+normal sets in $V$ and this allows us to \emph{define} the forcing relation in $V$ so that, in particular, it will be in $V$. It will be important that this definition
+is syntactically very simple, even thought
+%the definition of the parameter ordering will often be
+quite complex.
+
+\smallskip
+
+The syntactical part of forcing %(the forcing relation, names)
+can be compared to the work of an architect who
+prepares plans for the building of a cathedral -- in our
+situation the architect describes the properties of the generic extension.
+What does the architect do in our case? He has to choose
+or construct an ordering $P$ according to
+his creative goal. This will often be a task requiring a great
+deal of invention and/or intuition.
+Then he has to choose the names which he will use and with
+help of which he can express all potential new sets
+(in our notation, names will have dots over them,
+e.g. $\dot{f},\dot{a}$).
+This can be done relatively easily, once we know the forcing
+notion $P$. The least task, he must deal with, is to determine the
+%
+% This is rather straightforward,
+% although there are some 'tricks of the trade' he has to know.
+% He then defines the forcing relation which connects the
+% ordering with the properties of the semisets expressed
+% in terms of his chosen names.
+% This boils down to defining the
+meaning of
+$$ %\startformula
+p\force \dot{x}\in\dot{y}\quad\mbox{and}\quad
+%$$ %\stopformula
+%and
+%$$ %\startformula
+p\force \dot{x}=\dot{y},
+$$ %\stopformula
+where $p$ is an element of $P$, often called a condition, and $\dot{x},\dot{y}$ are names. The formula $p\force\dot{x}\in\dot{y}$ is read as $p$ forces $\dot{x}$ to be an element of $\dot{y}$. When defining the forcing relation, he must take care to be able to guarantee the axiom of extensionality. Note that he will, in general, have different names for the same semiset so that he cannot just say that $(p\force \dot{x}=\dot{y}) \ \equiv \ (\dot{x}=\dot{y})$.
+
+\smallskip
+
+Once this work is done, it is routine to extend the forcing relation to more complicated properties represented by any formulas of set theory. Thus, given a formula
+$\varphi(x_0,\ldots,x_n)$ of set theory, names $\dot{x}_0,\ldots,\dot{x}_n$ and a condition $p\in P$, he will know what
+$$ %\startformula
+p\force \varphi(\dot{x}_0,\ldots,\dot{x}_n),
+$$ %\stopformula
+read as \emph{$p$ forces that $\dot{x}_0,\ldots,\dot{x}_n$ have property $\varphi$}, means. This routine construction guarantees that every condition $p\in P$ forces all
+the axioms of set theory.
+
+\smallskip
+
+The architect either aims to prove the consistency of some formula $\psi$. In that case he tries to construct the forcing notion $P$ so that $P$ forces $\psi$,
+$$ %\startformula
+P\force\psi,
+$$ %\stopformula
+which is shorthand for saying that all conditions in $P$ force $\psi$. Or he may, say out of curiosity, choose a forcing notion $P$ and then look
+for formulas which are forced by $P$. In such a case, he may well be surprised at what he sees.
+
+\smallskip
+
+Plans are laid down, the architect has finished. The actual construction work --- the semantical part of forcing --- is the work of the master builder. He must first
+have the belief that he can break the boundaries of the starting universe. He chooses the construction site, that is a condition $p\in P$ and a generic filter $G$ on $P$
+with $p\in G$. Then he continues in a natural way, building the levels of the extension $V[G]$ from the ground up. Each element of the extension has a name in the
+architect's plans, in particular also the generic filter has its name $\dot{G}$. Conversely, every name $\dot{x}$ found in the architect's plans, has a corresponding element $\dot{x}_G\in V[G]$ also called an \emph{interpretation} of $\dot{x}$.
+
+\smallskip
+
+Abusing our analogy further, we can rephrase the following forcing theorem saying that the architect can tell how the cathedral will look once he knows the construction site. In mathematical language, it is stated as follows:
+
+\smallskip
+
+\begin{theorem}\label{forcing}{\bf Forcing theorem.}
+Suppose $G$ is a $V$-generic filter over $V$, $\varphi$ is a formula of set theory and $\dot{r}_0,\ldots,\dot{r}_n$ are $P$-names.
+Then
+$$ %\startformula
+V[G]\models \varphi[\dot{r}_{0}/_{G},\ldots,\dot{r}_{n}/_{G}]\quad\mbox{iff}\quad (\exists p\in G)(p\force \varphi(\dot{r}_0,\ldots,\dot{r}_n).
+$$ %\stopformula
+\end{theorem}
+
+\subsection{Names} As we have mentioned several times, forcing universes consist of names and are dependent on a particular forcing notion (=ordering). This
+ordering is a parameter in the definition of a forcing universe and different orderings give rise to, at least formally, different forcing universes.
+
+We shall give the standard definitions of forcing universes, working with a forcing notion and, in parallel, with its completion. The definitions are
+`standard' in the sense that they are given in most textboos and also in the sense that they `simulate' the standard way the universe is built up using
+the $V_\alpha$-hierarchy.
+
+Note that all of the following can be carried out in the theory ZF (actually only finitely many axioms are used) and the Axiom of Choice is \emph{not}
+needed.
+
+Fix a forcing notion $P=(P,\leq)$ and the complete Boolean algebra $B\approx RO(P)$, definable from $P$.
+Without loss of generality assume $P\subseteq B^+$ is dense, in particular, $P$ is a separative partial order.
+
+
+\begin{definition}[The forcing universe $V^P$ and the Boolean valued universe $V^B$]
+\end{definition}
+\begin{center}
+\begin{minipage}{0.4\hsize}
+\begin{itemize}
+ \item[(i)] $V_0^P=\emptyset$,
+ \item[(ii)] $V_{\alpha+1}^P=\{r\in V: r\ \mbox{is a relation}\break dom(r)\subseteq P\ \&\ rng(r)\subseteq V_\alpha^P\}$,
+ \item[(iii)] if $\alpha$ is limit, then
+ $$
+ V_\alpha^P = \bigcup\{V_\beta^P:\beta<\alpha\},
+ $$
+ \item[(iv)] $V^P=\bigcup\{V_\alpha^P:\alpha\in On\}$.
+\end{itemize}
+\end{minipage}
+\hskip1cm
+\begin{minipage}{0.4\hsize}
+\begin{itemize}
+ \item[(i')] $V_0^B=\emptyset$,
+ \item[(ii')] $V_{\alpha+1}^B=\{a\in V: a\ \mbox{is a mapping}\break dom(a)\subseteq V_\alpha^B\ \&\ rng(f)\subseteq B\}$,
+ \item[(iii')] if $\alpha$ is limit, then
+ $$
+ V_\alpha^B = \bigcup\{V_\beta^B:\beta<\alpha\},
+ $$
+ \item[(iv')] $V^B=\bigcup\{V_\alpha^B:\alpha\in On\}$.
+\end{itemize}
+\end{minipage}
+\end{center}
+\vskip0.2cm
+ The elements of $V^P$ and $V^B$ shall be called names and will usually have a dot over them, like $\dot{r}$ or $\dot{a}$.
+
+It is clear that the $V_\alpha^P$'s and $V_\alpha^B$'s form a cumulative hierarchy, i.e. $V_\alpha^P\subseteq V_\beta^P$ and $V_\alpha^B\subseteq V_\beta^B$ for $\alpha\leq\beta$. Furthermore any relation $r\subseteq P\times V^P$ is itself a name, i.e. $r\in V^P$, and so is any mapping $f$ from $V^B$ into $B$ which
+is a set.
+For each name $\dot{r}\in V^P$ and $\dot{a}\in V^B$ we can define its rank in this hierarchy:
+\begin{center}
+\begin{minipage}{0.4\hsize}
+$$
+rk(\dot{r})=min\{\alpha:rng(\dot{r})\subseteq V_\alpha\}
+$$
+\end{minipage}
+\begin{minipage}{0.4\hsize}
+$$
+rk(\dot{a})=min\{\alpha:dom(\dot{a})\subseteq V_\alpha\}
+$$
+\end{minipage}
+\end{center}
+
+Each set $x\in V$ from the ground model has an associated `canonical' name with it which is defined by recursion on the
+rank of the set. This name is usually written as $\check{x}$ and is again defined in parallel for $P$ and $B$:
+\begin{center}
+\begin{minipage}{0.4\hsize}
+$$
+\check{x}=\{\langle p,\check{y}\rangle:p\in P\ \&\ y\in x\}\in V^P
+$$
+\end{minipage}
+\begin{minipage}{0.4\hsize}
+\vskip0.4cm
+$$
+\check{x}=\{\langle \check{y},1_B\rangle:y\in x\}\in V^B
+$$
+\end{minipage}
+\end{center}
+Note that $\check{x}$ is written for both the element of $V^P$ and of $V^B$. Also, if $P$ has a greatest element $1_P$,
+some authors define $\check{x}$ to be $\{\langle 1_P,\check{y}:y\in x\}$.
+
+\subsection{Translation}\label{lost-in-translation} There is a natural correspondence between names belonging to $V^P$ and those in $V^B$
+and each name from $V^P$ can be translated to $V^B$ and vice versa by the following translators (defined via recursion
+on the ranks of names):
+\begin{center}
+\begin{minipage}{0.4\hsize}
+$$
+\Theta:V^P\to V^B
+$$
+$$
+\hskip-7mm\Theta(\dot{r})=\dot{a}\in V^B\ \&\ dom(\dot{a})=\{\Theta(\dot{a}):\dot{a}\in rng(\dot{r})\}
+$$
+$$
+ \dot{a}(\Theta(\dot{s}))=\bigvee\hskip-0.2cm{}_B\{p\in P:\langle p,\dot{s}\rangle\in r\}
+$$
+\end{minipage}
+\begin{minipage}{0.4\hsize}
+$$
+\Xi:V^B\to V^P
+$$
+$$
+\Xi(\dot{a})=\dot{r}\in V^P
+$$
+$$
+\dot{r}=\{\langle p,\Xi(\dot{b})\rangle:p\in P\ \&\ p\leq\dot{a}(\dot{b})
+$$
+\end{minipage}
+\end{center}
+
+Compare these definitions with the special case in \ref{first-translation}.
+Also if $\dot{s}\in V^P$ is a typical name of a semiset, i.e. $\dot{s}\subseteq P\times\{\check{x}:x\in V\}$,
+then $\Xi(\Theta(\dot{s}))$ is the relation we have denoted as $\mathring{s}$ in \ref{first-translation}.
+
+
+The translators give the reader some freedom to choose what is more convenient for him
+and it is easily seen that they have the following properties:
+\begin{itemize}
+ \item[(i)]  $\Xi$ and $\Theta$ preserve ranks
+ \item[(ii)] $\Xi$ and $\Theta$ are one to one on the class of canonical names, i.e. on $\{\check{x}:x\in V\}$.
+ \item[(iii)] $\Theta$ and $\Xi$ are mappings which are generally not one-to-one or onto.
+\end{itemize}
+
+% Notwithstanding (iii) we shall see that for any generic filter $G$ on $P$ and $\bar{G}$ on $B$
+% we will have $\dot{r}/_G=\Theta(\dot{r})/_{\bar{G}}$ and $\dot{a}/_{\bar{G}}=\Xi(\dot{a})/_G$.
+
+\subsection{Interpretation}
+We have defined the universes $V^P$ and $V^B$ and we want to look at them as at
+universes (syntactical models) of Set Theory. For this we have to suitably interpret
+the basic predicates of our language, i.e. $\{=,\in\}$. Interpreting the identity predicate
+leads to some problems among the philosophers but, as far as Set Theory is concerned, we only
+need to interpret it so that it is an equivalence relation which is connected with $\in$ via
+the axiom of extensionality.
+
+We start with the Boolean version. First, given two names $\dot{a},\dot{b}\in V^B$, we define
+the `Boolean value' of their identity $||\dot{a}=\dot{b}||$ which is an element of $B$ and is a measure of the
+``truthfulness'' of $\dot{a}=\dot{b}$. This is done using well-founded recursion along the rank of $\dot{a}$ and $\dot{b}$
+ordered maximo-lexicographically. The definition of $||\dot{a}=\dot{b}||$ can now be
+given as:
+$$
+||\dot{a}=\dot{b}||=\left(\bigwedge_{\dot{c}\in dom(\dot{a})} \left(\dot{a}(\dot{c})\Rightarrow\hskip-0.5cm \bigvee_{\dot{d}\in dom(\dot{b})}\hskip-0.5cm\dot{b}(\dot{d})\wedge ||\dot{c}=\dot{d}||\right)\right)\wedge
+        \left(\bigwedge_{\dot{c}\in dom(\dot{b})} \left(\dot{b}(\dot{c})\Rightarrow\hskip-0.5cm \bigvee_{\dot{d}\in dom(\dot{a})}\hskip-0.5cm \dot{a}(\dot{d})\wedge
+         ||\dot{c}=\dot{d}||\right)\right),
+$$
+where for $u,v\in B$ we write $u\Rightarrow v$ instead of $-u\vee v$. Eventhough the definition
+might look horrible, notice that it is just a simple Boolean translation (existential quantifiers
+correspond to $\bigvee$, universal to $\bigwedge$) of the following formula
+$$
+(\forall c)(c\in a\rightarrow(\exists d\in b)(c=d))\ \&\ (\forall c)(c\in b\rightarrow(\exists d\in a)(c=d))
+$$
+which is equivalent, by the axiom of extensionality, to $a=b$.
+
+Having defined the ``Boolean value'' of equality, it is straightforward to define $||\dot{a}\in \dot{b}||$:
+$$
+||\dot{a}\in \dot{b}||=\bigvee_{\dot{d}\in dom(\dot{b})} \dot{b}(\dot{d})\wedge ||\dot{a}=\dot{d}||.
+$$
+
+
+%\subsection{The forcing theorem}
+\subsection{}
+% This section covers the fundamental theorem of forcing and is devoted to showing \emph{that}, rather than \emph{how}, forcing works.
+% The material, which is rather technical, is standard and may be safely skipped if the reader so wishes.
+In the previous section we have defined a mapping with domain $V^B\times V^B$ and range $B$ which to each pair $\langle\dot{a},\dot{b}\rangle$
+assigns the Boolean value $||\dot{a}=\dot{b}||$ of the formula $\dot{a}=\dot{b}$. We have a similiar definition for the Boolean value of
+the formula $\dot{a}\in\dot{b}$. Given these definitions for atomic formulas of the language of Set theory we now define the Boolean
+value of a general formula $\varphi(x_1,\ldots,x_n)$ --- a mapping of $(V^B)^n$ into $B$ --- by induction on the complexity of $\varphi$:
+\begin{itemize}
+ \item[(i)]  $||\neg \varphi(\dot{a}_1,\ldots,\dot{a}_n) || = - ||\varphi(\dot{a}_1,\ldots,\dot{a}_n) ||$,
+ \item[]     $||(\varphi\ \&\ \psi)(\dot{a}_1,\ldots,\dot{a}_n)||=
+              ||\varphi(\dot{a}_1,\ldots,\dot{a}_n)|| \wedge ||\psi(\dot{a}_1,\ldots,\dot{a}_n)||$,
+ \item[]     $||(\varphi\ \vee\ \psi)(\dot{a}_1,\ldots,\dot{a}_n)||=
+              ||\varphi(\dot{a}_1,\ldots,\dot{a}_n)|| \vee ||\psi(\dot{a}_1,\ldots,\dot{a}_n)||$,
+ \item[(ii)] $||(\exists x)(\varphi(x,\dot{a}_1,\ldots,\dot{a}_n))||=\bigvee\left\{ ||\varphi(\dot{b},\dot{a}_1,\ldots,\dot{a}_n))||:b\in V^B\right\}$,
+ \item[]  $||(\forall x)(\varphi(x,\dot{a}_1,\ldots,\dot{a}_n))||=\bigwedge\left\{ ||\varphi(\dot{b},\dot{a}_1,\ldots,\dot{a}_n))||:b\in V^B\right\}$.
+\end{itemize}
+
+The last two formulas are perfectly valid since even thought $V^B$ is a proper class, the range of $||\cdot||$ is a subset of $B$ which is a set, so that
+the join and meet respectively are taken over sets only.
+
+\begin{note} If $\varphi$ is a closed formula, i.e. it has no free variables, then the Boolean value of $\varphi$ is an element of $B$. Otherwise, if $\varphi$
+             has $n$ free variables, its Boolean value is a mapping from $(V^B)^n$ into $B$ giving an element of $B$ for each assignment of Boolean names to
+             free variables.
+\end{note}
+
+The following lemma is easily provable. It says that the axioms of equality have Boolean value $1$.
+
+\begin{lemma} Given arbitrary $\dot{a},\dot{b},\dot{c}\in V^B$
+ \begin{itemize}
+  \item[] $||\dot{a}=\dot{a}||=1$
+  \item[] $||\dot{a}=\dot{b}||=||\dot{b}=\dot{a}||$
+  \item[] $||\dot{a}=\dot{b}||\wedge||\dot{b}=\dot{c}||\leq||\dot{a}=\dot{c}||$
+ \end{itemize}
+ in other words
+ \begin{itemize}
+  \item[] $||\dot{a}=\dot{b}\leftrightarrow\dot{b}=\dot{a}||=1$
+  \item[] $||\dot{a}=\dot{b}\ \&\ \dot{b}=\dot{c}\rightarrow\dot{a}=\dot{c}||=1$,
+ \end{itemize}
+ since $||\varphi\rightarrow\psi||=1$ iff $||\varphi||\leq||\psi||$. Moreover
+ \begin{itemize}
+  \item[] $||\dot{a}\in\dot{b}||\wedge||\dot{a}=\dot{c}||\leq||\dot{c}\in\dot{b}||$
+  \item[] $||\dot{a}\in\dot{b}||\wedge||\dot{b}=\dot{c}||\leq||\dot{a}\in\dot{c}||$,
+ \end{itemize}
+ i.e. $||\dot{a}\in\dot{b}\ \&\ \dot{a}=\dot{c}\ \&\ \dot{b}=\dot{d} \rightarrow \dot{c}\in\dot{d}||=1$.
+ Also, the axiom of extensionality holds in $V^B$, i.e. it has Boolean value $1$.
+\end{lemma}
+
+\begin{note} If $\dot{a}\in V^B$, then
+ $$
+ \{\dot{b}\in V^B:||\dot{b}=\dot{a}||=1\},
+ $$
+ is a proper class. If this is a problem in some considerations, we can always
+ choose suitable representatives of this class, e.g. representatives with minimal rank.
+\end{note}
+
+\begin{example}
+\begin{itemize}
+ \item[(i)] The representatives of names of functions from $\omega$ to $\omega$ can be chosen to be $(\omega,\omega)$-matrices on $B$ (see \ref{matrix}).
+ \item[(ii)] The representatives of names of subsets of $\omega$ can be chosen to be elements of $B^\omega$.
+             As a curiosity notice that this object carries the structure of a complete Boolean algebra.
+\end{itemize}
+\end{example}
+
+The following theorem is particularly usefull, but requires the Axiom of Choice in $V$:
+
+\begin{theorem}{\bf Existential completness lemma.} For any formula $\varphi(x,y_1,\ldots,y_n)$ and an $n$-tuple of names $(\dot{c}_1,\ldots,\dot{c}_n)\in (V^B)^n$
+ there is a name $\dot{b}\in V^B$ such that
+ $$
+ ||(\exists x)\varphi(x,\dot{c}_1,\ldots,\dot{c}_n)||=||\varphi(\dot{b},\dot{c}_1,\ldots,\dot{c}_n)||
+ $$
+\end{theorem}
+First we shall prove a lemma, which is useful on its own:
+\begin{lemma}
+ Given disjoint $\langle u_i:i\in I\rangle\subseteq B$ and names $\langle \dot{a}_i:i\in I\rangle\subseteq V^B$ there is a $\dot{b}\in V^B$ such that
+ $$
+ (\forall i\in I)(u_i\leq||\dot{b}=a_i||).
+ $$
+\end{lemma}
+\begin{proof} The domain of $\dot{b}$ is $\bigcup\{dom(\dot{a}_i):i\in I\}$ and for $\dot{c}\in dom(\dot{b})$ we let
+ $$
+ \dot{b}(\dot{c})=\bigvee\{\dot{a}_i(\dot{c})\wedge u_i:i\in I\},
+ $$
+ where $\dot{a}_i(\dot{c})$ is $0$ iff $\dot{c}\not\in dom(\dot{a}_i)$.
+\end{proof}
+\begin{proof}[Proof of theorem.] The $\geq$ inequality holds for any $\dot{b}$ so we prove the other one. Since AC holds in $V$, we can choose
+a maximal pairwise disjoint set $\{u_i:i\in I\}$ such that there are corresponding names $\langle \dot{a}_i:i\in I\rangle$ with $u_i\leq||\varphi(\dot{a_i},\dot{c}_1,\ldots,\dot{c}_n)||$. By the previous lemma
+there is a name $\dot{b}$ with $u_i\leq||\dot{b}=\dot{a_i}||$. It is easy to see that this is the required name.
+\end{proof}
+
+
+\begin{metatheorem}\label{VBmodelsZF} Every axiom $\varphi$ of our Set Theory, i.e. ZF, ZFC$^-$, ZFC, has Boolean value $1$, i.e. $||\varphi||=1$ is provable.
+\end{metatheorem}
+
+\subsection{}{\bf Consistency proofs.}\label{ConsistencyProofs} If $\varphi$ is a sentence of Set Theory and $||\varphi||>0$, i.e. it is provable that $||\varphi||>0$,
+then it is relatively consistent with Set Theory. We can add such a $\varphi$ to the theory as a new principle.
+
+For the proofs see \ref{VBModelsZFproof} and \ref{ConsistencyProofsproof}.
+
+
+
+A parallel to the Boolean value of formulas with $B$-names is the \emph{forcing relation} for formulas with $P$-names. Given two names $\dot{r},\dot{s}\in V^P$ and a condition $p\in P$, using \ref{first-translation},
+we define the meaning of
+$$
+p\force \dot{r}=\dot{s}
+$$
+We read this as ``$p$ forces $\dot{r}$ to be equal to $\dot{s}$'' or ``$p$ knows that $\dot{r}$ is equal to $\dot{s}$''. The definition
+is by induction along the ranks of $\dot{r}$ and $\dot{s}$ (i.e. ordered maximo-lexicographically). The definition will in fact only be a
+simple translation of
+$$
+p\leq ||\Theta(\dot{r})=\Theta(\dot{s})||.
+$$
+\begin{definition}{\bf Forcing relation}.\label{forcing-relation}
+\begin{itemize}
+ \item[(i)] $p\force\dot{r}=\dot{s}$ iff $p\force\dot{r}\subseteq\dot{s}\ \&\  p\force\dot{s}\subseteq\dot{r}$ iff for all $\langle q_1,t_1\rangle\in\dot{r}$
+ the set
+ $$
+    \{q\leq p: q\perp q_1\vee (q\leq q_1\ \&\ (\exists\langle q^\prime,t^\prime\rangle\in\dot{s})(q\leq q^\prime\ \& q\force t_1=t^\prime))\}
+ $$
+ is dense below $p$ and for all $\langle q_2,t_2\rangle\in\dot{s}$ also the set
+ $$
+    \{q\leq p: q\perp q_2\vee (q\leq q_2\ \&\ (\exists\langle q^\prime,t^\prime\rangle\in\dot{r})(q\leq q^\prime\ \& q\force t_2=t^\prime))\}
+ $$
+ is dense below $p$.
+ \item[(ii)] The definition of the forcing relation for the atomic formula $\dot{r}\in\dot{s}$ is now straightforward:
+ $p\force\dot{r}\in\dot{s}$ iff the set $\{q\in P:(\exists \langle q_1,t\rangle\in\dot{s}(q\leq q_1\ \&\ q\force r=t\}$ is dense below $p$.
+\end{itemize}
+
+We can again extend the definition of the forcing relation to all formulas with parameters from $V^P$
+\begin{itemize}
+ \item[(iii)] $p\force\varphi(\dot{r}_1,\ldots,\dot{r}_n)\ \&\ \psi(\dot{r}_1,\ldots,\dot{r}_n)$ iff
+              $p\force\varphi(\dot{r}_1,\ldots,\dot{r}_n)\ \&\ p\force \psi(\dot{r}_1,\ldots,\dot{r}_n)$,
+ \item[(iv)]  $p\force\neg\varphi(\dot{r}_1,\ldots,\dot{r}_n)$ iff there is no $q\leq p$ which would force $\varphi(\dot{r}_1,\ldots,\dot{r}_n)$,
+ \item[(v)]   $p\force(\exists x)\varphi(x,\dot{r}_1,\ldots,\dot{r}_n)$ iff the set $\{q:(\exists\dot{s}\in V^P)(q\force \varphi(\dot{s},\dot{r}_1,\ldots,\dot{r}_n))\}$
+              is dense below $p$.
+\end{itemize}
+\end{definition}
+
+The following lemma is easily proved by checking the validity for atomic formulas and then by induction on the complexity of the formula using (iii)--(iv):
+\begin{lemma} For a condition $p\in P$ and a formula $\varphi(\dot{r}_1,\ldots,\dot{r}_n)$ the following is equivalent
+\begin{itemize}
+ \item[(i)]   $p\force\varphi(\dot{r}_1,\ldots,\dot{r}_n)$,
+ \item[(ii)]  $(\forall q\leq p)(q\force\varphi(\dot{r}_1,\ldots,\dot{r}_n))$,
+ \item[(iii)] $\{q:q\force\varphi(\dot{r}_1,\ldots,\dot{r}_n)\}$ is dense below $p$,
+ \item[(iv)]  $p\leq||\varphi(\Theta(\dot{r}_1),\ldots,\Theta(\dot{r}_n))||$.
+\end{itemize}
+\end{lemma}
+\begin{corollary} A condition $q$ forces $\neg\varphi(\dot{r}_1,\ldots,\dot{r}_n)$ iff it is disjoint with all conditions $p$ which force $\varphi(\dot{r}_1,\ldots,\dot{r}_n)$.
+\end{corollary}
+
+\begin{definition}[Validity]
+ \begin{itemize}
+  \item[]
+  \item[(i)] We say that a formula $\varphi(\dot{r}_1,\ldots,\dot{r}_n)$ is \emph{valid} in the forcing universe $V^P$ iff each $p\in P$ forces
+  $\varphi(\dot{r}_1,\ldots,\dot{r}_n)$. In this case we write $P\force\varphi(\dot{r}_1,\ldots,\dot{r}_n)$ or even $\force\varphi(\dot{r}_1,\ldots,\dot{r}_n)$ for short.
+  \item[(ii)] We say that a formula $\varphi(\dot{a}_1,\ldots,\dot{a}_n)$ is \emph{valid} in the Boolean universe $V^B$ iff its Boolean value is $1$.
+ \end{itemize}
+\end{definition}
+
+The corresponding metatheorem to \ref{VBmodelsZF} for forcing universes is also true (which
+follows immediately from the Boolean version using translators):
+
+\begin{metatheorem} If $\varphi$ is an axiom of our Set Theory, then $\force\varphi$ is provable.
+\end{metatheorem}
+
+We have tried to show that working with Boolean universes and Boolean values or forcing universes
+and forcing relations is equivalent and the reader is free to choose which suits him better. Boolean
+algebras are more suitable for theory but in most of the applications of forcing, one starts out
+with an ordering rather than with a complete Boolean algebra, so the forcing approach is more common.
+
+The framework described above is just the basic language. For the architect it is
+something he doesn't really think about but just uses. Now that we are finished with the architect,
+the plans are laid out and it is time for building. This will be the topic of the next section.
+
+\subsection{The Generic Extension}
+
+Fix a $V$-generic filter $\bar{G}$ on $B$. Then $G=\bar{G}\cap P$ is a $V$ generic filter
+on $P$ and $\bar{G}$, $G$ are similar (see \ref{similarity}). We shall evaluate the names
+from $V^B$ using $\bar{G}$ and from $V^P$ using $G$.
+
+\begin{definition}{\bf Evaluation of names}. Given a name $\dot{a}\in V^B$ or $\dot{r}\in V^P$ define
+$\dot{a}/_{\bar{G}}$ and $\dot{r}/_{G}$ by recursion on the rank of $\dot{a}$, $\dot{r}$:
+ $$
+ \dot{a}/_{\bar{G}} =\{\dot{b}/_{\bar{G}}:\dot{b}\in dom(\dot{a})\ \&\ \dot{a}(\dot{b})\in\bar{G}\}
+ $$
+ and
+ $$
+ \dot{r}/_{G} =\{\dot{s}/_{G}:(\exists p\in G)(\langle p,\dot{s}\rangle\in\dot{r}\}.
+ $$
+ Let $V^B/_{\bar{G}}=\{\dot{a}/_{\bar{G}}:\dot{a}\in V^B\}$ and $V^B/_{G}=\{\dot{r}/_{G}:\dot{r}\in V^P\}$.
+\end{definition}
+
+\begin{remark} Note that given a name $\dot{b}$ there can, even must, be a name $\dot{c}\not\in dom(\dot{b})$ such
+that $||\dot{c}\in\dot{b}||=1$. Nevertheless in such a case there will be some $\dot{a}\in dom(\dot{b})$ such that
+$\dot{c}/_{\bar{G}} = \dot{a}/_{\bar{G}}$.
+\end{remark}
+
+\begin{fact} $V^B/_{\bar{G}}=V^P/_G$. We shall denote this class as $V[G]$.
+\end{fact}
+\begin{proof} By induction on the rank of names using the translators $\Theta,\Xi$. We prove that
+for $\dot{r}\in V^P$ we have
+$$
+\dot{r}/_{G} = \Theta(\dot{r})/_{\bar{G}}
+$$
+and conversely for $\dot{a}\in V^B$ we have
+$$
+\dot{a}/_{\bar{G}} = \Xi(\dot{a})/_{G}.
+$$
+\end{proof}
+
+ \begin{definition} The \emph{canonical name for the generic filter} $\dot{G}$ is the following name:
+ $$
+ \dot{G} =\{\langle p,\check{p}\rangle:p\in P\}
+ $$
+ or
+ $$
+ \dot{G}=\{\langle \check{b},b\rangle :b\in B\}
+ $$
+ \end{definition}
+
+\begin{proposition} The class $V[G]$ is an extension of $V$, i.e. a transitive model of Set Theory containing V and
+having the same ordinals as $V$. Moreover $G\in V[G]$ and $V[G]$ is the smallest transitive model of Set Theory containing
+both $V$ and $G$.
+\end{proposition}
+\begin{proof} The transitivity follows from the construction of $V[G]$. $V\subseteq V[G]$ since given
+ $x\in V$ then for the evaluation of the canonical name $\check{x}$ of $x$ we have $\check{x}/_{G} = x$.
+ To see that $V[G]\cap On = V\cap On$ it is sufficient to notice that $V[G]=\bigcup_{\alpha \in On}V_\alpha^{V[G]}$,
+ where $V_\alpha^{V[G]}=\{\dot{a}/_{\bar{G}}:\dot{a}\in V_\alpha^B\}$. It is easy to see that $\dot{G}/_{G}=G$ so $G\in V[G]$.
+ $V[G]$ is a model of Set Theory by the forcing theorem \ref{forcingTHM} and the metatheorem \ref{VBmodelsZF}. Finally if $V\subseteq M$ and
+ $G\in M$ then for any $\dot{a}\in V^B$ necessarily $\dot{a}/_{\bar{G}}\in M$, so $V[G]\subseteq M$.
+\end{proof}
+
+\begin{theorem}{\bf The forcing theorem}\label{forcingTHM}. For any formula $\varphi(x_1,\ldots,x_n)$ of Set Theory we have
+ \begin{itemize}
+  \item[(i)] If $\dot{a}_1,\ldots,\dot{a}_n\in V^B$ then $V[G]\models \varphi(\dot{a}_1/_{\bar{G}},\ldots,\dot{a}_n/_{\bar{G}})$ iff
+             $||\varphi(\dot{a}_1,\ldots,\dot{a}_n)||\in G$.
+  \item[(ii)] If $\dot{r}_1,\ldots,\dot{r}_n\in V^B$ then $V[G]\models \varphi(\dot{r}_1/_{G},\ldots,\dot{r}_n/_{G})$ iff
+             there is $p\in G$ such that $p\force\varphi(\dot{r}_1,\ldots,\dot{r}_n)$.
+ \end{itemize}
+\end{theorem}
+\begin{proof} We shall only prove (i), (ii) is analogous or use translators. The proof is by induction on the complexity of $\varphi$. If $\varphi$ is
+ atomic, then we prove by induction on the rank of $\dot{a},\dot{b}$ that
+ $$
+ \dot{a}/_{\bar{G}}=\dot{b}/_{\bar{G}}\ \mbox{iff}\ ||\dot{a}=\dot{b}||\in G
+ $$
+ and
+ $$
+ \dot{a}/_{\bar{G}}\in\dot{b}/_{\bar{G}}\ \mbox{iff}\ ||\dot{a}\in\dot{b}||\in G.
+ $$
+ In the following we omit the parameters $\dot{a}_1,\ldots,\dot{a}_n$, i.e. write just $\varphi$ instead of $\varphi(\dot{a}_1,\ldots,\dot{a}_n)$.
+
+ The induction step for negation uses the ultrafilter property of $G$:
+ $$
+ V[G]\models \neg\varphi\ \mbox{iff}\ V[G]\not\models \neg\varphi\ \mbox{iff}\ ||\varphi||\not\in G\ \mbox{iff}\ -||\varphi|| = ||\neg\varphi|| \in G.
+ $$
+ The induction step for conjunction uses the fact that $G$ is a filter. The induction step
+ for the existential quantifier is as follows:
+ $$
+ V[G]\models(\exists x)\varphi
+ $$
+ iff there is some $y\in V[G]$ such that
+ $$
+ V[G]\models\varphi[y].
+ $$
+ Each element of $V[G]$ has a name so this holds iff there is $\dot{b}\in V^B$ such that
+ $$
+ V[G]\models\varphi(\dot{b}/_{\bar{G}}).
+ $$
+ By the induction hypothesis this is iff there is $\dot{b}\in V^B$ such that
+ $$
+ ||\varphi(\dot{b})||\in G
+ $$
+ and this, by the genericity of $G$, is iff
+ $$
+ \bigvee_{\dot{c}\in V^B} ||\varphi(\dot{c})||\in G
+ $$
+ and now by the definition of $||\cdot||$ this is iff
+ $$
+ ||(\exists x)\varphi||\in G,
+ $$
+ which was to be proved.
+\end{proof}
+
+\begin{example} Suppose that $G$ is a generic filter on $P$ and
+$$
+ V[G]\models \mathcal{A}=\{A_\alpha:\alpha<\kappa\}\ \mbox{is a MAD family on}\ \omega\ \mbox{of size}\ \kappa
+$$
+Each $A_\alpha\in V[G]$ so there are names $\dot{r}_\alpha\in V$ such
+that $\dot{r}_\alpha/_G=A_\alpha$. It is important, however, that even the whole
+sequence $\{\dot{r}_\alpha:\alpha<\kappa\}$ is already in the ground model. That
+is, instead of considering a name for the MAD family in $V$, we can equivalently
+consider a sequence of names for the elements of the MAD family.
+
+Why? Consider the set $\kappa\times\omega$. This is an element of $V$ (recall
+that $On^{V[G]}=On$). In $V[G]$ we can consider the semiset
+$$\bigcup\big\{\{\alpha\}\times A_\alpha :\alpha<\kappa\big\}\subseteq\kappa\times\omega.$$
+This semiset has a name $\dot{r}\subseteq P\times(\kappa\times\omega)$ in $V$.
+It is now sufficient to let
+$$\dot{r}_\alpha=\{\langle p,n\rangle:\langle p,\langle\alpha,n\rangle\rangle\in\dot{r}\}$$
+and it is clear that $\{\dot{r}_\alpha:\alpha<\kappa\rangle\in V$.
+\end{example}
+
+Note that the fact that $\mathcal{A}$ was a MAD family is irrelevant.
+In fact the following frequently used proposition holds:
+
+\begin{proposition} Whenever $\mathcal{A}=\{A_\alpha:\alpha<\kappa\}$ is any family
+in $V[G]$ then there is a sequence of names $\{\dot{r}_\alpha:\alpha<\kappa\}$ \emph{in the
+ground model} $V$ such that $\dot{r}/_G=A_\alpha$.
+\end{proposition}
+
+
+
+\begin{proposition}{\bf Consequence of the previous considerations}
+ \begin{itemize}
+  \item[(i)] If $H$ is a dense subset of $P$ and $G$ is a generic filter on $P$ then $G_H=G\cap H$ is again a generic
+             filter on $H$. Moreover $G_H$ and $G$ are similar (see \ref{similarity}) hence $V^H/_{G_H}=V^P/_{G}=V[G]=V[G_H]$.
+  \item[(ii)] If $f\in V$ is an automorphism of a cBA $B$ and $G$ is a generic filter on $B$, then $f[G]$ is again a generic
+             filter on $B$ and $V[G]=V[f[G]]$. This holds also for orderings, however there usually are many more automorphisms
+             of $RO(P)$ then there are of $P$.
+  \item[(iii)] If $\varphi$ is a sentence of Set Theory and $B$ is a homogeneous cBA, then $||\varphi||=0$ or $||\varphi||=1$.
+  \item[(iv)] If $\dot{r}_1,\ldots,\dot{r}_n\in V^P$ then $P\force \varphi(\dot{r}_1,\ldots,\dot{r}_n)$ iff $\varphi(\dot{r}_1/_G,\ldots,\dot{r}_n/_G)$
+              holds in each generic extension $V[G]$, where $G$ is some generic filter on $P$.
+ \end{itemize}
+\end{proposition}
+
+\begin{example}{Application of generic extensions.} We shall show how to prove proposition \ref{forcing_consideration} using generic extensions.
+Suppose there is a surjective $(\kappa,\lambda)$-matrix in a complete Boolean algebra $B$ and $\kappa\leq\kappa_1<\lambda_1\leq\lambda$.
+Such a matrix is a name $\dot{f}$ such that
+$||f\ \mbox{is a surjective map from}\ \kappa\ \mbox{to}\ \lambda||=1$. Take any generic $G$ on $B$. Then $\dot{f}/_{G}$ is a surjective
+map from $\kappa$ to $\lambda$ in $V[G]$. It follows that, in $V[G]$, $\kappa\simeq\kappa_1\simeq\lambda_1\simeq\lambda$, so there must
+be a bijective mapping $g:\kappa_1\to\lambda_1$. Such a $g$ must have a name $\dot{g}$ in $V^B$ and we can assume that $\dot{g}$ is a
+bijective matrix in $B$.
+\end{example}
+
+\begin{proof}[Proof of \ref{ConsistencyProofs}.] \label{ConsistencyProofsproof}
+ It is easy to see that any tautology of propositional logic has boolean value $1$.
+ Next notice that if $\varphi$ is provable in Set Theory, then $||\varphi||=1$. This follows from the metatheorem by induction on the lenght of proof.
+ The induction step: either there is a formula $\psi$ and $\psi\rightarrow\varphi$ occuring in the proof of $\varphi$. Then we use modus ponens to deduce
+ $\varphi$. Since, by the inductive assumption, $||\psi\rightarrow\varphi||=1$ we know that $||\psi||\leq||\varphi||$. It follows that $||\varphi||=1$ again
+ by the inductive assumption. Similarly for the principle of generalization, since $||(\forall x)\varphi||\leq||\varphi||$.
+ Now suppose $\varphi$ were inconsistent with Set Theory. Then $\neg \varphi$ would be provable, so $1=||\neg\varphi||=-||\varphi||\neq 1$ a contradiction.
+ \end{proof}
+
+\begin{proof}[Proof of \ref{VBmodelsZF}.]\label{VBmodelsZFproof}
+
+ {\bf Extensionality.} Follows directly from the definition of the Boolean value.
+
+ {\bf Pairing.} For $\dot{a},\dot{b}\in V^B$ let $\dot{c}\in V^B$ have domain $\{\dot{a},\dot{b}\}$ and
+ range $1\in B$. It is easy to see that $||\dot{c}=\{\dot{a},\dot{b}\}||=1$.
+
+ {\bf Separation.} Given a formula $\varphi(x,y)$ we need to show that for each $\dot{a},\dot{y}\in V^B$ there is a $\dot{b}\in V^B$ such that
+ $
+ ||(\forall x)(x\in\dot{b}\leftrightarrow x\in\dot{a}\ \&\ \varphi(x,\dot{y}))||=1
+ $
+ For this it suffices to choose $\dot{b}\in V^B$ with the same domain as $\dot{a}$ satisfying $\dot{b}(\dot{c})= \dot{a}(\dot{c})\wedge||\varphi(\dot{c},\dot{y})||$.
+
+ {\bf Union.} Given $\dot{a}\in V^B$ we let $dom(\dot{b})=\bigcup\{dom(\dot{c}):\dot{c}\in dom(\dot{a})\}$ and
+ $\dot{b}(\dot{d})=\bigvee\{\dot{c}(\dot{d}):\dot{c}\in dom(\dot{a})\ \&\ \dot{d}\in dom(\dot{c})\}$.
+
+ {\bf Power set.} Suppose $\dot{a}\in V^B$. For $X\subseteq dom(\dot{a})$ let $dom(\dot{b}_X)= X$ and $\dot{b}_X(\dot{c})=\dot{a}(\dot{c})$ for $\dot{c}\in X$. Finally
+ let $dom(\dot{b})=\{\dot{b}_X:X\subseteq dom(\dot{a})\}$ and $\dot{b}(\dot{b}_X)=1$. It is easy to check that $||\dot{b}=\pw(\dot{a})||=1$.
+
+ {\bf Infinity.} $\check{\omega}$ is a name for an infinite set.
+
+ {\bf Replacement.} Suppose $F$ is a mapping and $\dot{a}$ is a name. Since $F$ is a mapping using replacement in $V$ we can find a set $D\subseteq V^B$
+ such that $(\forall \dot{y})((\exists \dot{x}\in\dot{a})(||F(\dot{x})=\dot{y}||>0)\rightarrow (\exists \dot{d}\in D)(||\dot{d}=\dot{y}||=1))$. Let $dom(\dot{b})=D$
+ and define $\dot{b}(\dot{d})=||(\exists x\in\dot{a})(F(\dot{x})=\dot{d})||$.
+
+ {\bf Foundation.} If $\dot{a}$ is a name, let $\dom(\dot{b})=\bigcup\{dom(\dot{c}):\dot{c}\in dom(\dot{a})\}$ and let
+      $\dot{b}(\dot{d})=\bigvee\{\dot{c}(\dot{d})\wedge||\dot{c}\cap\dot{a}=\emptyset||:\dot{c}\in dom(\dot{a})\ \&\ \dot{d}\in dom(\dot{c})\}$.
+
+ {\bf Choice.} Given a set $\dot{a}$ for each $\dot{c}\in dom(\dot{a})$, using the axiom of choice in V, we can find a maximal antichain
+ $\langle u^{\dot{c}}_i:i\in I_{\dot{c}}\rangle$
+ such that there exist corresponding elements $\langle \dot{d}^{\dot{c}}_i:\dot{d}^{\dot{c}}\in dom(\dot{c})\rangle$ with $u_i\leq \dot{c}(\dot{d}^{\dot{c}}_i)$. Now let
+ $dom(\dot{b})=\{\dot{d}^{\dot{c}}_i:\dot{c}\in dom(a)\ \&\ i\in I_{\dot{c}}\}$ and $\dot{b}(\dot{d}^{\dot{c}}_i)=\dot{a}(\dot{c})\wedge u^{\dot{c}}_i$.
+\end{proof}
+
+
+
+
+
+
+
+%
+% \begin{proposition}
+%  \begin{itemize}
+%   \item[]
+%   \item[(i)] Equality is an equivalence relation on $V^P$, i.e. the following formulas are valid in the forcing universe:
+%   $(\forall x)(x=x)$, $(\forall x,y)(x=y\rightarrow y=x)$ and $(\forall x,y,z)(x=y\ \&\ y=z\rightarrow x=z)$.
+%   \item[(ii)] Equality preserves the $\in$ relation, i.e. the formulas $(\forall x,y,z)(x\in y\ \&\ x=z\rightarrow z\in y)$ and
+%   $(\forall x,y,z)(x\in y\ \&\ y=z\rightarrow x\in z)$ are valid in $V^P$.
+%   \item[(iii)] The axiom of extensionality is valid in $V^P$.
+%  \end{itemize}
+%
+% \end{proposition}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                          END                                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

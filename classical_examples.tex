@@ -1,0 +1,1971 @@
+\cfoot{}\rhead{\thepage}
+\lhead{{\scshape Forcing} $\qquad$ {\tiny \today } }
+
+% \noindent{\Large{\scshape\bfseries Entreé to Generic Extensions and Forcing in Set Theory}} \\[0.1cm]
+%
+% \noindent {\scshape Bohuslav Balcar}, {\small CTS, J{\' \i}lsk{\' a} 1, Praha 1,
+% 	Czech Republic, {\ttfamily balcar@cts.cuni.cz} } \\[0.1cm]
+% \noindent {\scshape Jonathan Verner}, {\small KTIML MFF UK, {\ttfamily jonathan.verner@matfyz.cz}\\[0.1cm]
+% {\tiny \today } \\[0.5cm]
+
+%\maketitle
+
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Classical forcing notions.}
+
+{\tiny \today } \\[0.5cm]
+
+We introduce basic examples of forcings, which were studied
+together with the extensions they determine,
+as one of the first. Namely Cohen, Random (Solovay), Hechler, Mathias,
+Laver, Miller and Sacks forcing. We show some phenomena that
+could arise in particular generic extensions, we focus
+on those phenomena that can be expressed only using
+semisets, i.e. we work only in $(\mathcal P^{V[G]} (V)) \subset V[G]$.
+
+We bring out the standard definition of particular forcing notion
+and if possible we also give alternative description using
+subsets of the Cantor space $\mathcal C$ or Baire space $\mathcal N$.
+
+First we start with notation and remind well known elementary facts
+concerning trees, $\sigma$-fields of Borel sets and sets with
+Baire property in Cantor $\mathcal C$ and Baire $\mathcal N$ spaces
+and their quotients and some basics of measure theory.
+
+\begin{notation}
+Symbols $\exists^\infty$ and $\forall^\infty$ are abbreviations
+of 'there is infinitely many' and 'for all except finitely many'
+respectively.
+
+\medskip
+
+ Let $r$ be a binary relation, instead of $r''\{x\} = \{ y \in rng(r) : \< x , y \> \in r \}$,
+ we shall use $(r)_x$. Similarly we denote
+ $(r)^y = r^{-1}{}''\{y\} = \{x \in dom(r) : \< x , y \> \in r \}$.
+\end{notation}
+
+
+\subsection{${}$ \hspace{-1em}Properties of trees.}
+We call a tree $T$ a \emph{binary tree} if it is a subtree
+of  $(Seq(2),\subseteq)$, or \emph{$\omega$-ary}
+is it is a subtree of $(Seq,\subseteq)$, note that always $\emptyset \in T$.
+We are mainly interested in trees that have all branches infinite.
+\begin{itemize}
+ \item[(i)] $t \in T$ is splitting node if there exists $i \not = j$
+	such that $t^\smallfrown i, t^\smallfrown j \in T$, for
+	a splitting node we define splitting set
+	$splt(t) = \{i \in \omega : t^\smallfrown i \in T\}$.
+ \item[(ii)] Stem of tree $T$ is the splitting node of smallest rank.
+ \item[(iii)] If $s \in T$ then $T(s) = \{t \in T : t \subseteq s \ \mbox{or} \
+	 t \supseteq s \}$
+	is a subtree of $T$.
+ \item[(iv)] $[T]$ is the set of all infinite branches of $T$.
+\end{itemize}
+
+% \begin{example}
+% There is a closed correspondence between Cantor space $\mathcal C$ and the binary
+% tree $(Seq(2),\subseteq)$ and between Baire space $\mathcal N$ and $\omega$-ary tree $(Seq,\subseteq)$.
+%  \begin{eqnarray*}
+% {} [Seq(2),\subseteq] & \ = \ & \mathcal C = {}^\omega \{0,1\}, \\
+% {} [Seq,\subseteq] & \ = \ & \mathcal N = {}^\omega \omega.
+%   \end{eqnarray*}
+% \end{example}
+
+There is a close correspondence between trees and closed sets.
+
+\begin{fact}
+\begin{itemize}
+ \item[(i)] It $T$ is a binary tree, then $[T]$ is closed subset of Cantor space $\mathcal C$.
+ \item[(ii)] If $\emptyset \not = U \subset \mathcal C$ is a closed set, then
+	$T_U = \{f \upharpoonright n : f \in U, \ n \in \omega \}$
+	is a tree and $[T_U] = U$.
+\end{itemize}
+The similar statement holds for Baire space $\mathcal N$.
+%  Let $U \not = \emptyset$ be closed subset of Cantor $\mathcal C$, or Baire space  $\mathcal N$,
+% then  $T_U = \{f \upharpoonright n : f \in U, \ n \in \omega \}$ is a tree and
+% $[T_U] = U$. On the other hand when $T$ is a tree then $[T] = U$ is a closed
+% sub and moreover the tree $T_U$ is the smallest subtree of $T$ that does not
+% contain finite branches, i.e. all its branches are infinite.
+\end{fact}
+
+Perfect set in a topological space is a nonempty, closed subset without isolated
+points. The following definition reveals the interplay between trees and
+subsets of the Cantor space.
+
+\begin{definition}
+Tree $T$ is called
+\begin{itemize}
+ \item[(i)]%{\bf Perfect tree.}
+	\emph{perfect} if satisfies
+	$$
+	(\forall f \in T) \ (\exists g \in T) \ (g \supseteq f) \
+	\mbox{and} \ g \ \mbox{is a splitting node of} \ T.
+	$$
+	Perfect trees correspond to non-empty closed subsets of
+	$\mathcal C$ without isolated points.
+	%Tree $T \subseteq (Seq,\subseteq)$ is
+	\item[(ii)]%{\bf Nowhere dense.} $T$ is a
+	\emph{nowhere dense} if satisfies
+	$(\forall f \in T)\ \exists g \in T, \ g \supset f$,
+	such that for each $h \in T$, $h \supseteq g$ $h$
+	is not a splitting node of $T$.
+	Nowhere dense trees correspond to nowhere dense
+	subsets of $\mathcal C$.
+	\item[(iii)] \emph{superperfect} if $T$ is $\omega$-ary
+	tree and satisfies
+	$$
+	(\forall s \in T)\ \exists t \in T, \ t \supset s \ \&
+	\ \mbox{split}(t) = \omega.
+	$$
+	We say that $[T]$ is \emph{superperfect} subset of $\mathcal N$.
+\end{itemize}
+\end{definition}
+
+\noindent{\scshape Notice} that any superperfect subset of $\mathcal N$ cannot be covered
+by countably many compact subsets. Moreover, if $\emptyset \not = U \subset \mathcal N$
+is closed set then $U$ either contains superperfect subset or is
+covered by countably many compact subsets.
+
+\smallskip
+\noindent{\scshape Hint.} Step by step prune the superperfect tree $T_U$
+by the nodes with only finitely many successors. After finitely many steps
+we obtain either empty set, or superperfect subtree.
+
+
+% $(Seq \nearrow,\subseteq )$ is a subtree of $(Seq,\subseteq )$ consisting of strictly
+% increasing finite sequences of natural numbers. $[(Seq \nearrow,\subseteq )]$ is a
+% closed subset on $\mathcal N$, hence a Polish space.
+
+
+
+\subsection{${}$ \hspace{-1em}Bases of the space $\mathcal C$.}
+
+
+For $t \in Fn(\omega,\{0,1\};\omega)$ denote
+$[t] = \{f \in \mathcal C : f \supset t\}$.
+\begin{itemize}
+ \item[(a)] Let
+	$$
+	\mathcal B_1 \ = \ \{[t] : t \in Fn(\omega,\{0,1\};\omega) \}.
+	$$
+	$\mathcal B_1$ is a base for topology of $\mathcal C$ and mapping
+	$t \mapsto [t]$ is an isomorphism of
+	$(Fn(\omega,\{0,1\};\omega), \supseteq)$ onto $(\mathcal B_1,\subseteq)$.
+ \item[(b)] Let $\mathcal B_2 \ = \ \{[s] : s \in {}^n \{0,1 \} \}$.
+	$\mathcal B_2$ is also a base for topology of $\mathcal C$ and
+	$\mathcal B_1 = \{ [ k \oplus s ] : s \in {}^n \{0,1 \} \ \& \ k \in \omega \}$,
+	where
+ \item[(c)] $
+	k \oplus s \in Fn(\omega,\{0,1\};\omega), \ \mbox{dom}(k \oplus s) = [k,k+|s|) \
+	\mbox{and} \ (k \oplus s)(k+i) = s(i), \ \mbox{for each} \ i < |s|.
+	$ is a \emph{shift} of $s$.
+\end{itemize}
+
+Define a mapping $m: \mathcal B_1 \to [0,1]$ by
+$$
+m[t] = \dfrac{1}{2^|t|}.
+$$
+
+This mapping has a unique extension to algebra of clopen subsets
+of Cantor space. If $U \in Clop(\mathcal C)$ then $U$
+can be expressed as a finite disjoint union of  base sets
+$U = \cup \{[t_i] : i < k  \}$ and one can put
+$m(U) = \sum_{i < k} m[t_i]$.
+
+This value does not depend on the representation on $U$ as
+a union of finite base sets. Mapping $m$ is a normalised
+$m(\mathcal C) = m[\emptyset] = 1$, finitely additive measure
+on the algebra of clopen sets.
+
+This measure can be uniquely extended to a
+$\sigma$-additive measure on the field of Borel subsets of $\mathcal C$,
+which we denote $m$ as well. Such measure is continuous,
+i.e. $m(\{x\}) = 0$ for each $x \in \mathcal C$. So $m$ is
+an example of of probability continuous Borel measure.
+
+% $$ %\startformula
+%  R=\{T:\mbox{\ T is a binary tree without finite branches such that \ } \lim \frac{|T_n|}{2^n} > 0\},
+% $$ %\stopformula
+%
+% Then $R$ ordered by inclusion is called the \emph{random} forcing. Note that $|T_n|/2^n$ is a (not necessarily strictly) decreasing sequence.
+% It can be shown that $RO(R)\approx \mbox{Borel}(2^\omega)/{\mathcal N}$ where ${\mathcal N}$ is the $\sigma$-ideal of subsets of $2^\omega$ which have
+% measure zero when considering the standard Haar measure on $2^\omega$. Random forcing is ccc since its completion is isomorphic to a Boolean algebra
+% carrying a strictly positive non-atomic $\sigma$-additive probability measure. In contrast to the Cohen forcing notion, it is \emph{not} $\sigma$-centred,
+% which follows from the following important property of measure algebras:
+
+We denote $Null$ the ideal of subsets of measure zero, if measure
+is $\sigma$-additive then $Null$ is $\sigma$-complete ideal.
+
+
+
+$(\mbox{Borel}(\mathcal C) / Null,\subseteq)$ is particular but important example of so
+called \emph{measure algebra}.
+
+\begin{definition}
+ A complete Boolean algebra $B$ is called \emph{measure algebra} if $B$ carries
+a strictly positive probabilistic measure $\mu$, i.e.
+ \begin{itemize}
+  \item[(i)] $\mu : B \to [0,1]$,
+  \item[(ii)] $\mu(a) = 0$ iff $a = \mathbf 0_B$ ($\mu$ is \emph{strictly positive})
+  \item[(iii)] for any disjoint family $\<a_n : n \in \omega \>$
+	$$
+ 	\mu(\bigvee \{a_n : n \in \omega \}) \ = \ \sum_0^\infty \mu(a_n),
+	$$
+	i.e. $\mu$ is $\sigma$-additive.
+  \item[(iv)] $\mu(\mathbf 1_B) = 1$, i.e. $\mu$ is \emph{normalised}.
+ \end{itemize}
+\end{definition}
+
+\begin{fact}
+ Any measure algebra satisfies $ccc$.
+\end{fact}
+
+\begin{proof}
+ Let $\mu$ be a measure on $B$ witnessing that $B$ is a measure algebra.
+ Let there be uncountably many disjoint elements in $B$. Then since $\mu$ is
+ strictly positive, there are uncountably
+ many elements among them with measure greater or equal to $\frac{1}{n_0}$, for some
+ $n_0 \in \omega$. Using $\sigma$-additivity of measure we contradict the fact
+ that $\mu$ is normalised.
+\end{proof}
+
+\begin{example}
+ $(\mathcal P(\omega),\subseteq)$ is a measure algebra. It is even complete field
+ of sets - so it is a complete and atomic Boolean algebra. Let
+$$
+\nu(A) = \sum \{ \frac{1}{2^{n+1}} : n \in A \}, \ \mbox{for each} \ A \subset \omega.
+$$
+$\nu$ is probabilistic measure on $\mathcal P(\omega)$. This algebra is
+diametrically different from $\mbox{Borel}(\mathcal C) / Null$.
+\end{example}
+
+
+\subsection{${}$ \hspace{-1em}Measure algebra.}
+Our Borel measure $m$ on the Cantor space corresponds to Lebesgue measure
+on the unit interval $[0,1]$ of real line. There is a continuous mapping
+\begin{eqnarray*}
+ \varphi : \mathcal C & \longrightarrow & [0,1] \\
+		f & \longmapsto & \varphi(f) = \sum_{i=0}^\infty \dfrac{f(i)}{2^{i+1}},
+\end{eqnarray*}
+which is onto and one-to-one with exception for dyadic rational numbers,
+where $\varphi$ is 'two-to-one'. Nevertheless, for any $U \in \mbox{Borel}(\mathcal C)$
+is the set $\varphi[U]$ Borel in $[0,1]$ and $m(U)$ is equal to Lebesgue
+measure of $\varphi[U]$.
+
+\medskip
+
+This can be generasized to the following theorem, see \cite{Ke:1994}
+
+\begin{theorem}
+ Let $\mu$ be a probability continuous Borel measure on a Polish space $S$. Then
+there is  a Borel isomorphism $\varphi : \mathcal C \to S$, i.e. $\varphi$ is
+one-to-one onto mapping that induces a measure preserving isomorphisms of
+the fields Borel$(\mathcal C)$ and Borel$(S)$.
+\end{theorem}
+
+\begin{theorem}
+ Any continuous probability Borel measure $\mu$ on a Polish space $S$ is regular
+(even Radon), i.e.
+\begin{itemize}
+ \item[{}] $\mu(A)  = \inf \{\mu(U) : U \supseteq A,\ U \ \mbox{open} \ \}$,
+ \item[{}] $\mu(A)  = \sup \{\mu(K) : K \subseteq A, \ K \ \mbox{compact} \}$.
+\end{itemize}
+\end{theorem}
+
+
+
+\begin{fact}
+ Let $\emptyset \not = U \subset \mathcal C$ is closed, then for a tree
+ $T(U) = \{ f \upharpoonright n : f \in U, \ n \in \omega \}$,
+$$
+m(U) \ = \ \lim_{n \in \omega} \dfrac{1}{2^n} \cdot |T_n(U)|.
+$$
+\end{fact}
+
+
+% Let $s \in Seq(2)$ then
+% $\langle s \rangle = \{f \in {}^\omega 2 : s \subseteq f\}$
+% and $\mathcal B_{\mathcal C} = \{\langle s \rangle : s \in Seq(2) \}$
+% is a topology base of $\mathcal C$,
+% we call such sets \emph{intervals}. Similarly we obtain a base
+% $\mathcal B_{\mathcal C}$ for the Baire space $\mathcal N$.
+%
+% % \begin{remark}
+% %  Every open subset can be expressed as at most countable union of
+% %  intervals. Each clopen subset can be expressed as a union of
+% %  finitely many disjoint intervals. Let $|s|$ denote the length of
+% %  a finite sequence, so each clopen subset  can be \emph{uniquely} expressed
+% %  as a union of finitely many disjoint intervals of minimal possible length.
+% % \end{remark}
+%
+% Now there is a simple path that leads to a measure. Let $|s|$ denote the
+% length of a finite sequence $s \in Seq(2)$. For the set $\langle s \rangle$
+% let
+% $$
+% m(\langle s \rangle) = \dfrac{1}{2^{|s|}}.
+% $$
+%
+% By the preceding fact each clopen $U$ set is expressed as $U = \bigcup_{i \leq k} \langle s_i \rangle$,
+% hence $m(U) = \sum_{i \leq k} m(s_i)$. The function $m$ is a finitely additive
+% normalised, i.e. $m(\langle \emptyset \rangle) = m(\mathcal C) = 1$, measure on
+% algebra $Clop(\mathcal C)$.
+%
+%
+%
+% \medskip
+%
+%
+%
+% %
+% % If there are new reals in $V[G]$ then
+%
+%
+% % \subsection{${}$ \hspace{-1em}Trees on $\omega$.}
+% %
+% % We continue with a list of some of the standard forcing notions which are named after authors who first used them. We shall be looking at them
+% % mostly as forcing notions arising in the context of trees so we first sum up some standard definitions:
+% %
+% % \begin{definition}\label{Baire-space}{\bf Baire space.}
+% %  Recall that the Baire space, denoted by $\N$, consists of infinite sequences of natural numbers, so:
+% % $$ %\startformula
+% %  \N={}^\omega\omega,\quad d(f,g)=\frac{1}{min\{k+1:f(k)\neq g(k)\}},\ f\neq g\in\N,
+% % $$ %\stopformula
+% % where $d$ is a complete metric on $\N$. $\N$ with the topology generated by this metric is a \emph{Polish space}, i.e. completely metrizable,
+% % separable topological space. Moreover $\N$ is homeomorphic to the irrational numbers on the real line.
+% % \end{definition}
+% %
+% %
+% % \begin{definition}
+% % Given a tree $T$, elements of $T$ are called \emph{nodes}. Given a node $t$ we abuse the notation slightly and write
+% % $|t|=lh(t)=|dom(t)|$. A $t\in T$ is a \emph{stem} of $T$ if it is maximal, such that for any $s\in T$ with
+% %  $|s|\leq|t|$ we have $s\subseteq t$. A node $t\in T$ is \emph{splitting} if there are incompatible $s,u$ extending $t$
+% %  with $|s|=|u|=|t|+1$. A \emph{branch} of $T$ is any maximal linearly ordered subset of $T$, the set of branches of $T$ is denoted by $[T]$.
+% %  By $T_n$ we denote the $n^{th}$ level of $T$, i.e.$T_n=\{t\in T:|t|=n\}$. Given a tree $T$ and $s\in T$ we write $T_s=\{t\in T:s\subseteq t\ \vee\ t\subseteq s\}$.
+% % \end{definition}
+% %
+% % \begin{notation}
+% %  $Seq$ will be the set of finite sequences of natural numbers whereas $Seq\uparrow$ will be the set of finite increasing sequences of natural numbers (not necessarily strictly increasing). In this notation an $\omega$-tree on $omega$ is a subset of $Seq$.
+% % For a splitting node $s$ of such tree $T$, we write $spl(s)=\{n:s^\smallfrown n\in T\}$. A tree $T\subseteq Seq$ is \emph{pruned} if it has no finite branches.
+% % \end{notation}
+% %
+% % \begin{fact}
+% %  If $T\subseteq Seq$ is a pruned tree then $[T]$ is a closed subset of $\N$. Also, whenever $F$ is a closed subset of $\N$, then $\{f\upharpoonright n:n<\omega,f\in F\}$
+% %  is a pruned tree.
+% % \end{fact}
+% %
+% % \begin{fact}
+% % A pruned tree $T$ determines a perfect subset of $\N$ (i.e. a closed subset without isolated points) iff every node of $T$ can be extended to
+% %  a splitting node of $T$.
+% % \end{fact}
+% %
+% %
+% % \begin{fact}
+% % $Seq\upharpoonright$ itself is a pruned tree and $[Seq\upharpoonright]$ consists of enumerations of all infinite subsets of $\omega$.
+% % \end{fact}
+% %
+% % Note that the previous facts and definitions easily generalise to
+% % $$ %\startformula
+% % Seq(\kappa)=\N(\kappa)=\prod_{n<\omega}\kappa={}^\omega\kappa,
+% % $$ %\stopformula
+% % where $\kappa\geq 2$. $\N(2)$ is homeomorphic to the cantor space and $\N(\kappa)$ is a complete nonseparable metric space if $\kappa>\omega$.
+
+\subsection{${}$ \hspace{-1em}Reals.}
+Phrase 'Forcing notion \emph{adds a new real}' means that for
+any generic filter $G$ over $V$, the generic extension $V[G]$
+contains a new subset $\sigma \subset \omega$ of natural numbers
+and hence $V[G]$ contains a function $\rho: \omega \to \omega$ which does
+not belong to groundmodel $V$. In our terminology these are
+semisets of $V$ that are obtained as $r''G$ for some
+relation $r \in V$.
+
+It is quite common in set theory that under the term 'real'
+we mean subset of $\omega$. Hence elements of Cantor space
+$\mathcal C = {}^\omega \{0,1\}$ are reals as well as the
+function from $\omega$ to $\omega$, i.e. elements from
+Baire space $\mathcal N$ are called reals.
+The following definition reveals an interplay between
+new reals and groundmodel reals.
+
+\begin{definition}
+Let $M$ denote an extension of $V$.
+\begin{itemize}
+\item[(i)] $X\subseteq \omega$ in
+	the extension is said to be an \emph{independent}
+	 (or \emph{splitting}) \emph{real}\index{real! independent}\index{real! splitting}
+	over $V$ if for all $Y\in[\omega]^\omega\cap V$ both $X\cap Y$ and
+	$Y-X$ are infinite.
+\item[(ii)] A function $f\in M$, $f\in \omega^\omega$,
+	is a \emph{dominating real} over $V$ if for all
+	$g\in \omega^\omega \cap V$ for all but finitely many
+	$n\in \omega$, $g(n) \leq f(n)$.\index{real! dominating}
+\item[(iii)] A function $h \in \omega^\omega$ in the extension is said to be an
+	\emph{unbounded real} over $V$ if for all $f \in \omega^\omega \cap
+	V$   the set $\{n \in \omega : h(n) > f(n) \}$ is infinite.
+	\index{real! unbounded}
+\item[(iv)] A function $h \in \omega^\omega$ in the extension is said to be an
+	\emph{eventually different} real over $V$ if for all $f \in \omega^\omega \cap
+	V$   the set $\{n \in \omega : h(n) \not = f(n) \}$ is infinite.
+	\index{real! eventually different}
+\item[(v)] $M$ is an \emph{${}^\omega \omega$-bounding extension} of
+	$V$ if every $f\in M$, $f\in \omega^\omega$ is bounded by a
+	$g\in \omega^\omega\cap V$, i.e. $f(n)\leq g(n)$ for any $n$.
+	\index{extension! ${}^\omega \omega$-bounding}
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+ Each dominating real is eventually different, hence if forcing adds a dominating
+ real it automatically adds an eventually different real.
+\end{remark}
+
+
+\subsection{${}$ \hspace{-1em}Examples of forcing notions.}
+
+Each of the following forcing notions are atomless and are constructed
+so that the generic extension will contain a new real. Note that the
+conditions of each example are made so it is a finite approximation of
+desired new subset of reals and generic filter picks up some of them
+and assembles a new real.
+
+All presented examples preserves cardinal number $\omega_1$ in $V$,
+i.e. in no generic extension there is a mapping of $\omega$ onto
+$\omega_1$. These examples are moreover 'proper' - notion that will
+be defined later in \ref{}.
+
+On a classical examples of forcings we illustrate
+\begin{itemize}
+ \item[(a)] some phenomena that should arise in generic extension,
+ \item[(b)] a profitability of using equivalent descriptions of
+	of a particular forcing notion,
+ \item[(c)] some elementary techniques and ideas that should make
+	the general statements easier to understand;
+	the use of Boolean matrices; absoluteness
+	of cardinal numbers in generic extensions; some forms of
+	distributivity; Laver and Sacks property and some others
+\end{itemize}
+
+In the Definition \ref{compare} there were introduced a forcing
+equivalence. What does this equivalence means to generic extension?
+If orderings $P,Q$ are equivalent $P\sim Q$, then for each generic filter
+$G$ on $P$ over $V$, there is generic filter $G'$ on $Q$ over $V$
+such that $G$ and $G'$ are similar and so $V[G] = V[G']$: Since
+$G$ and $G'$ are similar there are relations $r_1$ and $r_2$ in $V$
+such that $r_1''G = G'$ and $r_2''G' = G$, so for each relation
+$s \in V$ we get $s''G = (r_2 \circ s)''G'$, where
+$r_2 \circ s = \{\langle x,y \rangle : (\exists z) \langle x,z \rangle \in r_2 \
+	\& \ \langle z,y \rangle \in s \}$.
+
+\noindent{\scshape Conclusion.} When investigating generic extension
+one can use any equivalent of forcing notion and can skip from
+one equivalent to another according the demand.
+
+%%%%%%%%%%%%%%%%%%%%% COHEN %%%%%%%%%%%%%%%%%%%%%
+\subsection{${}$ \hspace{-1em}Cohen forcing.}
+
+Cohen forcing is the forcing used by P.~Cohen in his pioneer paper,
+it is countable ordering and is equivalent to any of the following
+order
+\begin{itemize}
+ \item[(a)]  $Seq = \bigcup\{ ^n\omega:n<\omega\}$,
+ \item[(b)]  $Seq_2 = \bigcup\{ ^n2:n<\omega\}$,
+ \item[(c)]  $Fn(\omega,2)=\{f;f:D\to\{0,1\},D\in[\omega]^{<\omega}\}$,
+ \item[(d)] Clop$(2^\omega)^+$,
+\end{itemize}
+and their completions are isomorphic to a complete Boolean algebra
+Borel$(2^\omega) - \mathcal M$, where $\mathcal M$ is the $\sigma$-ideal
+of meagre sets.
+
+\begin{definition}{\bf Cohen forcing.}\label{cohen}
+ A complete, atomless $ccc$ Boolean algebra wit countable dense set is
+called \emph{Cohen algebra}.
+\end{definition}
+
+We already know, that any Cohen algebras are isomorphic (they have
+isomorphic dense subset) and they are homogeneous, i.e. if $B$ is
+a Cohen algebra and $a \in B^+$ then $B\upharpoonright a = \{x \in B : x \leq a \}$
+is isomorphic to $B$.
+
+\begin{example}
+ For any perfect Polish space $S$ algebras $RO(S)$ and
+Borel$(S) / \mathcal M$ are Cohen algebras.
+\end{example}
+
+Cohen algebra is $\sigma$-centred by the definition, since it
+contains a countable dense set. Hence Cohen algebra is $ccc$.
+
+\subsubsection{${}$ \hspace{-1em}Absoluteness of cardinals.}
+
+First task concerning any forcing notion is whether it preserves
+cardinal numbers and cofinalities, i.e. whether cardinal numbers
+of the groundmodel are cardinal numbers in extension.
+
+\begin{proposition}\label{ABScardinals}
+ Any $ccc$ forcing preserves cardinals and cofinalities.
+\end{proposition}
+
+This means that in any generic extension by $ccc$ forcing the
+cardinal numbers are the same as in groundmodel and also
+all cofinalities are preserved.
+
+In what follow we will introduce the proof of the Proposition \ref{ABScardinals}.
+
+What does it means to destroy cofinality or cardinal. It means
+that in the extension there is a new mapping from $\lambda$ a groundmodel
+cardinal $\kappa > \lambda$, which is onto, i.e. we add a new semiset
+$\rho \subset \kappa \times \lambda$. Let us first show generally
+the possible form of a name for such a mapping.
+
+Let $B$ be a complete Boolean algebra, $G$ generic filter on $B$
+and $r$ a relation. We can assume that dom$(r) \subseteq B$. Fix
+a set $X \supset \mbox{rng}(r)$. Define a mapping
+$c: X \to B$ determined by $r$ as follows
+$$
+c(x) \ = \ \bigvee \{ b \in \mbox{dom}(r) : \< b,x \> \in r \},
+$$
+for any $x \in X$. Function $c$ is somewhat generalised characteristic
+function.
+
+It easily follows from the properties of generic filter that
+$r''G = (c^{-1})''G = \{ x \in X : c(x) \in G \}$, so the mapping
+$c : X \to B$ is the name for a set $r''G$.
+
+\smallskip
+
+Let us assume that $\kappa,\lambda$ are cardinals in $V$ and
+$\rho \in V[G]$ is a mapping $\rho : \kappa \to \lambda$.
+Then $\rho \subset \kappa \times \lambda$ is a semiset and
+so there is a relation $r \subset B \times (\kappa \times \lambda) \in V$
+such that $r''G = \rho$.
+
+Let $c : (\kappa \times \lambda) \to B $ be a generalised characteristic function
+corresponding to $r$. So we have $\{ c(\alpha,\beta) : \alpha \in \kappa,\ \beta \in \lambda \}$,
+but generally this is not a matrix, see \ref{}. We can modify each
+row. Put
+$a(\alpha,\beta) = c(\alpha,\beta) - \bigvee_{\gamma < \beta} c(\alpha,\gamma)$,
+now rows are disjoint and if we add to say $a(\alpha,0)$ complement of
+$\bigvee_{\beta < \lambda} c(\alpha,\beta)$, then the resulted family
+$A = \{a(\alpha,\beta): \alpha \in \kappa,\ \beta \in \lambda \}$ is a matrix, see \ref{}.
+
+Fix $\alpha \in \kappa$, among $\{ c(\alpha,\beta) : \beta \in \lambda \}$ there
+is exactly one $\beta$ such that $c(\alpha,\beta) \in G$, since $\rho$ is
+a mapping with dom$(\rho) = \kappa$. By the construction for the very same $\beta$
+it holds that $a(\alpha,\beta) \in G$ and so $\rho = \{\< \alpha, \beta :
+ a(\alpha,\beta) \in G \> \}$. Hence the matrix $A$ is a name for the mapping $\rho$.
+
+\begin{proof}{\scshape of Proposition \ref{ABScardinals}.}
+ Now assume $\omega \leq \kappa < \lambda$, and let matrix $A$ be a name
+for the mapping $\rho: \kappa \to \lambda$.  Since $B$ satisfies $ccc$
+ at most countably many elements are non-zero. That is for each row $\alpha$
+there is some $\beta$ such that $a(\alpha,\gamma) = \mathbf 0$, for each $\gamma > \beta$. Since
+$\kappa \times \omega < \lambda$, there is some $\beta < \lambda$ such that
+each column in $A$ consists from zero elements. That means that the mapping
+$\rho$ cannot by onto $\lambda$, its range cannot contain such $\beta$.
+\end{proof}
+
+Similarly one can show, that the cofinalities are preserved by $ccc$ forcing.
+The following theorem is a straight forward generalisation of Proposition \ref{ABScardinals}.
+
+\begin{theorem}
+ Any $\kappa-cc$ forcing preserves all cardinal numbers $\lambda$, $\lambda \geq \kappa$.
+\end{theorem}
+
+It is convenient to know, that the least infinite cardinal $\kappa$ such that
+a forcing $P$ is $\kappa-cc$ has to be regular cardinal.
+
+
+\subsection{${}$ \hspace{-1em}Conclusion.}
+
+Any real in an arbitrary generic extension via some forcing $P$
+can be added by generic extension over a subalgebra $C \subset RO(P)$
+with at most countable many complete generators.
+
+\begin{proof}
+ Let $B = RO(P)$, $G$ be a generic filter on $P$ over $V$. $G$ induces
+generic filter $G^*$ on $B$.
+
+ If $\tau \in V[G]$ is a real, then its matrix name
+$A = \{ a(m,n) \in B : m,n \in \omega \}$ generate a complete subalgebra
+$C \subseteq B$ and $G^* \cap C$ is a generic filter on
+$C$ so that $\tau \in V[G^* \cap C] \subseteq V[G]$.
+\end{proof}
+
+
+In the following part we show that Cohen forcing
+\begin{itemize}
+ \item[(a)] adds a new real,
+ \item[(b)] adds a splitting set,
+ \item[(c)] adds unbounded real,
+ \item[(d)] does not add an eventually different real, hence cannot add dominating reals.
+\end{itemize}
+
+
+Fix a generic filter $G$ on an ordering $\mathcal C = (Seq(2),\subseteq)$, then
+for $s,t \in G$ is either $s \subset t$ or $s \supset t$.
+
+\subsubsection{Cohen real.}
+\begin{eqnarray*}
+ \sigma_c & = & \bigcup \{s \in Seq(2) : \< s \> \in G \}, \\
+ \rho_c & = & \{ i \in \omega : (\exists s \in Seq(2) ) \ \mbox{such that} \ s(i) = 1 \ \& \ \< s \> \in G \}.
+\end{eqnarray*}
+
+
+\begin{lemma}
+ \begin{itemize}
+  \item[(i)] $\sigma_r, \rho_r \in V[G]$,
+  \item[(ii)] $\sigma_r : \omega \to \{ 0, 1 \}$,
+  \item[(iii)] $\rho_r \subset \omega$ is infinite and splitting set.
+ \end{itemize}
+\end{lemma}
+
+\begin{proof}
+\noindent{\itshape (i)} Define relations
+$r_1 \subseteq  Seq(2) \times (\omega \times \{0,1\})$ and
+ $r_2 \subseteq Seq(2) \times \omega$.
+\begin{eqnarray*}
+ r_1 \ & = & \ \{ \< s, \< i, s(i) \>  \>  \ : \ s \in Seq(2) \ \& \ i < \mbox{dom}(s) \ \},  \\
+ r_2 \ & = & \ \{ \< s, i \>  \ : \ s \in Seq(2) \ \& \ i < \mbox{dom}(s) \ \& \ s(i) = 1 \ \}
+\end{eqnarray*}
+Then $\sigma_r = r_1'' G$ and $\rho_r = r_2'' G$. Moreover $\sigma_r$ is a standard
+characteristic function of $\rho_r$.
+
+\smallskip
+
+\noindent{\itshape (ii)} Let $k \in \omega$ and put $H_k = \{s \in Seq(2) : k < |s| \}$.
+The set $H_k$ is dense and so $\sigma_r : \omega \to \{0,1\}$, i.e. dom$(\sigma_r) = \omega$.
+
+\smallskip
+
+\noindent{\itshape (iii)} Let $X \in [\omega]^\omega$. Since $X$ is infinite and $X \in V$,
+following sets are dense
+$$
+H_j^k \ = \ \{\ s \in Seq(2) \ : \ (\exists i \in X-k) \ (i < \mbox{dom}(s)) \ \& \  s(i) = j \ \}.
+$$
+It follows that both $X\cap \rho_r$ and $X - \rho_r$ are both infinite.
+\end{proof}
+
+\begin{lemma}
+ Cohen forcing adds unbounded real.
+\end{lemma}
+
+\begin{proof}
+ The lemma claims that there is $\tau : \omega \to \omega$ in the
+ extension over Cohen forcing so that $(\exists^\infty i)$ $\tau(i) > f(i)$,
+for each function $f:\omega \to \omega$ from the groundmodel.
+
+ Here we profit from the equivalent ordering $\mathcal C = (Seq,\subseteq)$.
+ Let $G$ be a generic filter, let $\tau = \bigcup \{t \in Seq : t \in G \}$.
+Then $\tau \in V[G]$ and by similar arguments as in previous it is a
+function from $\omega$ to $\omega$.
+
+ For any $f \in {}^\omega \omega \cap V$ and $k \in \omega$ let
+$$
+H_f^k \ = \ \{\ s \in Seq \ : \ (\exists i > k) \ (i < \mbox{dom}(s)) \ \& \  s(i) > f(i) \ \}.
+$$
+Each set $H_f^k$ is dense in $\mathcal C$, which guarantees that $\tau$
+is an unbounded function.
+\end{proof}
+
+
+
+\begin{lemma}
+ For any $\sigma \in V[G]$ $\sigma : \omega \to \omega$ there is $f \in {}^\omega \omega \cap V$
+ such that $\exists^\infty i \in \omega \ \sigma(i) = f(i)$.
+\end{lemma}
+
+\begin{proof}
+ Take a Cohen algebra $B$ and let $G$ be a generic filter on $B$ over $V$.
+ Fix a countable dense subset $H \subset B^+$ and fix an enumeration
+$H = \{h(n) : n \in \omega \}$. Let $\sigma \in V[G]$ $\sigma : \omega \to \omega$,
+then there is a matrix name for $\sigma$ in $V$, i.e. a matrix
+$A = \< a(m,n) \in B : m,n \in \omega \>$. Define $f:\omega \to \omega$
+$$
+f(m) = \min \{n \in \omega : a(m,n) \cap h(m) \not = \mathbf 0\}.
+$$
+Such mapping is well defined on $\omega$ since each $h(m) \not = \mathbf 0$
+and $\bigvee_n a(m,n) = \mathbf 1$.
+
+\smallskip
+
+\noindent{\scshape Claim.} For any $k \in \omega$ $\bigvee_{m \geq k} a(m,f(m)) = \mathbf 1$.
+
+\smallskip
+
+Suppose not, then $b = \mathbf 1 - \bigvee_{m \geq k} a(m,f(m)) \not = \mathbf 0$
+and since $B$ is atomless, there is infinitely many $m \in \omega$ so that
+$h(m) \leq b$. But for such $m$ we get $a(m,f(m))$ is compatible with $b$, which
+is in contradiction with the definition of $f$.
+
+We get that for each $k \in \omega$ there is $m \geq k$ such that $a(m,f(m)) \in G$
+and so $\tau(m) = f(m)$ for infinitely many $m$'s.
+\end{proof}
+
+
+\subsection{${}$ \hspace{-1em}Violating Continuum Hypothesis.}
+
+
+
+% \begin{definition}{\bf Cohen forcing.}
+%  Let $C=\bigcup{}^n2$ with ordering by extension, i.e $f\leq g$ iff $f\supseteq g$. The \emph{Cohen algebra} is the complete Boolean algebra $RO(C)$.
+%  A standard argument shows that each countable atomless forcing notion is equivalent to $C$. For example, consider the cantor space $2^\omega$.
+%  For any $f\in C$ we can define a corresponding clopen set $[f]=\{h\in 2^\omega:f\subseteq h\}$ in $2^\omega$. Then ${\mathcal B}=(\{[f]:f\in C\},\subseteq)$ is
+%  isomorphic to $(C,\leq)$ and ${\mathcal B}$ is a basis of the Cantor space so $RO(2^\omega)\approx RO(C)$. It is known that $RO(2^\omega)$ is the completion
+%  of the \emph{cantor algebra} $Clop(2^\omega)$. Moreover $RO(2^\omega)\approx \mbox{Borel}(2^\omega)/{\mathcal M}$ where $\mbox{Borel}(2^\omega)$ is the $\sigma$-field
+%  of borel subsets of $2^\omega$ and ${\mathcal M}$ is the $\sigma$-ideal of meagre subsets of $2^\omega$.
+%
+%  Cohen forcing notion can also be described using the language of trees: For $f\in C$ define $T_f=\{h\in C:h\subseteq f\ \vee f\subseteq h\}$. Then $T_f$ is
+%  a binary tree with stem $f$ where each node above the stem is splitting. Then $(C,\leq)$ is isomorphic to $(\{T_f:f\in C\},\subseteq)$.
+% \end{definition}
+
+%%%%%%%%%%%%%%%%%%%%% RANDOM %%%%%%%%%%%%%%%%%%%%%
+\subsection{${}$ \hspace{-1em}Random forcing.}
+
+One of the equivalents of Cohen forcing was $(\mbox{Borel}(2^\omega) - Meagre(2^\omega),\subseteq)$.
+Meagre sets are negligible sets from topological point of view. From measure theory point of
+view, negligible sets are those of measure zero. We consider standard probability
+$\sigma$-additive measure defined on a $\sigma$-field Borel$(\mathcal C)$, which uniquely extends
+function $m : \mathcal B_\mathcal C \to [0,1], \ m(\< s \>) = \frac{1}{2^{|s|}}$ and denote it
+by $m$. Such measure is continuous, see \cite{Ke:1994}, i.e. all singletons are
+of measure zero. Let $Null$ denote the $\sigma$-ideal of sets of measure zero.
+
+\begin{definition}{\bf Standard definition.}
+\begin{itemize}
+ \item[(i)] $(\mbox{Borel}(\mathcal C) - Null,\subseteq)$ is \emph{Random forcing}. The
+	ordering is not separative, its separative quotient is
+ \item[(ii)] $(\mbox{Borel}(\mathcal C) / Null,\subseteq)$. This is $ccc$ complete Boolean
+	algebra that carries strictly positive $\sigma$-additive continuous measure,
+	$m[u] = m(U)$, for each $U \in \mbox{Borel}(\mathcal C)$.
+\end{itemize}
+\end{definition}
+
+\begin{corollary}
+ \begin{itemize}
+  \item[(i)] The set $\{U \subset \mathcal C : U \ \mbox{closed and} \ m(U) > 0 \}$ is dense in Random forcing.
+  \item[(ii)] The set $\{W \subset \mathcal C : W \ \mbox{open and} \ m(W) = 0 \}$ is a base of the Null ideal.
+ \end{itemize}
+\end{corollary}
+
+\subsubsection{Measurable algebra as a completely metrizable space.}
+
+Let $B$ be a measure algebra with a measure $\mu$. Put
+$d_\mu(a,b) = \mu(a \vartriangle b)$, for $a,b \in B$. The proof
+of the following Proposition is straightforward.
+
+\begin{proposition}
+ \begin{itemize}
+  \item[(i)] $d_\mu$ is a metric on $B$ induced by $\mu$ and
+  \item[(ii)] $(B,d_\mu)$ is a complete metric space.
+ \end{itemize}
+\end{proposition}
+
+Hence instead of Cantor space $\mathcal C$ one can consider any Polish space $S$
+and instead of $(\mbox{Borel}(\mathcal C) / Null,\subseteq)$ consider
+appropriate $(\mbox{Borel}(S) / Null,\subseteq)$. We denote this measure
+algebra $\mathbf B(\omega)$.
+
+\subsubsection{Characterisation of $\mathbf B(\omega)$.}
+
+$\mathbf B(\omega)$ is a measure algebra, which is
+\begin{itemize}
+ \item[(a)] atomless and $g(\mathbf B(\omega)) = \omega$, i.e. has
+	countably many complete generators, equivalently
+ \item[(b)] atomless and metric space $(\mathbf B(\omega),d_/mu)$
+	is separable, so Polish space.
+\end{itemize}
+
+
+Fix a generic filter $G$ on $\mbox{Borel}(\mathcal C) - Null$ over $V$.
+
+\subsubsection{Random real.}
+\begin{eqnarray*}
+ \sigma_r & = & \bigcup \{s \in Seq(2) : \< s \> \in G \}, \\
+ \rho_r & = & \{ i \in \omega : (\exists s \in Seq(2) ) \ \mbox{such that} \ s(i) = 1 \ \& \ \< s \> \in G \}.
+\end{eqnarray*}
+Formally the very same definition as for Cohen reals, but the result will be
+completely different. In the definition of $\sigma_r$ there are only generators
+of $\mathbf B(\omega)$, while in $\sigma_c$ it was elements of the dense subset
+of $\mathbf C(\omega)$.
+
+\begin{lemma}
+ \begin{itemize}
+  \item[(i)] $\sigma_r, \rho_r \in V[G]$,
+  \item[(ii)] $\sigma_r : \omega \to \{ 0, 1 \}$,
+  \item[(iii)] $\rho_r \subset \omega$ is infinite and splitting set.
+ \end{itemize}
+\end{lemma}
+
+
+\begin{proof}
+ \noindent{\itshape (i)} Same as a proof for Cohen reals.
+
+ \noindent{\itshape (ii)} follows from the {\itshape (iii)}.
+
+ \noindent{\itshape (iii)} For any $n \in \omega$ the set
+ $\{ \< s \> : s \in {}^n \{0,1\} \}$ is a maximal antichain, so
+there is exactly one $s \in {}^n \{0,1\}$ such that  $\< s \>  \in G$.
+Thus $\sigma : \omega \to \{0,1\}$.
+
+Let $X \subset \omega$ be an infinite set. Assume that $X \cap \rho_r \subset k$,
+for some $k \in \omega$. It means that for every finite $Y \subset X - k$,
+the clopen set $O_Y = \{ f \in \mathcal C : (\forall i \in Y) \ f(i) = 0 \}$
+belongs to G, since there is $s \in Seq(2)$, $\< s \> \in G$ and
+$Y \subset \mbox{dom}(s)$, so $O_Y \supset \<s\>$. Now $m(O_Y) = \frac{1}{2^|Y|}$,
+thus $Z = \bigcap \{ O_Y : Y \in [X - k]^\omega \} \in Null$.
+This is a contradiction with set-completeness of $G$ in the algebra
+$\mbox{Borel}(\mathcal C) / Null$ since $[Z] = \bigwedge \{[O_Y] : Y \in [X - k]^\omega \}$.
+
+We proved that $(\forall k \in \omega)$ there is $\< s \> \in G$ so that
+there exists $i \in X -k$ such that $s(i) = 1$.
+
+Similarly we show that $(\forall k \in \omega)$ there is $\< s \> \in G$ so that
+there exists $i \in X -k$ such that $s(i) = 0$. It follows that $\rho_r$ is
+infinite and splitting set in $V[G]$.
+\end{proof}
+
+
+\subsubsection{Interrelationship of $\mathcal C$ and $\mathcal N$.}
+
+Denote $I_r = \{ f \in \mathcal C : |f^{-1}\{1\}| = \omega\}$.
+Since there are only countably many
+elements $f \in \mathcal C$ with finitely many $1$'s
+$m(I_r) = 1$. The set $I_r$ as a subspace of $\mathcal C$ is
+homeomorphic to $\mathcal N$.
+
+If $f \in I_r$, we can partition $f$ to blocks of zeroes, where
+the block delimiters are $1$'s and put $\varphi(f) \in \mathcal N$
+be a function, where $\varphi (f)(n)$ is a number of zeroes in the
+$n$-th block.
+
+$\varphi$ is one-to-one mapping of $I_r$ onto $\mathcal N$ and
+it maps a measure $m$ onto a measure $\bar m$ on the space $\mathcal N$.
+
+We know that random real $\sigma_r$ contains infinitely many $1$'s, so
+$\sigma_r \in I_r$ and $\varphi(\sigma_r) : \omega \to \omega$ in $V[G]$.
+Such mapping $\varphi(\sigma_r)$ is eventually different real.
+% \begin{definition}
+% A forcing notion $P$ is weakly distributive if for every countable family $\{A_n:n<\omega\}$ of maximal antichains in $P$, there is
+%  a maximal antichain $A$ such that for every $a\in A$ and for every $n<\omega$, $a$ is compatible with only finitely many members of $A_n$.
+% \end{definition}
+%
+
+\begin{lemma}
+ Random forcing adds eventually different real.
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%% HECHLER %%%%%%%%%%%%%%%%%%%%%
+\subsection{${}$ \hspace{-1em}Hechler forcing.}
+
+Let $p \subset {}^{<\omega} \omega$ be $\omega$-ary
+tree. A tree is called \emph{Hechler tree} if
+\begin{itemize}
+ \item[(i)] it has a stem $s \in {}^{<\omega} \omega$ and
+ \item[(ii)] $(\forall t \in p) \ (s \subset t \to split_p(t) =
+	\{i \in \omega : t^\smallfrown i \in p \})$
+	is a cofinal set.
+\end{itemize}
+\emph{Hechler forcing}, denoted by $H$, consists of all Hechler trees
+ordered by inclusion.
+
+\begin{fact}
+ $(H,\subseteq)$ is a separative partial ordering that is $\sigma$-centred,
+so $ccc$.
+\end{fact}
+
+\begin{proof}
+ Hechler trees with the common stem form a centred family and there is
+only finitely many different stems.
+\end{proof}
+
+It is quite frequent in literature, that by the Hechler forcing
+is meant the following
+
+\begin{definition}
+\emph{Hechler forcing} is a set
+ $H_0 = \{\<s,f\> : s \in {}^{<\omega} \omega,\ f : \omega \to \omega,\ s \subset f \}$, with
+partial ordering
+$\<s,f\> \leq \<t,g\>$ if and only if $t \subseteq s \ \& \ (\forall n \in \omega) \ f(n) \geq g(n)$.
+\end{definition}
+
+Forcings $H$ and $H_0$ are different but they have very similar
+properties. By our opinion it is easier to work with $H$ instead of
+$H_0$.
+
+\begin{proposition}
+ $(H_0,\leq)$ is a partial ordering that can be regularly embedded
+into $(H,\subseteq)$, i.e. $H_0 \lessdot H$.
+\end{proposition}
+
+\begin{proof}
+ Let $\<s,f\>$ be a condition from $H_0$.
+ Define $\omega$-ary tree $p(s,f) \in H$ such that
+ $t \in p(s,f)$ iff $t \subseteq s$ or $(\ t \supseteq s$ and
+$(\forall i \in \dom(t))\ (i \geq |s| \to t(i) \geq f(i)) \ )$.
+ $p(s,f)$ is Hechler tree with stem $s$ and with uniformly
+ determined splitting sets, i.e. $split(t) = \omega - f(n)$ for
+each $t \in {}^n \omega$, $n \geq |s|$. It is easy to check
+that the mapping $\<s,f\> \mapsto p(s,f)$ is isomorphism
+of $(H_0,\leq)$ onto $(\{ p(s,f)\},\subseteq)$ and it is
+regular embedding.
+\end{proof}
+
+
+\begin{lemma}
+ Hechler forcing adds dominating reals and so it adds independent reals.
+\end{lemma}
+
+\begin{proof}
+ Let $G$ be a generic filter on $H$ over $V$, then
+$$
+\tau = \bigcup \{ stem(p) : p \in G \}
+$$
+is a dominating real.Let $f : \omega \to \omega$ be a function from groundmodel.
+For $p \in H$ consider $p' \subset p$, where
+$$
+p' \ = \ \{\ s \in p \ : \ s \subset stem(p) \ \mbox{or} \ (stem(p) \subset p \ \& \ (\forall i \geq |s|) \ p'(i) > f(i) \ )  \}.
+$$
+The set $\{p':p \in H \}$ is dense in $H$ thus there is some $p' \in G$. We immediately
+get that $\tau(i) > f(i)$ for each $i \geq stem(p')$.
+
+\smallskip
+
+If there is a dominating real in the extension, then there is also an independent
+real. It is enough to consider a partition of $\omega$ into intervals
+$I_0 = [0,a_0) \cup I_1 = [a_0,a_1) \cup I_2 = [a_1,a_2), \cup \dots$ so that
+$X \cap I_k \cup I_{k+1} \not = \emptyset$. Then $\bigcup_k I_{4k} \cup I_{4k+1}$
+is a splitting set.
+\end{proof}
+
+\begin{fact}
+ Hechler forcing adds a Cohen real.
+\end{fact}
+
+\begin{proof}
+ We use Criterion 2, to the mapping $h : H \to \mathbf C$,
+ $h(p) : n \to \{ 0,1 \}$ and $h(i) = s(i)_{mod(2)}$, for each $i < n = |s|$,
+ where  $s$ is a stem of $p$.
+\end{proof}
+
+
+
+\subsubsection{Luzin sets.}
+
+Interesting properties of Hechler forcing concerning Luzin sets.
+
+\begin{definition}
+ A set $L \subset \mathcal C$ is called \emph{Luzin set}
+(or $(2^{\aleph_0},\omega_1)$-Luzin set), if $|L| = 2^\omega$
+and $|L\cap M| < \omega_1$ for each meagre set $M$.
+\end{definition}
+
+We have to omit a proof of the following theorem.
+
+\begin{theorem}
+ Let $G$ be a generic filter on $H$ over $V$. Then there is
+a Luzin set in the extension $V[G]$.
+\end{theorem}
+
+Now look at what happen to Cihon diagram (see \ref{cihon}) by
+adding one Hechler real.
+
+There are just two values for cardinal invariant in diagram,
+namely $\omega_1$ and $2^\omega$ and those values are independent
+on the values in the groundmodel.
+
+\begin{itemize}
+ \item[] $\non (\mathcal M) = \omega_1$, since subset
+	$X \subset L$ of Luzin set of size $\omega_1$ cannot be meagre. On the
+	other hand
+ \item[] $\cov (\mathcal M) = 2^\omega$, i.e. is of full size,
+	since we have to also cover a Luzin set $L$ and each meagre
+	set covers only a countable part of $L$.
+\end{itemize}
+
+\subsubsection{Complete Boolean algebra.}
+
+We focus on the description of the complete Boolean
+algebra $RO(H)$ determined by the Hechler forcing $H$.
+
+We work in the space $\mathcal N$. For $p \in H$, $[p]$ is
+the set of all branches of tree $p$ and it is closed subset
+of $\mathcal N$. Such sets satisfy the crucial property
+to form a topology base:
+$$
+(\forall f \in [p_1] \cap [p_2]) \ (\exists q \in H) \ f \in [q] \subset [p_1] \cap [p_2].
+$$
+We denote $\tau_H$ the topology on ${}^\omega \omega$ given by this open base.
+Topology $\tau_H$ extends standard topology of $\mathcal N$.
+
+\begin{claim}
+ The topological space $({}^\omega \omega, \tau_H)$ satisfies
+ the Baire category theorem, i.e. any nonempty open set is
+ not meagre.
+\end{claim}
+
+\begin{proof}
+ We show that base set $[p]$ cannot be covered by meagre set,
+ i.e. the set $[p] \cap \bigcap_{n \in \omega} \bigcup\{[q] : q \in P_n\}$
+ is not empty for each countable collection of open dense sets
+ $\{P_n: n \in \omega\}$
+ Let $p \in H$, let $Q_n$ be arbitrary open dense
+ (in the sense of ordering) set in $H$, for each $n \in \omega$; note
+ that the set $\{ [q] : q \in Q_n\}$ is dense in $\tau_H$. Since
+ $Q_0$ is dense, then there is a Hechler tree $q_0 \leq p$,
+ $q_O \in Q_0$ and since $Q_0$ is open, one can assume, that
+ $|stem q_0| >  0$. We proceed by induction and for $n+1 \in \omega$
+ we fix $q_{n+1} \leq q_n$, $q_{n+1} \in Q_{n+1}$ and
+ $|stem q_{n+1}| >  n+1$. The branch $f = \bigcup_n stem q_n$ is
+ in $[p] \cap \bigcap_{n \in \omega} \bigcup\{[q] : q \in Q_n\}$,
+ which completes the proof.
+\end{proof}
+
+
+
+\begin{corollary}
+We immediately obtain that $Borel({}^\omega \omega, \tau_H) = Borel(\mathcal N)$
+so
+ $$
+RO(H) \approx Borel(N) / Meagre(\tau_H) \approx BP(\tau_H) / Meagre (\tau_H).
+ $$
+\end{corollary}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%% PROSTRELOVANI %%%%%%%%%%%%%%%%%%%%%
+\subsection{${}$ \hspace{-1em}Adding pseudointersection to a filter.}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%% non CCC %%%%%%%%%%%%%%%%%%%%%
+
+
+The following forcing notions does not satisfy $ccc$, in fact are
+$(2^\omega)^+$-$cc$. They collapse the  cardinal $2^\omega$ in
+groundmodel to smaller cardinal depending on the other properties
+of groundmodel, but the first uncountable cardinal $(\omega_1)^V$
+is preserved by all of them.
+
+
+%%%%%%%%%%%%%%%%%%%%% MATHIAS %%%%%%%%%%%%%%%%%%%%%
+\subsection{${}$ \hspace{-1em}Mathias forcing.}
+
+This ordering apart from being used to produce interesting
+generic extension, influenced a development of infinite
+Ramsey theory.
+
+Conditions in Mathias forcing have the same structure as
+conditions in $P(F)$, see \ref{}. Instead of a filter $F$
+we consider all infinite subsets of $\omega$.
+
+\subsubsection{Standard definition.} \emph{Mathias forcing} consists
+of the sets
+$$
+M \ = \ \{ \< s,A \> : s \in [\omega]^{<\omega}, \ A \in [\omega]^\omega \ \&
+ \max s < \min A \ \}, \ \mbox{ordered by}
+$$
+$\<s,A\> \leq \< t, B\>$ iff $s \supseteq t, \ A \subseteq B$ and $s - t \subseteq B$.
+
+\begin{fact}
+ $(M,\subseteq)$ is a separative partial ordering of size $2^\omega$
+ with the largest element  $\<\emptyset, \omega$, satisfying $(2^\omega)^+$-$cc$.
+\end{fact}
+
+\begin{proposition}
+ Non separative partial ordering $([\omega]^\omega, \subseteq)$ can be
+ regularly embedded into $(M,\subseteq)$.
+\begin{eqnarray*}
+ ([\omega]^\omega, \subseteq) \ & \hooklongrightarrow & \ (M,\subseteq) \\
+ 			A     \ & \longmapsto	  & \ \< \emptyset, A\>.
+\end{eqnarray*}
+\end{proposition}
+
+\subsection{${}$ \hspace{-1em}Isomorphic representation of Mathias forcing
+and infinite Ramsey theory.} Any condition $\< s,A \> \in M$ determines
+so called \emph{Mathias set}
+$$
+E(s,A) \ = \ \{ X \in [\omega]^\omega \ : \ s \sqsubset X \ \& \ X-s \subset A \}.
+$$
+
+Notice that if  $S \subseteqq [\omega]^\omega$, then $S$ is a Mathias set
+if \begin{itemize}
+    \item[] $s = \bigcap \{X : X \in S \}$ is finite and
+    \item[] $\{ X - s : X \in S \} \ = \ [A]^\omega$ for some
+	infinite set $A$.
+   \end{itemize}
+
+\begin{fact}
+ $(M,\subseteq)$ is isomorphic to $\{\< s,A\> : \<s,A\> \in M \}$ ordered
+by the usual inclusion.
+\end{fact}
+
+\subsection{${}$Ellentuck topology.}
+
+When we speak about $\mathcal P(\omega)$ as a topological space,
+we usually mean the topology of Cantor discontinuum obtained
+via identification of subset of $\omega$ with their characteristic
+functions. $[\omega]^\omega \subseteq \mathcal P(\omega)$,
+hence we have an inherited topology and denote it topology $\tau_c$.
+Notice that $([\omega]^\omega, \tau_c )$ is completely metrizable
+space, since $[\omega]^\omega$ is $G_\delta$ subset of $\mathcal P(\omega)$.
+
+
+Ellentuck topology extends $\tau_c$ and its open  base is formed
+by all Mathias sets. We denote this topologycal space by $\E$.
+
+\begin{proposition}
+ \begin{itemize}
+  \item[(i)] $\E$ is well defined topological space,
+  \item[(ii)] $Borel(\E) = Borel([\omega]^\omega,\tau_c)$ and
+  \item[(iii)] $\E$ satisfies the Baire category theorem.
+ \end{itemize}
+\end{proposition}
+
+\begin{proof}{\scshape Hint.}
+\begin{itemize}
+ \item[(i)] If $x \in S_1 \cap S_2$ for some Mathias sets $S_1$ and $S_2$
+	then there is a Mathias set $S$ such that $x \in S \subseteq S_1 \cap S_2$.
+ \item[(ii)] Follows from the fact that any Mathias set is closed in
+	$\tau_c$ and for each $t \in {}^n \{0,1\}, \ [t] \cap [\omega]^\omega$
+	is a Mathias set, namely $\<t^{-1}\{1\},\omega - n\>$.
+ \item[(iii)] similar argument as for the Hechler forcing, see \ref{}.
+\end{itemize}
+\end{proof}
+
+Now, it is easy to describe complete Boolean algebra that is determined
+by Mathias forcing. All the following algebras are isomorphic:
+$$
+RO(M) \simeq RO(\E) \simeq Compl\ \bigl( Borel(\E) / Meagre(\E) \bigr ),
+$$
+where $RO(M)$ is complete Boolean algebra with dense set isomorphic to
+$(M,\leq)$ and $RO(\E)$ is the algebra of regular open sets of the space $\E$
+ordered by $\subseteq$. Since the algebra $Borel(\E) / Meagre(\E)$ is
+only $\sigma$-complete, we have to take its completion here.
+
+
+\subsection{${}$Infinite Ramsey theory.}
+The well known classical Ramsey theorem stated in arrow notation
+$$
+(\forall k > 0) \ \omega \longrightarrow (\omega)^k_2,
+$$
+has a natural generalisation $\omega \rightarrow (\omega)^\omega_2$
+that does not hold in ZFC. In other words, there is a colouring
+$c: [\omega]^\omega \rightarrow \{0,1\}$ such that for each
+infinite subset $A \subset \omega$ there are $A_1,A_2 \in [A]^\omega$
+of different colour, $c(A_1) \not = c(A_2)$.
+
+\smallskip
+
+Each subset $S \subset [\omega]^\omega$ determines a colouring
+$c_S:[\omega]^\omega \rightarrow \{0,1\}$ so that $c(X)=1$
+iff $X \in S$.
+
+\begin{definition}
+ \begin{itemize}
+  \item[(i)] $S \subset [\omega]^\omega$ is called \emph{Ramsey}
+	if for each infinite $A \subset \omega$ there is its
+	infinite subset $B \in [A]^\omega$ so that
+	either $[B]^\omega \subset S$, or $[B]^\omega \cap S = \emptyset$.
+  \item[(ii)]  $S \subset [\omega]^\omega$ is called \emph{completely Ramsey}
+	if for each Mathias condition $\<s,A\>$ there is $B \in [A]^\omega$
+	so that either $\dl s,B \dr \subset S$, or $\dl s,B \dr \cap S = \emptyset$.
+ \end{itemize}
+\end{definition}
+
+We state here without proof.
+
+\begin{theorem}\label{ellentuck}{\rm (Ellentuck Theorem)}
+Subsets of the space $\E$ has the Baire property if and only if
+it is completely Ramsey.
+\end{theorem}
+
+The following theorem and techniques used in its proof substantially influenced the
+development of infinite Ramsey theory. Now it is an easy corollary
+to more general Ellentuck theorem.
+
+\begin{theorem}\label{galvin-prikry}{\rm (Galvin - Prikry Theorem)}
+Each Borel set in classical topology $\tau_c$ is completely Ramsey.
+\end{theorem}
+
+We later use this theorem in a proof of a Laver property of Mathias forcing.
+
+\subsection{${}$Historical note.}
+For any topological space $(X,\tau)$ we can consider the space
+of its non-empty closed subsets $Closed^+(\tau)$. Vietoris defined
+natural topology on this space, now known as Vietoris topology.
+Reader familiar with this concept may note that when starting
+from the discrete space $\omega$ the Vietoris topology is a topology
+on $\mathcal P(\omega)$ and its trace on $[\omega]^\omega$ is
+exactly the Ellentuck topology.
+
+
+\subsection{${}$Back to Mathias forcing.}\label{M-order}
+
+We will define an   auxiliary sequence $\< \leq_n : n \in \omega \>$
+of orderings on $M$ by $\< s,A \> \leq_n \<t,B\>$ if $s=t$, $A \subset B$
+and first $n$ elements of $B$ are in $A$.
+
+\smallskip
+
+It is clear that
+$$
+\leq \ \supseteq \ \leq_0 \ \supseteq \ \leq_1 \ \supseteq \ \dots \ \supseteq \ \leq_n \ \supseteq \ \dots
+$$
+and if $\< s,A\> \leq_n \<t,B\>$ then both conditions have the same stem.
+
+\smallskip
+
+A sequence of conditions $\<s,A_0\> \geq_1 \<s,A_1\> \geq_2 \dots \geq_n \<s,A_n\>
+	\geq_{n+1} \dots$ is called a \emph{fussion sequence} for $M$
+and $p=\<s,\bigcap_i A_i\>$ is again a Mathias condition and
+$p \leq_n \<s,A_n\>$, for each $n \in \omega$.
+
+Our aim is to show that Mathias forcing with orderings $\leq_n (n \in \omega)$
+satisfies the following general principle introduced by J.~Baumgartner.
+At first sight it seems little odd, but it appears to be useful.
+
+\begin{definition}
+ {\bf Axiom A.} A forcing notion $(P,\leq)$ satisfies \emph{axiom A}
+if there is a sequence $\< \leq_n, n \in \omega \>$ of orderings
+of $P$ such that
+\begin{itemize}
+ \item[(i)] $\leq \ \supseteq \ \leq_0$ and $\leq_n \ \supseteq \ \leq_{n+1}$,
+	i.e. $p \leq_{n+1} q$ implies that $p \leq_n q$ and also $p \leq q$,
+ \item[(ii)] if $\<p_n : n \in \omega \>$ is a sequence of conditions
+	such that $p_{n+1} \leq_n p_n$ then there is $p \in P$ such
+	that $p \leq_n p+n$ for each $n \in \omega$,
+ \item[(iii)] for any $p \in P$, any maximal antichain $A$ and $n \in \omega$
+	there is $q \leq_n p$ and $q$ is compatible with at most countably
+	many $a \in A$; $|\{a \in A : a || q \}|\leq\omega$.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+ If forcing notion $(P,\leq)$ is $ccc$ or $\sigma$-closed then it
+satisfies the axiom A. It suffices to put $\leq_n = \leq$ for
+each $n \in \omega$. For $ccc$ forcing, there is nothing to check.
+
+If $P$ is $\sigma$-closed then property {\itshape (ii)} follows
+from '$\sigma$-closedness'.
+\end{example}
+
+
+\begin{proposition}
+ Mathias forcing satisfies axiom A, with respect to orderings
+ $\{\leq_n : n \in \omega \}$, see \ref{M-order}.
+\end{proposition}
+
+\begin{proof}
+ Fussion argument guarantees the  property {\itshape (ii)} of axiom A.
+
+\smallskip
+
+To show {\itshape (iii)}, let $p = \<s,A\>$, $n\in\omega$ and
+$\mathcal A$ be given antichain. Let $K_0$ be the set of first $n$-elements
+of $A$ and $\{ s_i : i < 2^n \}$ be an enumeration of all
+subsets of $K_0$, we may suppose that $s_0 = \emptyset$.
+
+By recursion on $i < 2^n$ we construct non-increasing sequence
+$\< S_i : i \in \omega\>$ of infinite subsets of $A$ and simultaneously
+non-decreasing sequence $\<{\mathcal A'}_i : i < 2^n \>$ of finite subsets
+of $\mathcal A$.
+
+We start with condition $\<s,S\>$ where $S = A - K_0$, note that
+$s \cup s_0 =s$.
+
+Either there is a couple $r \in \mathcal A$ and $S_0 \in [S]^\omega$
+such that $\< s, S_0 \>$ is below $r$. If so, choose one, say $r_0$, $S_0$
+and set ${\mathcal A'}_0 = \{r_0\}$. So we have the set $S_0$.
+
+Or such couple does not exist. Then put ${\mathcal A'}_0 = \emptyset$
+and $S_0 = S$. Assume we know $S_k,\ {\mathcal A'}_k$ and $k+1 < 2^n$.
+Now we test condition $\<s \cup s_{k+1}, S_k \>$. Again either
+we can choose a couple $r_{k+1}, \ S_{k+1} \in [S_k]^\omega$
+that fulfils $\< s \cup s_{k+1}, S_{k+1}\> \leq r_{k+1}$. Then
+we have $S_{k+1}$ and ${\mathcal A'}_{k+1} = {\mathcal A'}_k \cup \{r_{k+1}\}$.
+Or no such couple exists, then $S_{k+1} = S_k$ and
+${\mathcal A'}_{k+1} = {\mathcal A'}_k$.
+
+When $k = 2^{n-1}$, first step is finished and we denote $A_1=S_{2^{n-1}}$
+and ${\mathcal A}_1 = {\mathcal A'}_{2^{n-1}}$. Notice that
+$|{\mathcal A'}_1| \leq 2^n$.
+
+So $p_1 = \<s , K_0 \cup A_1 \> \leq_n \<s,A\>$, but we do not know that
+$p_1$ is compatible with only countably many conditions from $\mathcal A$.
+
+We have to continue  other $\omega$-many steps. Take a set $K_1$
+consisting of first $n+1$ elements of ${\mathcal A}_1$ and enumerate
+$\{s_i : i < 2^{2n+1} \}$ of subsets of $K_0 \cup K_1$. We continue
+with the same process, starting with condition $\<s,S\>$, where
+$S = A_1 - k_1$. By recursion choose appropriate couples $r,S_i$,
+i.e. $\<s \cup s_i , S_i \> \leq r$ provided it is possible and
+enrich the starting set $\mathcal A_1$. Note that it is sufficient
+to consider $s_i$ for which $s_i \cap K_1 \not = \emptyset$,
+other cases are covered by $\mathcal A_1$.
+
+We obtain a finite $\mathcal A_2 \supseteq \mathcal A_1$,
+and $A_2 = S_{2^{2n}}$. Take $K_2$ first $n+1$ elements of
+$A_2$ and continue up to $\omega$.
+
+We get pairwise disjoint sets $K_j \ (j \in \omega)$, with $|K_0|=n$,
+$|K_j|=n+1$, for $j > 0$, and each $K_j$ consists of first $n+1$
+elements of $A_j$ for $j > 0$.
+
+It remains to put $q = \< s, \bigcup_j K_j\>$ and it is clear that
+$q \leq_n p$. We need to show that $q$ is compatible with at most
+countably many  elements of $\mathcal A$. To this end, let us show
+that for $r \in \mathcal A$, $r \not \in \bigcup_j \mathcal A_j$,
+$q \perp r$.
+
+For if $q || r$, then there is some $t$, $t \leq q$, $t \leq r$.
+$t = \< s,B\>$, with finite $L$, so $s -L \subseteq \bigcup_{j < m_0} K_j$
+for some $m_0 \in \omega$. But our construction guarantees that
+$L$ is compatible with some condition from $\mathcal A_{m_0}$,
+which contradicts the disjointness of $\mathcal A$.
+\end{proof}
+
+The following assertion holds true for any forcing notion satisfying axiom A,
+the only specific but important for Mathias frocing  is the fact that
+stems are preserved.
+
+\begin{theorem}
+ Let $\{\mathcal A_n : n \in \omega \}$ be a countable family of maximal antichains
+in $M$. Then for any condition $p = \<s,A\>$ there is a condition
+$q = \<s,B\>$ such that
+\begin{itemize}
+ \item[(i)] $q \leq p$ and
+ \item[(ii)] $q$ is compatible with at most countably many elements of $\mathcal A_n$,
+ for each $n \in \omega$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+Mathias forcing has moreover a property, called \emph{Laver property}, that is not
+generally a consequence of axiom A.
+
+\begin{proposition}
+ Let $B$ be a complete Boolean algebra in which Mathias ordering $(M,\leq)$ is dense,
+ i.e. $B \approx RO(M)$. Let $\{\mathcal A_n : n \in \omega \}$ be a countable
+family of maximal antichains in $B$. Then for any condition $p = \<s,A\>$ there is a stronger condition
+ $q = \<s,B\>$ with the same stem such that $q$ is compatible with at most $2^n$ elements of $\mathcal A_n$,
+for each $n \in \omega$. Particulary for any element $b \in B$ and any condition  $\<s,A\>$
+there is a condition $\<s,B\> \leq \<s,A\>$ such that either $\<s,B\> \leq b$ or $\<s,B\> \perp b$.
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\subsection{${}$Different forms of distributivity laws.}\label{M-order}
+
+Let $(P,\leq)$ be a forcing notion and $B$ be a complete Boolean algebra, $B = RP(P)$.
+
+If $\{\mathcal A_i : i < n \}$ is a finitely many maximal antichains then there is
+a maximal antichain $\mathcal A$ refining all $\mathcal A_i$'s, i.e.
+for every $p \in \mathcal A$ and  for each $i < n$ there is $q \in \mathcal A_i$ so that $p \leq q$.
+
+The common refinement for infinitely many antichains need not exist.
+
+\begin{definition}
+ Let $\kappa$ be an infinite  cardinal. An ordering $(P,\leq)$ is called
+\emph{$\kappa$-distributive} if there is a common refinement for each collection of $\kappa$ many
+maximal antichains.
+
+\emph{Non distributivity number}, denoted as $\mathfrak h(P)$ is the minimal cardinal
+such that $(P,\leq)$ is not $\kappa$-distributive.
+\end{definition}
+
+\begin{fact}
+\begin{itemize}
+ \item[(i)] $(P,\leq)$ is $\kappa$-distributive if and only if an intersection of at most $\kappa$ many open
+ dense subsets is again an open dense subset.
+ \item[(ii)] $B$ is $\kappa$ distributive iff some dense subset $(P,\leq)$ is $\kappa$ distributive.
+ \item[(iii)] Non distributivity number is well defined provided that $(P,\leq)$ has no atoms, in this
+	case $\mathfrak h(P) = \mathfrak h(RO(P))$ and it is regular cardinal.
+ \item[(iv)] If $(P,\leq)$ is atomless and homogeneous, i.e. $(P,\leq)$ and $((leftarrow,p],\leq)$
+	have isomorphic dense sets, then
+	$
+	\mathfrak h(P) \ = \ \min \{\kappa : (\exists \{\mathcal A_i : i < n \})$ maximal
+	antichains such that for a dense subset $H \subseteq P \ (\forall p \in H) \
+	(\exists \alpha < \kappa) \ (\exists q_1,q_2 \in \mathcal A_\alpha) \ q_1 \not = q_2 \ \&
+	\ p \parallel q_1 \ \& \ p \parallel q_2 \ \}.
+	$
+\end{itemize}
+\end{fact}
+
+\begin{definition}{\bf Three parametric distributivity.}
+\begin{itemize}
+ \item[(i)] Let $\kappa$ be infinite, $\lambda,\mu \geq 2$ cardinals.
+	We say that a complete Boolean algebra $B$ is
+	\emph{$(\kappa,\lambda,\mu)$-distributive} if for any $\kappa$ many
+	maximal antichains $\{\mathcal A_\alpha : \alpha < \kappa \}$ each
+	of size at most $\lambda$ there is a dense set $H$ such that for any
+	$p \in H$ and every $\alpha < \kappa$ $p$ is compatible with less then
+	$\mu$ elements of each $\mathcal A_\alpha$.
+ \item[(ii)] $(\kappa,\cdot,\mu)$ distributivity means that the antichains
+	are not limited in size, i.e. $(\kappa,\cdot,2)$-distributivity is
+	$\kappa$-distributivity.
+ \item[(iii)] A Boolean algebra $B$ is \emph{weakly distributive} if it is
+	$(\omega,\cdot,\omega)$-distributive.
+ \item[(iv)] A forcing $(P,\leq)$ is called \emph{${}^\omega \omega$-bounding}
+	if the algebra $RO(P)$ is $(\omega,\omega,\omega)$-distributive.
+\end{itemize}
+\end{definition}
+
+Some of these notions we already encountered in Random forcing section. Measure
+algebra is weakly distributive and Random forcing is ${}^\omega \omega$-bounding.
+
+\begin{definition}
+ Let $B$ be a complete Boolean algebra.
+\begin{itemize}
+ \item[(i)] $B$ has \emph{Laver property} if for any countable family
+	$\{\mathcal A_n : n \in \omega \}$ of finite maximal antichains there is a dense
+	subset $H \subseteq B^+$ such that
+	$$
+	(*) \qquad (\forall p \in H) \ (\forall n \in \omega) \quad
+	|\{\ q \in \mathcal A_n \  : \ q \parallel  p \ \}| \ \leq \ 2^n.
+	$$
+  \item[(ii)] $B$ has \emph{Sacks property} if for any countable family
+	$\{\mathcal A_n : n \in \omega \}$ of countable maximal antichains there is a dense
+	subset $H \subseteq B^+$ such that $(*)$.
+
+\end{itemize}
+\end{definition}
+
+Sack property is clearly stronger then Laver property, since maximal antichains need not
+to be finite, but at most countable.
+
+\subsubsection*{Influence of distributivity properties of forcing to extension.}
+
+\begin{proposition}
+ A forcing $(P,\leq)$ is $\kappa$-distributive if and only if in any generic
+extension $V[G]$ via $P$ any mapping of form $\sigma : \kappa \rightarrow V$,
+$\sigma \in V[G]$ is a set in groundmodel; i.e. $\sigma \in V$.
+\end{proposition}
+
+\begin{fact}
+ Every forcing notion satisfying axiom A is $(\omega,\cdot,\omega)$-distributive.
+\end{fact}
+
+\begin{proposition}
+ If forcing $(P,\leq)$ satisfies $(\omega,\cdot,\omega_1)$-distributivity, then
+in any generic extension $V[G]$ via $P$ for any mapping $\sigma \in V[G]$,
+$\sigma : \omega \rightarrow V$ there is a relation $S \in V$ such that
+$S \subseteq \omega \times V$ and $|S(n)| \leq \omega$ for each $n \in \omega$
+and $\sigma(n) \in S(n)$.
+
+So $P$ preserves cardinal $\omega_1$.
+\end{proposition}
+
+\begin{proposition}
+ If forcing $(P,\leq)$ has a Laver property then in any generic extension $V[G]$
+via $P$ the following hold:
+Let $\sigma : \omega \rightarrow \omega$, $\sigma \in V[G]$, if there is
+$f \in V$ such that $f:\omega \rightarrow \omega$ and $\sigma \leq f$ then
+there is $S : \omega \rightarrow [\omega]^{< \omega}$, $S \in V$ such that
+$(\forall n \in \omega)$ $\sigma(n) \in S(n)$ and $|S(n)| \leq 2^n$.
+\end{proposition}
+
+The previous proposition holds for Sacks forcing in a bit stronger way,
+to enclose the function $f$ from the extension into a relation $S$ we
+do not need to check that $f$ is be bounded by the groundmodel function.
+
+\smallskip
+
+Important consequence of Laver property.
+
+\begin{proposition}
+ If forcing has the Laver property then it does not add neither Cohen nor Random reals.
+\end{proposition}
+
+\subsection{${}$Summary of properties of Mathias forcing.}
+
+Mathias forcing
+\begin{itemize}
+ \item[(o)] is homogenous, ${2^\omega}^+-cc$ partial ordering.
+ \item[(i)] adds a dominating real, so also adds an independet real.
+ \item[(ii)] has laver property and so does not add neither Cohen
+	nor Random reals.
+ \item[(iii)] satisfies axiom A, so does not collapses $\omega_1$.
+ \item[(iv)] collapses all cardinal $\kappa$ $\mathfrak h < \kappa \leq 2^\omega$
+	onto $\mathfrak h$, provided $\mathfrak h < 2^\omega$ in $V$;
+	i.e. there is a one-to-one mapping $\sigma: \mathfrak h \to (2^\omega)^V$
+	and either smaller cardinals then $\mathfrak H$ or strictly
+	larger cardinals then $2^\omega$ are preserved.
+\end{itemize}
+
+\begin{proof} {\scshape Hint.} For any  partition $\{I_n : n \in \omega \}$, to
+intervals $I_n = [a_n , a_{n+1} )$ the set of conditions $\{ \< s, A \> : \forall^\infty n |I_n \cap s| \leq 1 \}$
+is dense in Mathias forcing. So increasing enumeration of Mathias real is
+a dominating real.
+
+\smallskip
+
+The fact that Mathias forcing collapses cardinal follows from that $(\omega,\subseteq^*) \lessdot M$
+and that $(\omega,\subseteq^*)$ is a forcing for such collaps.
+
+\end{proof}
+
+
+
+The following two forcings do not add new reals. This means, among others,
+that every Polish space in the groundmodel remains Polish in the extension.
+
+\subsection{${}$ $([\omega]^\omega,\subseteq)$.}
+
+The ordering $([\omega]^\omega,\subseteq)$ and its separative modification
+$([\omega]^\omega,\subseteq^*)$ were mentioned in chapter \ref{ch2,kde}.
+
+\smallskip
+
+Relevant properties of $([\omega]^\omega,\subseteq^*)$.
+\begin{itemize}
+ \item[(i)] atomless, homogeneous, $(2^\omega)^+$-$cc$ and $\sigma$-closed.
+ \item[(ii)] Cardinal number $\mathfrak h$ denotes the non-distributivity
+	number of this forcing, it is one  of basic cardinal characteristics
+	of the continuum.
+ \item[(iii)] $\mathfrak h$ is the minimal cardinal $\kappa \in V$ so that
+	this forcing adds a new subset of $\kappa$.
+ \item[(iv)] Generaly this forcing adds a selective ultrafilter on $\omega$.
+ \item[(v)] It adds a mapping from $\mathfrak h$ onto $(2^\omega)^V$, so
+	it collapses all cardinals in $V$ that are less orequal to $2^\omega$
+	and larger then $\mathfrak h$.
+ \end{itemize}
+
+Complete Boolean algebra $RO([\omega]^\omega,\subseteq^*)$ is the completion
+of $\mathcal P(\omega) / fin$ and this is isomorphic to the algebra of regular
+open sets of \v Cech-Stone reminder $\beta \omega - \omega$.
+
+\medskip
+
+Let us first recall the definitions of some types of ultrafilters on $\omega$.
+
+\begin{definition}
+ A non principal ultrafilter on $\omega$ is
+\begin{itemize}
+ \item[(i)] \emph{selective (Ramsey)} ultrafilter if for any partition
+	$R$ of $\omega$ either
+	\begin{itemize}
+	\item[(a)] $R \cap U \not = \emptyset$ or
+	\item[(b)] there is $X \in U$ such that $(\forall r \in R) \ |r \cap X| \leq 1$,
+		i.e. $X$ is a selector of $R$.
+	\end{itemize}
+ \item[(ii)] \emph{$P$-ultrafilter} if for any partition $R$ of $\omega$
+	either $R \cap U \not = \emptyset$  or there is $X \in U$  such that
+	$(\forall r \ in R) \ |X \cap r | < \omega$.
+ \item[(iii)] \emph{$Q$-ultrafilter} if for any partition $R$ of $\omega$
+	into finite pieces there is $X \in U $ which is a selector for $R$.
+\end{itemize}
+\end{definition}
+
+It is easy to see that an ultrafilter $U$ is selective if and only if it is
+simultaneously $P$ and $Q$ ultrafilter.
+
+\smallskip
+
+It should be noted that the existence of any such ultrafilter is not provable
+in ZFC. Selective ultrafilters exist e.g. when MA (Martin axiom) holds.
+
+
+\begin{proof}
+\noindent (i) Clear, (ii), (iii) follows from definition.
+
+\smallskip
+
+\noindent (iv) Let $U$ be a generic filter, $U$ is a filter on $\omega$
+containing all co-finite sets. Since in $V[U]$ there is no subset of
+$\omega$, there is no new partition of $\omega$. Let $R$   be a partition
+of $\omega$. If $R$ is finite, then $R \cap [\omega]^\omega$ is predense
+and so $R \cap U \not = \emptyset$ , therefore $U$ is ultrafilter.
+
+If $R$ is infinite then a set $R \cup \{ X : (\forall r \in R) (|X \cap r| \leq 1) \}$
+is predense, so $U$ contains either a member of $R$ or some of
+its selectors.
+\end{proof}
+
+
+We show that in $([\omega]^\omega,\subseteq^*)$ there is so called base tree.
+It is a particular case of more general forcing notions.
+
+\begin{proposition}{\rm (Base tree.)}\label{basetree}
+ Let $(P,\leq)$ be an ordering that is atomless, homogeneous, $\sigma$-closed
+ and $|P| \leq 2^\omega$. Then there is a family
+ $\{ \mathcal A_\alpha : \alpha < \mathfrak (P) \}$ of maximal antichains
+ such that
+ \begin{itemize}
+  \item[(i)] if $\alpha < \beta$ then $\mathcal A_\alpha$ refines  $\mathcal A_\beta$,
+  \item[(ii)] $(\forall x \in P) \ (\exists \alpha < \mathfrak h(P)) \
+	(\exists y \in \mathcal A_\alpha) \ y \leq x$,
+  \item[(iii)] $\forall  y \in \mathcal A_\alpha \
+	|\{z \in \mathcal A_{\alpha + 1} : z \leq y \}| = 2^\omega$.
+ \end{itemize}
+\end{proposition}
+
+The structure $(\bigcup_{\alpha < \mathfrak h(P)} \mathcal A_\alpha, \leq)$
+is a tree by the general definition in chapter \ref{I,kde}, and the reason why
+this structure is caled base tree is that the undelrying set
+$\bigcup_{\alpha < \mathfrak h(P)}$ is dense in $(P,\leq)$.
+
+\begin{proof}
+ Since $(P,\leq)$ is an atomless and $\sigma$-closed ordering, its distributivity
+number $\kappa = \mathfrak h(P)$ is well defined and any family of maximal
+antichains of size strictly less then $\kappa$ has a common refinement and
+moreover $\kappa$ is uncountable regular cardinal, $\kappa \leq 2^\omega$ for
+$|P| \leq 2^\omega$.
+
+Take a family $\{Q_\alpha : \alpha < \kappa\}$ of refining maximal
+antichains. From homogenity of $P$ we can suppose that every $p \in P$ is
+compatible with at least two elements of some $Q_\alpha$.
+
+We claim
+$$
+(\forall p \in P) \ (\exists \alpha < \kappa) \quad
+	|\ \{\ q \in Q_\alpha \ : \ p \parallel q \  \} \ | \ = \ 2^\omega.
+$$
+Let $p \in P$ be given. By recursion for nodes $\varphi$ of binary tree
+${}^\omega \{ 0,1 \}$ we choose labels $\< \alpha_\varphi, p_\varphi \>$,
+where $\alpha_\varphi < \kappa$ and $p_\varphi \in P$. Fro $\emptyset$,
+put $\alpha_\emptyset = 0$ and $p_\emptyset = p$. If we already know
+$\alpha_\varphi, p_\varphi$, then for $\varphi_0 = \varphi^\smallfrown \{0\}$
+and $\varphi_1 = \varphi^\smallfrown \{1\}$ set $\alpha_{\varphi_i}$
+the least $\alpha < \kappa$  such that there are $q_0, q_1 \in Q_\alpha$,
+$q_0 \not = q_1$ such that $p_\varphi \parallel q_0$ and $p_\varphi \parallel q_1$
+and choose $p_{\varphi_0}$ as an element which is below $p_\varphi$ and $q_0$
+and $p_{\varphi_1}$ below $p_\varphi$ and $q_1$.
+
+For arbitrary branch $f : \omega \to \{0,1\}$ we have descending chain
+$\{p_{f \upharpoonright n} : n \in \omega \}$, since $P$ is $\sigma$-closed
+there is an element $p_f$ which is below all $p_{f \upharpoonright n}$.
+
+The set $\{ p_f : f \in {}^\omega \{0,1 \} \ \}$  has size $2^\omega$ is
+an antichain, all $p_f$'s are below $p$.  Denote
+$\beta(p) = \sup \{\alpha_\varphi : \varphi \in {}^{< \omega} \{0,1 \} \}$.
+Then $\beta < \kappa$ and $p$ is compatible with $2^\omega$ many elements
+of $Q_\beta$, since $p_f, p_g$ are compatible with different elements of $Q_\beta$
+provided $f \not = g$.
+
+\smallskip
+
+The following is an easy corollary of the claim:
+\begin{itemize}
+ \item[(a)] for any $p \in P$ there is a maximal antichain in $(\leftarrow,p]$ of
+	size $2^\omega$,
+ \item[(b)] there is an antichain $\mathcal X_\beta$ such that
+	$(\forall p \in P) \ (\beta_p = \beta) \rightarrow
+	(\exists x \in \mathcal X_\beta) \ x \leq p$.
+\end{itemize}
+
+For $p \in P$ pick up a maximal antichain $\mathcal Y(p)$ in $(\leftarrow,p]$
+of size $2^\omega$. By recursion, define a base tree: Put $\mathcal A_0 = Q_0$,
+for limit ordinal $\alpha$  let $\mathcal A_\alpha$ be a common refinement of
+$\{ \mathcal A_\beta : \beta < \alpha \}$ and
+let $\mathcal A_{\alpha +1}$ be a maximal antichain refining
+$\bigcup \{\mathcal Y_p : p \in \mathcal A_\alpha \}$, $Q_\alpha$ and $\mathcal X_\alpha$
+\end{proof}
+
+\begin{corollary}
+ Suppose that $(P,\leq)$ and $(Q,\leq)$ satisfy conditions of previous proposition
+and $\mathfrak h(P) = \mathfrak h(Q) = \omega_1$. Then $P$ and $Q$ have dense
+isomorphic subsets.
+\end{corollary}
+
+\begin{proof}{\scshape Hint.}
+ Let $\{\mathcal A_\alpha : \alpha < \omega_1 \}$ and
+$\{\mathcal B_\alpha : \alpha < \omega_1 \}$ be corresponding base trees, we
+can assume that $| \mathcal A_0 | = | \mathcal B_0 | = 2^\omega$. Let
+$\varphi_0$   be one-to-one mapping of $\mathcal A_0$ onto
+ $\mathcal B_0$, $\varphi_0$ can be extended to isomorphism of
+$(\bigcup \{\mathcal A_\alpha : \alpha \in \omega_1 \},\leq_1)$ onto
+$(\bigcup \{\mathcal B_\alpha : \alpha \in \omega_1 \},\leq_2)$.
+\end{proof}
+
+Another corollary of base tree Proposition \ref{basetree} is the
+following lemma concerning forcing notion $(P,\leq)$ satisfying
+$cc$-properties \eqref{cc-prop}. The particular case of this
+lemma proves remaining claims concerning $([\omega]^\omega \subseteq^*)$
+
+\begin{lemma}
+ Let $\kappa = \mathfrak h(P)$. Then
+\begin{itemize}
+ \item[(i)] $P$ does not add new subset of $\lambda$ for $\lambda < \kappa$ and
+ \item[(ii)] $P$ adds a  mapping of $\kappa$ onto $(2^\omega)^V$, so if
+	$\kappa < (2^\omega)^V$ then $P$ collapses groundmodel continuum onto
+	$\kappa$ in any generic extension via $P$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+\noindent {\itshape (i)} for any $\lambda < \kappa$, $(P,\leq)$
+	is $\lambda$-distributive, see \ref{}.
+
+\noindent {\itshape (ii)} Let $\{\mathcal A_\alpha : \alpha < \kappa \}$
+be a base tree of $P$. For given $\alpha < \kappa$ choose a mapping
+$f_\alpha : \\mathcal A_{\alpha +1} \to 2^\omega$ such that for every
+$a \in \mathcal A_\alpha$ $f_\alpha \upharpoonright \{b \leq a\}$
+is one-to-one mapping of the set $\{b \in \mathcal A_{\alpha +1} : b < a \}$
+onto $2^\omega$. if $G$ is a generic filter on $P$ over $V$ then
+$\tau = \{ \< \alpha, p \> : \alpha < \kappa, \ p < 2^\omega; \
+	(\exists a \in \mathcal A_{\alpha+1} \cap G) \ f_\alpha(a) = p \}$.
+is the desired mapping, that belongs to $V[G]$.
+\end{proof}
+
+
+\subsection{${}$ Cardinal numbers $\mathfrak h_n$, for $n \geq 2$.}
+
+Let $N \in \{n \in \omega: n \geq 2\} \cup \{ \omega \}$, then the
+product $\prod_{n \in N} ([\omega]^\omega,\subseteq^*)$ also satisfy
+$cc$-property. The distributivity number of such product is denoted
+$\mathfrak h_N$.
+
+\begin{lemma}
+ Let $P,Q$ are orderings satisfying $cc$-properties and there is a regular
+embedding of $P$ into $Q$. Then $\mathfrak h(Q) \leq \mathfrak h(P)$.
+\end{lemma}
+
+\begin{proof}
+ We proceed toward a contradiction. Suppose $\mathfrak h(P) < \mathfrak h(Q)$
+and we can assume that $P \subseteq Q$.
+
+Let $\{\mathcal A_\alpha : \alpha < \mathfrak h(P) \}$ be a base matrix for $P$.
+Then $\mathcal A_\alpha$ are also maximal antichains in $Q$. Since
+$\mathfrak h(P) < \mathfrak h(Q)$, there is maximal antichain $\mathcal A$ in $Q$
+refining all $\mathcal A_\alpha$'s. Since the embedding of $P$ into $Q$ is
+regular, the complete Bolean algebra $RO(P)$ is a complete subalgebra
+of complete Boolean algebra $RO(Q)$. Let $S = \{ upw(a) : a \in \mathcal A \}$,
+then $S \subset RO(P)^+$ and no element of $P$
+is below any element of $S$ which is a contradiction since $P$ is dense in $RO(P)$.
+\end{proof}
+
+The preceding lemma and the fact that the caninical embedding
+of $\prod_{i < n} ([\omega]^\omega,\subseteq^*)$ into $\prod_{i < m} ([\omega]^\omega,\subseteq^*)$
+for $n \leq m$ is regular give us the basic inequality
+$$
+\mathfrak h \geq \mathfrak h_2 \geq \mathfrak h_3 \geq \dots \geq \mathfrak h_\omega.
+$$
+In this generaly infinite sequence there are clearly only finitely many jumps; i.e.
+only finitely many inequalities can be strict. It is still an open problem if the
+jumps can ocur on arbitrarily prescribed places. It is known (Shelah and Spinas)
+that it is consistent that $\omega_2 = \mathfrak h > \mathfrak h_2 = \omega_1$.
+
+
+\subsection{${}$ Continuum hypothesis.}
+
+For every model of ZFC there is a generic extension that satisfy the continuum hypothesis
+and moreover the prediction principle $\Diamond$ holds true.
+
+Standard forcing notions for producing extension that satisfy CH are the following
+\begin{eqnarray*}
+& (\ Fn(\omega_1, \{0,1\};\ \omega_1), \ \supseteq \ ), \\
+& (\ Fn(\omega_1, \mathbb R;\ \omega_1), \ \supseteq \ ), \\
+& (\ Fn(2^\omega, \{0,1\};\ \omega_1), \ \supseteq \ ),
+\end{eqnarray*}
+those forcings are equivalent, separatice partial orderings, satisfying $cc$-condition
+with distributivity number $\mathfrak h(P) = \omega_1$.
+
+\smallskip
+
+Let $G$ be a geric filter on such ordering. By the previous it is clear that there are
+no new reals in $V[G]$ and that there is is one-to-one mapping $\tau$ of $\omega_1$
+on $(2^\omega)^V$. Hence, if $\{r_\alpha : \alpha < (2^\omega)^V \}$ is the numbering
+of all subsets of $\omega$ in $V$ then  $\{r_{\tau(\alpha)} : \alpha < (2^\omega)^V \}$
+is the ordering of $\mathcal P(\omega)$ in $V[G]$. So $V[G] \vDash CH$.
+
+\begin{definition}
+ \emph{$\Diamond$-sequence}. A sequence $\< A_\alpha   : \alpha < \omega_1 \>$ is called
+$\Diamond$-sequence if
+\begin{itemize}
+ \item[(i)] $A_\alpha \subset \alpha$ for every $\alpha \in \omega_1$ and
+ \item[(ii)] for any $X \subseteq \omega_1$ the set
+$\{ \alpha \in \omega_1 :  X \cap \alpha = A_\alpha \}$ is stationary in $\omega_1$.
+\end{itemize}
+\end{definition}
+
+Gussing principle $\Diamond$ that postulates the existence of a $\Diamond$-sequence
+is due to R.~Jensen. It is easy to see, that $\Diamond$ implies CH.
+
+\smallskip
+
+Let us mention two well known consequences of $\Diamond$ without proofs:
+\begin{itemize}
+ \item[(a)] there is a Souslin tree, so the negation of Souslin hypothesis holds true.
+ \item[(b)] (A.~Ostaszewski) There is an Ostaszewski space; i.e. a topological space
+which is completely regular, hereditarily separable, countable compact, perfectly normal
+ but non-compact space.
+\end{itemize}
+
+
+%
+% \begin{theorem}
+% Suppose $B$ is a complete Boolean algebra carrying a $\sigma$-complete
+% strictly positive probability measure (or a Maharam submeasure).
+%  Then $(B,\leq)$ is weakly distributive.
+% \end{theorem}
+% %\begin{proof}{}
+% %\end{proof}
+%
+% %%%%%%%%%%%%%%%%%%%%% HECHLER %%%%%%%%%%%%%%%%%%%%%
+% \begin{definition}{\bf Hechler.}
+% The standard definition of Hechler forcing is the following:
+% $$ %\startformula
+% H=\{(s,f):s\in Seq,f\in{}^\omega\omega,f\ \hbox{is nondecreasing}\}
+% $$ %\stopformula
+%  where $(s,f)\leq(t,g)$ iff $s\supseteq t$, $f\geq g$, i.e. $(\forall n<\omega)(f(n)\geq g(n))$, and $(\forall i\in dom(s)\setminus dom(t))(s(i)\geq f(i))$
+% \end{definition}
+%
+% We shall now introduce a variant of this definition in the language of trees.
+%
+% \begin{definition}
+% $H=\{T\subseteq Seq\uparrow:T\ \hbox{is a tree}\ \&\ (\forall s\in T)(\{n:s\conc n\in T)\}\ \hbox{is cofinite})\}$ where $H$ is
+% ordered by inclusion.
+% \end{definition}
+%
+% The standard Hechler can be regularly embedded into the 'tree' Hechler and both forcings behave very similarly, although they are probably
+% not forcing equivalent.
+%
+% \begin{proposition}
+% Cohen forcing $C$ can be regularly embedded into $H$.
+% \end{proposition}
+%
+% The following forcing notions are not ccc:
+%
+% \begin{definition}{\bf Sacks.}
+% $S=\{T\subseteq Seq_2:(\forall s\in T)(\exists t\in T)(s\subseteq t\ \&\ \{t\conc0,t\conc1\}\subseteq T)\}$% borel/countable
+% \end{definition}
+% iii
+% \begin{fact}
+% $S\sim \mbox{Borel}(2^\omega)/[2^\omega]^{\leq\omega}$.
+% \end{fact}
+%
+% %%%%%%%%%%%%%%%%%%%%% MILLER %%%%%%%%%%%%%%%%%%%%%
+% \begin{definition}{\bf Miller.}
+% $M=\{T\subseteq Seq:(\forall s\in T)(\exists t\in T)(s\subseteq t\ \&\ |\{n:t\conc n\in T\}|=\omega\}$% borel/K_sigma (spocetne sjednoceni kompaktu)
+% \end{definition}
+%
+%
+% \begin{fact}
+% $M\sim \mbox{Borel}(\N)/K_\sigma$ where $K_\sigma$ is the $\sigma$-ideal generated by compact subsets of $\N$.
+% \end{fact}
+%
+% %%%%%%%%%%%%%%%%%%%%% LAVER %%%%%%%%%%%%%%%%%%%%%
+% \begin{definition}{\bf Laver.}
+% $L=\{T\subseteq Seq:(\forall s\in T,stem(T)\subseteq s)(|\{n:s\conc n\in T\}|=\omega\}$
+% \end{definition}
+%
+% \begin{definition}
+% We define the \emph{Laver ideal} as follows. For any $g\in{}^{Seq}\omega$ let $A_g=\{h\in{}^\omega\omega:(\forall n<\omega)(h(n)\leq g(h\upharpoonright n))\}$. Then the Laver ideal $I_L$ is the $\sigma$-ideal generated by $\{A_g:g\in{}^{Seq}\omega$.
+% \end{definition}
+%
+% \begin{fact}
+%  $L\sim \mbox{Borel}({}^\omega\omega)/I_L$.
+% \end{fact}
+%
+%
+% %%%%%%%%%%%%%%%%%%%%% MATHIAS %%%%%%%%%%%%%%%%%%%%%
+% \begin{definition}{\bf Mathias forcing.}
+% The classical definition of Mathias forcing is as follows
+% $$ %\startformula
+% M=\{(s,A):s\in Seq\uparrow,A\in[\omega]^\omega\ \&\ min\ A> max\ s\}
+% $$ %\stopformula
+%  where
+% $$ %\startformula
+% (s,A)\leq(t,B)\equiv s\supseteq t\ \&\ A\subseteq B
+% $$ %\stopformula
+% $M$ can be represented in tree language as
+% $$ %\startformula
+% M=(\{T\subseteq Seq\uparrow:T\ \hbox{is a tree}\ \&\ (\exists A\in[\omega]^\omega)(\forall t\in Seq\uparrow, t\supseteq stem(T))(
+% rng(t)\subseteq A\rightarrow t\in T)\},\subseteq)
+% $$ %\stopformula
+% \end{definition}
+%
+% \begin{definition}
+% For $(s,A)\in M$ we let $[s,A]=\{B\in[A]^\omega:s\sqsubseteq B\}$. The ideal $I_M$ of \emph{Ramsey-null} sets is the $\sigma$-ideal generated by
+% $\{X\subseteq[\omega]^\omega:(\forall (s,A)\in M)(\exists (t,B)\in M, (t,B)\leq (s,A))([t,B]\cap X=\emptyset)\}$.
+% \end{definition}
+%
+% \begin{fact}
+% $M\sim \mbox{Borel}([\omega]^\omega)/I_M$.
+% \end{fact}
+%
+% %%%%%%%%%%%%%%%%%%%%% P(omega)/fin %%%%%%%%%%%%%%%%%%%%%
+% \begin{definition}
+% ($\pomega/fin$)
+% \end{definition}
+%
+% \begin{definition}{\bf Prikry.} % prostřelování filtru
+% \end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                          END                                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \subsection{I DON'T KNOW WITCH}\label{first-translation}
+%
+% We know that a given ordering $P=(P,\leq)$ determines a complete Boolean algebra $B=RO(P)$, i.e. that there is an order homomorphism
+% $h:(P,\leq)\to (B^+,\leq)$ which preserves disjointness and its range is dense in $B$ (it is an embedding iff $P$ is a separative partial order).
+% We also know that a generic filter $G$ on $P$ determines a generic filter $\bar{G}=\{b\in B:(\exists p\in P\cap G)(h(p)\leq b)\}$ on $B$
+% and vice versa. These two filters are similar (\ref{similarity}).
+%
+% We shall admit, that groundmodel relations with domains subsets of $P$ are actually names for semisets and the image $r[G]$ of a generic filter via
+% such a relation $r$ is in fact a semiset --- the `interpretation' of $r$ `via' the generic filter $G$. It shouldn't be surprising that
+% different names can have identical interpretations via a particular generic filter. The question is whether we can tell that two names are potentially
+% names for the same semiset based just on the knowledge of the names themselves. The answer is yes. Let us first show that there is a natural
+% correspondence between names---relations and names---Boolean functions:
+%
+% For a relation $\dot{r}$ and $a\in V$ such that $rng(\dot{r})\subseteq a$ we define a function $\dot{f}:a\to B$ as follows:
+% $$
+% \dot{f}_r(x)=\bigvee\{h(p):p\in P\ \&\ \langle p,x\rangle\in r\}.
+% $$
+%
+% \begin{fact}
+% $$
+% r[G] = \{x\in a:f(x)\in\bar{G}\}.
+% $$
+% \end{fact}
+% \begin{proof} The inclusion $\subseteq$ is clear. On the other hand if $f(x)\in\bar{G}$ then the set $\{h(p):p\in P\ \&\ \langle p,x\rangle\in r\}$ is
+% predense below $f(x)$. Since $f(x)\in\bar{G}$ there must be a $p\in G$ such that $\langle p,x\rangle\in r$
+% \end{proof}
+%
+% On the other hand, given a Boolean function---name $\dot{f}:a\to B$ we define the corresponding relation---name $\dot{r}$:
+% $$
+% \dot{r}_f=\{\langle p,x\rangle: p\in P\ \&\ h(p)\leq f(x)\}.
+% $$
+%
+% Note that if we start with $\dot{r}$ then transfer to $\dot{f}_r$ and go back to $\bar{r}=\dot{r}_{\dot{f}_r}$, we get $\bar{r}\supseteq \dot{r}$ and
+% clearly $\bar{r}[G]=\dot{r}[G]$. The relation $\bar{r}$ can be defined directly from $\dot{r}$:
+% $$
+% \langle q,x\rangle\in\bar{r}\equiv \{p\in P:\langle p,x\rangle\in r\}\ \mbox{is predense below}\ q.
+% $$
+% It follows that the fibers of $\bar{r}$ are downward closed, i.e. if $\langle q,x\rangle\in\bar{r}$ and $q^\prime\leq q$ then
+% $\langle q^\prime,x\rangle\in\bar{r}$.
+%
+% We now introduce a new notation in line with our view of the relations as names and elements of $P$ as conditions. Given $p\in P$ a relation $\dot{r}$
+% and $x$ we write
+% $$
+% p\force x\in\dot{r}
+% $$
+% to mean $\langle p,x\rangle\in\dot{r}$ and we read it as: ``$p$ forces that $x$ is an element of the set named by $\dot{r}$''. From the observation
+% that the fibers of $\bar{r}$ are downward closed we immediately get that if a condition $p$ forces $x$ to be an element of $\dot{r}$ then any stronger
+% condition $q\leq p$ also forces $x$ to be an element of $\dot{r}$. We also define the meaning of
+% $$
+% p\force x\not\in\dot{r}
+% $$
+% as $(\forall q\leq p)(q\not\force x\in\dot{r})$, i.e. $p\force x\not\in\dot{r}$ iff no stronger condition forces $x$ into $\dot{r}$. Note that if
+% $\dot{r}=\bar{r}$ then this is the same as saying $p\not\force x\in\dot{r}$ (because $\bar{r}$ is downward closed) but in general it need not be.
+% Thus, given a general $\dot{r}$ and $x$, $P$ is split into three parts: conditions which force $x$ into $\dot{r}$, condition which force $x$ out of $\dot{r}$
+% and the remaining conditions, which ``are not sure''. Below each of these third conditions there must be two disjoint conditions from the first and second part.
+
+
+

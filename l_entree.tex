@@ -1,0 +1,252 @@
+\documentclass[a4paper,12pt,oneside]{bb}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{fncylab}
+
+\usepackage[utf8]{inputenc}
+
+% \usepackage[dvipdfm,
+%              pdfstartview={FitH},
+%              bookmarks,bookmarksopen,
+%              colorlinks,linkcolor={blue},citecolor={red},
+%              urlcolor={blue}]{hyperref}
+
+%fonty
+\usepackage{charter}
+\usepackage{euler}
+
+% tiskove zrcadlo
+\topmargin-40pt
+\headheight15pt
+\headsep10pt
+\topskip0pt
+\textheight710pt
+\oddsidemargin-20pt
+\evensidemargin-20pt
+\textwidth500pt
+
+\usepackage{graphicx}
+
+%headings
+\usepackage{fancyhdr}
+\pagestyle{myheadings}
+\pagestyle{fancy}
+
+%----------definitions---------------------------
+\def\R{\mathbb R}
+\def\cl{\text{cl}}
+\def\norma#1{\parallel\!#1\!\parallel}
+\def\norm#1{\parallel\!#1\!\parallel}
+
+%math definitions
+\def\sub{\text{Sub}}
+\def\meas{\text{Meas}}
+\def\msub{\text{mSub}}
+\def\cov{\mbox{\itshape cov}}
+\def\non{\mbox{\itshape Non}}
+\def\cal{\text{cal}}
+\def\msubn{\text{mSub}_{\text{1}}}
+\def\subn{\text{Sub}_{\text{1}}}
+\def\fn{\text{Fn}}
+
+\def\B{{\mathbb B}}
+\def\C{{\mathbb C}}
+
+\def\F{{{\mathcal F}}}
+\def\N{{{\mathcal N}}}
+\def\E{\mathcal E}
+
+\def\cohen{\mathbf C}
+
+\def\cont{{2^{\aleph_0}}}
+\def\force{\Vdash}
+\def\aleq{\leq^{*}}
+\def\succ{\hbox{succ}}
+\def\pw{{{\mathcal P}}}
+\def\conc{{^\smallfrown}}
+\def\<{\langle}
+\def\>{\rangle}
+\newcommand{\dl}{\langle\!\langle}
+\def\dr{\rangle\!\rangle}
+
+
+\def\dom{\hbox{dom}}
+\def\pomega{\pw(\omega)}
+\def\0{\hbox{\bf 0}}
+\def\1{\hbox{\bf 1}}
+\def\intr#1{%
+  \hbox{int}\ #1%
+}
+\def\cl#1{%
+  \hbox{cl}\ #1%
+}
+
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+
+
+
+%---------numbering of the formulas and theorems---------------
+% \newcounter{thm}[section]
+% \numberwithin{thm}{section}
+
+%---------numbering of the theorems------------
+\swapnumbers
+
+%\renewcommand\subsection{\@startsection{subsection}{2}{\z@}{0pt plus 6pt}{3pt}{\bf}}
+
+%\theoremstyle{plain}
+\newtheoremstyle{theorem}% name
+  {}%      Space above
+  {}%      Space below
+  {\itshape}%         Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries\scshape}% Thm head font
+  {.}%        Punctuation after thm head
+  {.5em}%     Space after thm head: " " = normal interword space;
+        %       \newline = linebreak
+  {}%         Thm head spec (can be left empty, meaning `normal')
+\theoremstyle{theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}[subsection]{Theorem}
+\newtheorem{metatheorem}[subsection]{Metatheorem}
+\newtheorem{lemma}[subsection]{Lemma}
+\newtheorem{proposition}[subsection]{Proposition}
+\newtheorem{fact}[subsection]{Fact}
+\newtheorem{claim}[subsection]{Claim}
+\newtheorem{obs}[subsection]{Observation}
+\newtheorem{corollary}[subsection]{Corollary}
+\newtheorem{problem}[subsection]{Problem}
+%\numberwithin{equation}{section}
+\newtheorem{notation}[subsection]{Notation}
+%\theoremstyle{remark}
+%\newtheorem{remark}[subsection]{Remark}
+%\newtheorem*{note}{Note}
+\newtheoremstyle{example}% name
+  {}%      Space above
+  {}%      Space below
+  {}%         Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries\scshape}% Thm head font
+  {.}%        Punctuation after thm head
+  {.5em}%     Space after thm head: " " = normal interword space;
+        %       \newline = linebreak
+  {}%         Thm head spec (can be left empty, meaning `normal')
+\theoremstyle{example}
+\newtheorem{example}[subsection]{Example}
+\newtheorem{remark}[subsection]{Remark}
+\newtheorem*{note}{Note}
+%\theoremstyle{definition}
+\newtheorem{definition}[subsection]{Definition}
+
+%\labelformat{subsection}{\thechapter.#1}
+
+%vytvoreni indexu
+\usepackage{makeidx}
+\makeindex
+
+\includeonly{content,prerequisites,orderings,forcing,classical_examples,generic,relations,solovay,work_in_progress}
+
+\usepackage[system=linux]{vpe}
+\usepackage[colorlinks,citecolor={blue},bookmarks,bookmarksnumbered]{hyperref}
+% \pdfinfo{
+%    /Author (B. Balcar, T. Pazák, J. Verner)
+%    /Title  (An Exposition of Generic Extensions and Forcing in Set Theory)
+%    /Subject (forcing)
+%    /Keywords (forcing, set-theory)
+% }
+
+
+%-------------opening--------------------------
+\begin{document}
+%\tableofcontents
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%---------------------PREREQUISITIES--------------------------
+\include{content}
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%---------------------PREREQUISITIES--------------------------
+\include{prerequisites}
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-----------------------ORDERINGS-----------------------------
+\include{orderings}
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%----------------------FORCING--------------------------------
+\include{forcing}
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%----------------------EXAMPLES--------------------------------
+\include{classical_examples}
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------FORCING RELATION--------------------------
+\include{relations}
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%------------------------GENERIC------------------------------
+\include{generic}
+
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------SOLOVAY MODEL--------------------------
+\include{solovay}
+
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------Work in progress--------------------------
+\include{work_in_progress}
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+\nocite{ArTo:05}\nocite{BaSt}\nocite{BaJu:95}\nocite{Ke:1994}\nocite{Handbook1}\nocite{KunST}
+\nocite{Sh:98}\nocite{Zap:08}\nocite{BlTu}\nocite{goldstern}\nocite{kanamori}\nocite*
+% \nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}
+% \nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}
+% \nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}
+% \nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}\nocite{}
+
+%--------------------REFERENCES------------------------------
+\bibliographystyle{alpha}\addcontentsline{toc}{chapter}{References}
+\lhead{{\scshape References}}
+\bibliography{entree}
+
+
+%...................l_entree.ind....................................
+%\include{index}
+
+%..............................................................
+
+
+\end{document}

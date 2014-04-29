@@ -1,0 +1,238 @@
+\setupcolors[state=start]       % otherwise you get greyscale
+%\definecolor[headingcolor][r=1,b=0.4]
+\usemodule[newmat]
+\usetypescript[berry][ec]
+% for the document info/catalog (reported by 'pdfinfo', for example)
+\setupinteraction[state=start,  % make hyperlinks active, etc.
+  title={Introduction to Forcing},
+  subtitle={},
+  author={Bohuslav Balcar, Jonathan Verner},
+  keyword={forcing, posets, generic sets, iteration}]
+
+% useful urls
+\useURL[verner-email][mailto:jonathan.verner@matfyz.cz][][jonathan.verner@matfyz.cz]
+\useURL[balcar-email][mailto:balcar@cts.cuni.cz][][balcar@cts.cuni.cz]
+\setuppapersize[A4][A4]
+\setuplayout[topspace=0.5cm, backspace=1cm, header=24pt, footer=36pt,
+  height=middle, width=middle]
+
+% uncomment the next line to see the layout
+%\showframe
+
+% headers and footers
+\setupfooter[style=\it]
+\setupfootertexts[\date\hfill Introduction to Forcing]
+\setuppagenumbering[location={header,right}, style=bold]
+
+
+%\setupbodyfont[12pt]            % default is 12pt
+%\setupmathfont[10pt]
+%\usetypescript[modern][ec]
+%\setupbodyfont[modern]
+
+\usetypescript[berry][ec] % or [8r]
+\usetypescript[palatino][ec] %
+\setupbodyfont[palatino,10pt]
+
+
+\setuphead[section,chapter,subject][color=headingcolor]
+\setuphead[section,subject][style={\bfd},
+  before={\bigskip\begingroup}, after={\endgroup}]
+\setuphead[subsection,subsubject][style={\bf}]
+\setuphead[chapter][style={\ss\bfd}]
+\setuphead[title][style={\bfd},
+  before={\begingroup\setupbodyfont[10pt]},
+  after={\leftline{\ss\tfa Bohuslav Balcar $\langle$\from[balcar-email]$\rangle$}
+         \leftline{\ss\tfa Jonathan Verner $\langle$\from[verner-email]$\rangle$}
+         \bigskip\bigskip\endgroup}]
+
+\setupitemize[inbetween={}, style=bold]
+
+% set inter-paragraph spacing
+\setupwhitespace[medium]
+% comment the next line to not indent paragraphs
+\setupindenting[medium, yes]
+
+\definenumber[counter]
+
+
+\defineenumeration
+  [lemma]
+  [location=serried,
+   text=Lemma,
+   width=broad,
+   after=\blank][number=counter]
+
+
+
+\defineenumeration
+  [thm]
+  [width=broad,
+   after=\blank]
+
+\setupenumerations[thm]
+  [headstyle=bold,
+   location=serried,
+   text=Theorem,
+   sectionnumber=yes,
+   conversion=numbers,
+   way=bysection,
+   number=counter]
+
+\defineenumeration
+  [definition][thm]
+  [width=broad,
+   text=Definition,
+   after=\blank]
+
+\defineenumeration
+  [lemma][thm]
+  [width=broad,
+   text=Lemma,
+   after=\blank]
+
+\defineenumeration
+  [fact][thm]
+  [width=broad,
+   text=Fact,
+   after=\blank]
+
+\definedescription
+  [proof]
+  [location=serried,
+   text=Proof.,
+   width=broad,
+   after=\QED]
+
+\definedescription
+  [case]
+  [location=serried,
+   text=Case,
+   width=broad]
+
+\def\cf#1{%
+  \hbox{cf}\ #1%
+}
+
+\def\force{\Vdash}
+\def\aleq{\leq^{*}}
+\def\succ{\hbox{succ}}
+\def\pw{{\cal{P}}}
+
+
+\starttext
+
+
+%\title{Introduction to forcing}
+
+\section{Set Theory prerequisites}
+
+When we talk about Set Theory we mean the first order predicate theory in a language with equality containing a binary predicate $\in$
+with the standard axioms\footnote{Ahoj}.
+
+
+
+We assume the reader is familiar with naive set theory. In this sections we list, for her convenience, the axioms of set theory
+and discuss some stuff we shall be needing later on.
+
+\subsubject{Axioms of Zermelo-Fraenkel}
+
+
+(taken from Jech)
+
+\def\myitem#1{{\bf #1}}
+\setupitemize[left={\determineheadnumber[section]\currentheadnumber.},right=,margin=0em,command=\myitem, stopper=]
+\startitemize[n]
+\item{Axiom of Extensionality.} If $X$ and $Y$ have the same elements, then
+$X=Y$.
+\item{Axiom of Pairing.} For any $a$ and $b$ there exists a set $\{a, b\}$ that
+contains exactly $a$ and $b$.
+\item{Axiom Schema of Separation.} If $P$ is a property (with parameter $p$),
+then for any $X$ and $p$ there exists a set $Y = \{u \in X : P (u, p)\}$ that contains
+all those $u \in X$ that have property $P$ .
+\item{Axiom of Union.} For any $X$ there exists a set $Y =\bigcup X$, the union
+of all elements of $X$.
+\item{Axiom of Power Set.} For any $X$ there exists a set $Y = \pw (X)$, the
+set of all subsets of $X$.
+\item{Axiom of Infinity.} There exists an infinite set.
+\item{Axiom Schema of Replacement.} If a class $F$ is a function, then for
+any $X$ there exists a set $Y = F (X) = \{F (x) : x \in X\}$.
+\item{Axiom of Regularity.} Every nonempty set has an $\in$-minimal element.
+\item{Axiom of Choice.} Every family of nonempty sets has a choice func-
+tion.
+\stopitemize
+
+The theory with axioms 1.1---1.8 is the Zermelo-Fraenkel axiomatic set theory ZF; ZFC denotes the theory ZF with the
+Axiom of Choice.
+
+\subsubject{Cumulative hierarchies}
+In the theory ZF we can define the following:
+
+\startdefinition A set $x$ is an {\bf ordinal number}, if it is wellordered (i.e. is linearly ordered and each subset has an $\in$-minimal element) by $\in$.
+We shall denote ordinal numbers by lowercase greek letters $\alpha,\beta,\ldots$ from the beginning of the alphabet.
+
+Using transfinite recursion over ordinal numbers we define the cumulative hierarchy:
+
+\placeformula\startformula\startalign[n=4,align={left,middle,left, right}]
+\NC V_0          \NC = \NC \emptyset\NC\NR
+\NC V_{\alpha+1} \NC = \NC V_\alpha\cup\pw(V_\alpha)\NC \NR[eq:Valpha]
+\NC V_\alpha     \NC = \NC \bigcup_{\beta<\alpha} V_\beta \NC\ \alpha\ \text{limit}\NR
+\stopalign\stopformula
+
+\stopdefinition
+If we work in ZFC we can define the notion of a cardinal number:
+
+\startdefinition A set $x$ is an {\bf cardinal number}, if it is an initial ordinal number (i.e. it is an ordinal number and
+there is no 1-1 function onto $x$ from any smaller ordinal number). We denote cardinal numbers by lowercase greek letters $\kappa,\lambda,\ldots$ from the
+middle of the alphabet.
+
+Using transfinite recursion over cardinal numbers we define the rank of a set:
+
+\startformula\startalign[n=4,align={left,middle,left}]
+\NC r(\emptyset) \NC=\NC 0\NR
+\NC r(x)         \NC=\NC \sup\{r(y):y\in x\}\cup\{|x|\}\NR
+\stopalign\stopformula
+
+and then define
+
+\placeformula\startformula
+H(\kappa)=\{x:r(x)<\kappa\}
+\stopformula
+\stopdefinition
+
+Notice the following important fact
+
+\startthm If $\kappa$ is a regular infinite cardinal, then the structure $\langle V_\kappa,\in\rangle$ satisfies all of the ZFC axioms except replacement
+in the case when the function $F$ is a proper class. The structure $\langle H(\kappa),\in\rangle$ statisfies all of ZFC axioms
+except the power set axiom which holds only for sets $x\in H(\kappa)$ with $|\pw(x)|<\kappa$.
+\stopthm
+
+\section{Generic sets --- an algebraic approach}
+
+\section{Generic sets --- filters approach}
+
+\section{Names for sets \& basic facts about forcing}
+
+\section{Ordinal and cardinal numbers in generic extensions}
+
+\startthm $On^V=On^{V[G]}$.
+\stopthm
+
+\startthm $\kappa$-closed implies preserving cardinals up to $\kappa$
+\stopthm
+
+\startthm $\kappa$-cc implies preserving cardinals above $\kappa$
+\stopthm
+
+\startthm Distributivity and new sets in the extension
+\stopthm
+
+\section{Examples of partial orders}
+\subsubject{Collapse}
+\subsubject{Cohen}
+\subsubject{Random}
+\subsubject{Sacks \& variants.}
+\subsubject{Mathias \& Prikry}
+
+\stoptext
+

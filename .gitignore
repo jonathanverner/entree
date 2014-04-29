@@ -1,0 +1,14 @@
+*~
+*.blg
+*.idx
+*.ilg
+*.ind
+*.log
+*.bbl
+*.aux
+*backup
+*pdf
+*dvi
+*out
+*toc
+tags

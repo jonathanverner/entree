@@ -1,0 +1,64 @@
+\subsection{iteration}
+
+% \subsubsection{Martin's axiom}
+%
+% Take $\kappa$ s.t., $\kappa^{<\kappa}=\kappa$. Consider $\mathcal S=\{(P,\leq):P\subseteq \kappa, |P|<\kappa\}$ ordered by regular embedding.
+% If $B$ is a generic on $S$ then forcing with $B$ gives us MA.
+
+
+\subsubsection{Preservation theorems}
+\begin{definition} An ordering $P$ is \emph{$n$-linked}, $n<\omega$, if for any $X\in[P]^{\leq n}$ there is
+$p\in P$ compatible with each $x\in X$. \emph{Linked} is short for $2$-linked. An ordering has the \emph{Knaster} property if any uncountable subset of the ordering contains an uncountable linked subset.
+\end{definition}
+
+\begin{obs} If $P$ has the Knaster property then given $n<\omega$ any uncountable subset contains
+ an uncountable $n$-linked subset.
+\end{obs}
+\begin{proof} Easy, inductively apply the Knaster property to the witnesses for $2$-linkedness.
+\end{proof}
+
+\begin{proposition} If $P$ is an ordering with the Knaster property and $P\force\dot{Q}$ has the Knaster
+ property then $P*\dot{Q}$ has the Knaster property.
+\end{proposition}
+\begin{proof}
+ Let $\{\langle p_\alpha,\dot{q}_\alpha\rangle:\alpha<\omega_1\}\subseteq P*\dot{Q}$.
+ By strengthening the $p_\alpha$'s we may assume that each $p_\alpha$ decides the statement
+
+ \begin{displaymath}
+  \{\dot{q}_\alpha:\alpha< \omega_1\}\ \hbox{is uncountable}
+ \end{displaymath}
+
+ By the above observation we may assume that the $p_\alpha$'s are $4$-linked. We also assume that all the
+ $p_\alpha$'s decide the statement in the same way. There are two cases:
+
+ {\bf Case 1.} Each $p_\alpha$ forces that $\{\dot{q}_\alpha:\alpha<\omega_1\}$ is uncountable. Working
+ in $RO(P)$ (which also has the Knaster property) let $b=\bigvee\{p_\alpha\}$. Then $b$ forces that
+ $\{\dot{q}_\alpha:\alpha<\omega_1\}$ is uncountable and since $P\force\dot{Q}$ has the Knaster property,
+ there is a name $\dot{X}$ such that
+ \begin{displaymath}
+  b\force \dot{X}\subseteq\{\dot{q}_\alpha:\alpha<\omega_1\}\ \&\ |\dot{X}|=\omega_1\ \&\ \dot{X}\
+  \mbox{is linked}.
+ \end{displaymath}
+ By induction to $\omega_1$ choose
+ $\{\langle r_\alpha,\dot{s}_\alpha\rangle :\alpha<\omega_1\}\subseteq
+  \{\langle p_\beta,\dot{q}_\beta\rangle:\beta<\omega\}$
+ such that $r_\alpha\force \dot{s}_{\alpha+1}\in\dot{X}$. This is possible since each $p_\alpha$
+ forces $\dot{X}$ to be uncountable. We claim that
+ $\{\langle r_{\alpha+1},\dot{s}_{\alpha+1}\rangle:\alpha<\omega_1\}$
+ is linked. Choose $\alpha,\beta<\omega_1$. Since we assumed the $p_\alpha$'s are $4$-linked we may find
+ $p\in P$ be below $r_\alpha,r_{\alpha+1},r_\beta,r_{\beta+1}$.
+ Then $p\force \dot{s}_{\alpha+1},\dot{s}_{\beta+1}\in \dot{X}$ so $p$ knows they are compatible so there
+ is $\dot{t}\in \dot{Q}$ such that $p\force \dot{t}\leq \dot{s}_{\alpha+1},\dot{s}_{\beta+1}$. Then
+ $\langle p,\dot{t}\rangle\leq\langle r_{\alpha+1},\dot{s}_{\alpha+1}\rangle,\langle r_{\beta+1},dot{s}_{\beta+1}\rangle$ and this finishes the proof of case 1.
+
+ {\bf Case 2.} There is $R=\{\dot{r}_n:n<\omega\}\subseteq\dot{Q}$ such that
+ $\dot{p}_\alpha\force\dot{q}_\alpha\in R$. Again work in $RO(P)$ and find, below each $p_\alpha$
+ an antichain $b_{\alpha,n}$ such that $b_{\alpha,n}=||\dot{q}_\alpha=\dot{r}_n||$.
+ By the Knaster property for $RO(P)$ there is an uncountable set $I\subseteq\omega_1\times\omega$
+ such that for each $(\alpha,n),(\beta,m)\in I$ the corresponding $b_{\alpha,n}$ and $b_{\beta,m}$
+ are compatible. Since $I$ is uncountable we may assume that the second coordinates are all equal to
+ some $n_0<\omega$ and then $b_{\alpha,n_0}\leq p_\alpha$ and $b_{\alpha,n_0}\force \dot{q}_\alpha=\dot{r}_n$
+ so they witness that $\langle p_\alpha,\dot{q}_\alpha\rangle$ are pairwise compatible.
+
+\end{proof}
+

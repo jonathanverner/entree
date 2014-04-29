@@ -1,0 +1,178 @@
+\cfoot{}\rhead{\thepage}
+\lhead{{\scshape Work in progress} $\qquad$ {\tiny \today } }
+
+% \noindent{\Large{\scshape\bfseries Entreé to Generic Extensions and Forcing in Set Theory}} \\[0.1cm]
+%
+% \noindent {\scshape Bohuslav Balcar}, {\small CTS, J{\' \i}lsk{\' a} 1, Praha 1,
+% 	Czech Republic, {\ttfamily balcar@cts.cuni.cz} } \\[0.1cm]
+% \noindent {\scshape Jonathan Verner}, {\small KTIML MFF UK, {\ttfamily jonathan.verner@matfyz.cz}\\[0.1cm]
+% {\tiny \today } \\[0.5cm]
+
+%\maketitle
+
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Work in progress}\label{work-in-progress}
+\subparagraph{Reading of names} Given a forcing notion $(P,\leq)$ we have worked with different
+relations $r\subseteq P\times V$ and when we had a generic filter $G$ on $P$ over $V$ we
+considered semisets of the form $r[G]$. It is natural to look at the relation $r$ as an
+approximation of this semiset. This approximation is a set from the groundmodel, in our case $V$.
+The generic filter then `interprets' or `specifies' the exact meaning of $r$. In view of this,
+we consider the relations to be `names' for semiset. We shall adopt the convention to `dot'
+the relations, i.e. write $\dot{r}$ instead of $r$, when we want to emphasize that we are thinking
+of them as names. We shall also write $\dot{r}/_G$ instead of $r[G]$.
+
+Given a groundmodel set $x\in V$, we shall sometimes want to have a name for $x$, customarily
+denoted by $\check{x}$. We could either choose $\check{x}$ to be some canonical relation
+$\subseteq P\times x$ or, as we shall do here, we identify $\check{x}$ with $x$ and define
+$\check{x}/_G$ to be $x$.
+
+\subparagraph{Boolean names} \label{first-translation}
+We have already mentioned, that the difference between an ordering $P$ and the complete Boolean
+algebra $RO(P)$ is irrelevant from the point of view of forcing. However, working with a Boolean
+algebra can sometimes be more convenient, since we can use the Boolean operations. We shall now
+describe how to pass from $P$-names, i.e. relations $r\subseteq P\times V$, to appropriate
+$B$-names (see also \ref{lost-in-translation}).
+
+Starting with a name $r\subseteq P\times V$ we can consider the following modifications
+$$\tilde{r} = \{\langle q,x\rangle:(\exists p\geq q)(\langle p,x\rangle\in r)\}$$
+and
+$$
+\mathring{r} = \{\langle p,x\rangle: x\in rng(r)\ \&\ \{q\in P:\langle q,x\rangle\in\tilde{r}\}\ \mbox{is dense below}\ p\}.
+$$
+We immediately see that $dom(\tilde{r})=\bigcup\{(\leftarrow,p]:p\in dom(r)\}$ so $dom(\tilde{r})$
+is downwards closed and $\tilde{r}[\{q\}] = \bigcup\{ r[\{p\}]:q\leq p\}$. Also, recalling
+that a set $E\subseteq P$ is predense below $p\in P$ if there is no $q\leq p$ which would
+be disjoint from $E$, i.e. $q\in E^\perp$, we see that $\langle p,x\rangle\in\mathring{r}$
+iff $r^{-1}[\{x\}]$ is predense below $p$.
+
+\begin{fact} It is clear that $r\subseteq\tilde{r}\subseteq\mathring{r}$ and, moreover,
+\begin{itemize}
+ \item[(i)] $\mathring{r}^{-1}[\{x\}]$ is a regular subset of $P$ for all $x$ (see \ref{Regularisation}).
+ \item[(ii)] For any generic filter $G$ on $P$, the interpretations are the same, i.e. $r[G]=\tilde{r}[G]=\mathring{r}[G]$.
+\end{itemize}
+\end{fact}
+
+The proof is straightforward. Note that in (ii) genericity of the filter $G$ is only needed for the last equality,
+the first holds for any filter.
+
+
+Using (i) and the fact that regular subsets of $P$ form a complete Boolean algebra denoted $RO(P)$ (see \ref{RO})
+a relation $r\subseteq P\times V$ naturally determines a function $f:rng(r)\to RO(P)^+$, namely:
+$$
+f(x)=\mathring{r}^{-1}[\{x\}].
+$$
+For this function we have that for any generic filter $G$ on $P$
+$$
+r[G]=\{x:f(x)\in \bar{G}\},
+$$
+where $\bar{G}=\{x\in RO(P)^+: x\cap g\neq\emptyset\}$.
+
+\subparagraph{Relationship between names and conditions}
+We shall now introduce a piece of standard notation (see \ref{forcing-relation} for more details):
+Given a name $\dot{r}\subseteq P\times V$, $x\in V$ and a condition $p\in P$ we shall write
+$$
+p\force x\in\dot{r}\ \mbox{or, more precisely}\ p\force\check{x}\in\dot{r}
+$$
+iff $\langle p,x\rangle\in\mathring{r}$. It is said that `the condition $p$ knows that $x$ is an element of $\dot{r}$'
+or `p forces $\check{x}\in\dot{r}$.'.
+
+What about $p$ forcing that $x$ is \emph{not} in $\dot{r}$. We might be tempted to that
+$p\force \check{x}\not\in\dot{r}$ means $\langle p,x\rangle\not\in\mathring{r}$.
+It turns out, however, that this would not work in general because $\langle p,x\rangle\not\in\mathring{r}$ might
+mean that $p$ just doesn't know whether $\check{x}\in\dot{r}$. The correct definition
+will be
+$$p\force\check{x}\not\in\dot{r}\ \mbox{iff}\ p\ \mbox{is disjoint from all elements of}\ r^{-1}[\{x\}],$$
+i.e. $p\in \{q\in P:q\force\check{x}\in\dot{r}\}^\perp$.
+
+So in general, given a condition $p\in P$, a name $\dot{r}$ and an element $x\in V$ there are three possibilities:
+\begin{itemize}
+ \item[(i)]   $p\force\check{x}\in\dot{r}$
+ \item[(ii)]  $p\force\check{x}\not\in\dot{r}$
+ \item[(iii)] $p$ does not know, i.e. there are (disjoint) elements $q_1,q_2\leq p$ such
+              that $q_1\force\check{x}\in\dot{r}$ and $q_2\force\check{x}\not\in\dot{r}$.
+\end{itemize}
+
+The generic filter $G$ allows us to evade three valued or even intuitionistic logic since whenever
+$p\in P\cap G$ such that $p$ does not decide $\check{x}\in\dot{r}$ the set
+$$
+H=\{ q\leq p:q\force\check{x}\in\dot{r}\ \vee\ q\force\check{x}\not\in\dot{r}\}
+$$
+is open dense below $p$ so there is $q\in G\cap H$ below $p$ which decides $\check{x}\in\dot{r}$.
+
+\subparagraph{The role of dense subsets}
+Consider a forcing notion $P$ with a dense subset $H\subseteq P$. In the previous chapter we have said that it does not matter
+whether we work with $P$ or $H$. However, given a $P$-name $\dot{r}$ it is not immediately clear that this is an $H$-name.
+In fact, it need not be, since, e.g. $dom(r)\cap H$ can be empty. To overcome this, we pass to $\tilde{r}$ for which we
+necessarily have $dom(\tilde{r})\cap H\neq\emptyset$ (provided $dom(r)$ was nonempty). Moreover it turns out that for
+each $h\in H$, $x\in V$ we have
+$$
+h\force\check{x}\in\dot{r}\ \mbox{iff}\ h\force\check{x}\in\tilde{r}
+$$
+An easy density argument now shows that $\dot{r}$ and $\dot{s}=\tilde{r}\cap H\times\dom(r)$ are names for the same semiset,
+i.e. $\dot{r}/_G = \dot{s}/_G$ for each generic filter $G$.
+
+\subparagraph{Equality of names}
+When we will be trying to prove the consistency of the failure of CH, we will do this by adding semisets which are subsets of $\omega$.
+For this to work we have to add a lot of different semisets, however we only have names for the semisets and we know, that different
+names can be actually names for the same semiset. So it will be important to know, when two names are really names for different semisets.
+We first start with the opposite question: When are two names $\dot{r}$ and $\dot{s}$ names for the same semiset?
+The answer is that a condition $p\in P$ `knows' that the two $P$-names $\dot{r},\dot{s}$ are actually equal, i.e. $\dot{r}/_G=\dot{s}/_G$ for any generic $G$ containing $p$, iff for any $x\in rng(r)\cup rng(s)$ one of the following equivalent conditions is met:
+\begin{itemize}
+ \item[(i)]  $(\forall q\leq p)(r^{-1}[\{x\}]\ \mbox{is predense below}\ q\ \leftrightarrow s^{-1}[\{x\}]\ \mbox{is predense below}\ q)$
+ \item[(ii)] $(\forall q\leq p)(q\perp r^{-1}[\{x\}]\leftrightarrow q\perp s^{-1}[\{x\}])$
+\end{itemize}
+If one of these conditions is met, we write $p\force\dot{r}=\dot{s}$ and we write $P\force\dot{r}=\dot{s}$ if all conditions
+force $\dot{r}$ and $\dot{s}$ to be equal, i.e. iff $(\forall x\in dom(r)\cup dom(s) )((r^{-1}[\{x\}])^\perp = (s^{-1}[\{x\}])^\perp)$. This
+implies that, necessarily, $rng(r)=rng(s)$.
+
+
+{\bf Examples}
+
+{\bf (i)} We say that $P$ forces $\check{x}\in\dot{r}$ if each $p\in P$ forces $\check{x}\in\dot{r}$. Clearly
+$P\force\check{x}\in\dot{r}$ iff $r^{-1}[\{x\}]$ is predense in $P$ and $P\force\check{x}\not\in\dot{r}$ iff
+$r^{-1}[\{x\}]=\emptyset$.
+
+{\bf (ii)} Given two names $\dot{r},\dot{s}$ then
+\begin{itemize}
+ \item[(a)] $p\force\dot{r}=\dot{s}$ iff $(forall x\in rng(r)\cup rng(s))(\forall q\leq p)(q\force \check{x}\in\dot{r} \leftrightarrow q\force\check{x}\in\dot{s})$
+ \item[(b)] $p\not\force\dot{r}=\dot{s}$ iff $(\exists q\leq p)(\exists x)(q\force\check{x}\in\dot{r}\ \&\ q\force\check{x}\not\in\dot{s}\ \vee\
+                                                                           q\force\check{x}\in\dot{s}\ \&\ q\force\check{x}\not\in\dot{r})$
+ \item[(c)] $p\force\dot{r}\neq\dot{s}$ iff $(\forall p_1\leq p)(\exists q\leq p_1)(q\not\force\dot{r}=\dot{s})$
+\end{itemize}
+
+{\bf (iii)}
+\begin{itemize}
+ \item[(a)] $P\force \dot{r}\subseteq\check{\omega}$ iff $rng(r)\subseteq\omega$
+ \item[(b)] $p\force \dot{r}\subseteq\check{\omega}\ \&\ \dot{r}\ \mbox{is infinite}$ iff $rng(r)\subseteq\omega$ and
+            $(\forall m<\omega)(p\force(\exists \dot{n})(\check{m}\leq \dot{n}\ \&\ \dot{n}\in\dot{r}))$ iff for all $m<\omega$ the set
+            $r^{-1}[(\omega\setminus m)]$ is predense below $p$ iff for any generic filter $G$ with $p\in G$ the semiset $\dot{r}/_G$ is an
+            infinite part of $\omega$.
+ \item[(c)] $p\force\dot{r}\subseteq\check{\omega}\ \&\ \dot{r}\ \mbox{is finite}$ iff $rng(r)\subseteq\omega$ and
+            $(\forall p_1\leq p)(\exists q\leq p_1)(\exists k<\omega)(q\in (r^{-1}[(\omega\setminus k)])^\perp)$.
+\end{itemize}
+{\bf (iv)} $P\force\dot{r}:\check{\omega}\to\check{\omega}$, i.e. $P$ forces that $\dot{r}$ is a mapping of $\omega$ into $\omega$ iff
+           for each $p\in P$ the set
+           $$
+             r^\heartsuit(p) = \bigcup r[\ [p,\rightarrow)\ ]
+           $$
+           is a mapping of $P$ into partial functions from $\omega$ into $\omega$ and for any $n\in\omega$ the set
+           $$
+             \{p\in P:n\in dom(r^\heartsuit(p))\}
+           $$
+           is dense in $P$.
+
+           Now suppose $B=RO(P)$ and $P\force \dot{r}:\check{\omega}\to\check{\omega}$. Then the name $\dot{r}$ determines an $(\omega,\omega)$-matrix
+           on $B$ as follows:
+           $$
+           a(n,m)=\bigvee\{p\in P:\langle n,m\rangle\in r^\heartsuit(p)\}.
+           $$
+
+
+\input{work_in_progress/cichon.tex}
+\input{work_in_progress/iteration.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                          END                                    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
